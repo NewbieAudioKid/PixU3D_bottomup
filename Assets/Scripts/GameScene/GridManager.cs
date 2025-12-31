@@ -160,7 +160,57 @@ public class GridManager : MonoBehaviour
 
         return null;
     }
+// ==========================================
+    // 【核心新增】根据传送带的逻辑索引，计算出物理坐标
+    // 用于小猪进场时的预计算模拟
+    // beltIndex: 0 到 (gridSize * 4 - 1)
+    // ==========================================
+    public Vector3 GetSimulatedPosition(int beltIndex)
+    {
+        // 传送带围绕 Grid 一圈，总长度是 4 条边
+        // 0 ~ 19: Bottom (从左到右)
+        // 20 ~ 39: Right (从下到上)
+        // 40 ~ 59: Top (从右到左)
+        // 60 ~ 79: Left (从上到下)
 
+        int sideLength = gridSize;
+        int x = 0;
+        int y = 0;
+
+        if (beltIndex < sideLength) // Bottom
+        {
+            x = beltIndex;
+            y = -1; // 强制在下方
+        }
+        else if (beltIndex < sideLength * 2) // Right
+        {
+            x = sideLength; // 强制在右侧
+            y = beltIndex - sideLength;
+        }
+        else if (beltIndex < sideLength * 3) // Top
+        {
+            // 注意：Top 是逆时针，所以 X 是从大到小
+            // 比如 index 40 对应 x=19, index 59 对应 x=0
+            int localIndex = beltIndex - sideLength * 2;
+            x = (sideLength - 1) - localIndex;
+            y = sideLength; // 强制在上方
+        }
+        else // Left
+        {
+            // Left 是逆时针，所以 Y 是从大到小
+            int localIndex = beltIndex - sideLength * 3;
+            x = -1; // 强制在左侧
+            y = (sideLength - 1) - localIndex;
+        }
+
+        // 把逻辑坐标 (x, y) 转回世界坐标
+        // 公式逆推：World = Origin + (Index * CellSize)
+        float worldX = gridOrigin.x + (x * cellSize);
+        float worldY = gridOrigin.y + (y * cellSize);
+
+        // Z 轴保持不变，假设 GridManager 的 Z 就是基准
+        return new Vector3(worldX, worldY, transform.position.z);
+    }
     // ==========================================
     //  【核心修复 3】物理阻挡判定
     // ==========================================

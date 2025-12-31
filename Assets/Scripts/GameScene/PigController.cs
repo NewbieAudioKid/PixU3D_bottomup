@@ -1,366 +1,400 @@
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections; // 引入协程，用于平滑移动
+using System.Collections;
 using System.Collections.Generic;
-using TMPro; // 引入 TextMeshPro，用于头顶文字
+using TMPro;
 
-// 定义小猪的状态枚举 (放在类外面，方便全局访问)
-public enum PigState { InTable, InQueue, OnBelt, Returning }
+// 状态枚举
+public enum PigState { InTable, InQueue, OnBelt, Returning, Transitioning }
+
+// 射击排期表结构体
+struct ShotScheduleItem
+{
+    public int beltStepIndex;    // 在传送带走的第几步开火
+    public CellController target; // 目标是谁
+}
 
 public class PigController : MonoBehaviour
 {
     [Header("=== 基础属性 ===")]
-    public string colorID = "red"; // 颜色 ID，需与 GridManager 里的匹配
-    public int ammo = 20;          // 初始弹药量
-    public GameObject bulletPrefab; // 子弹预制体
+    public string colorID = "red";
+    public int ammo = 20;
+    public GameObject bulletPrefab;
 
-    [Header("=== UI 与 视觉引用 (请在 Prefab 里拖拽) ===")]
-    public TextMeshPro ammoTextUI; // 头顶的数字显示
-    public Renderer bodyRenderer;  // 身体渲染器 (用于改色)
+    [Header("=== UI 与 视觉引用 ===")]
+    public TextMeshPro ammoTextUI;
+    public Renderer bodyRenderer;
 
-    [Header("=== 手感调节 (Juice) ===")]
-    // 动画曲线：建议设置为 (0,0) -> (1,1)，中间稍微拱起一点实现回弹效果
+    [Header("=== 手感调节 ===")]
     public AnimationCurve moveCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-    // 移动耗时：越小飞得越快 (秒)
-    public float moveDuration = 0.4f; 
+    public float moveDuration = 0.4f;
 
-    [Header("=== 内部状态 (Debug用) ===")]
+    [Header("=== 内部状态 ===")]
     public PigState currentState = PigState.InTable;
-    private int currentQueueIndex = -1; // 在 ReadyQueue 里的座位号 (0-4)
+    private int currentQueueIndex = -1;
+    
+    // 【新增】是否处于加速（绝地反击）状态
+    private bool isBoosted = false; 
 
     // === 内部引用 ===
-    private BeltWalker beltWalker;         // 负责跑路的组件
-    private CellController lastEngagedTarget = null; // 上一次锁定的目标 (防止重复判定)
-
-    // =========================================================
-    // 1. 初始化与生命周期
-    // =========================================================
+    private BeltWalker beltWalker;
+    
+    // 射击排期表
+    private Queue<ShotScheduleItem> shotSchedule = new Queue<ShotScheduleItem>();
 
     void Awake()
     {
-        // 获取自身的跑路组件
         beltWalker = GetComponent<BeltWalker>();
-        
-        // 监听跑路完成事件 (当 beltWalker 跑完一圈时调用 OnRunComplete)
-        if (beltWalker != null)
-        {
-            beltWalker.OnPathComplete.AddListener(OnRunComplete);
-        }
     }
 
-    // 初始化数据 (通常由 ShooterTableManager 生成时调用)
     public void InitData(string color, int bulletCount)
     {
         this.colorID = color;
         this.ammo = bulletCount;
-
-        // A. 更新身体颜色 (去 GridManager 领颜料)
         if (GridManager.Instance != null && bodyRenderer != null)
         {
             Material mat = GridManager.Instance.GetMaterialByColorID(this.colorID);
-            if (mat != null)
-            {
-                bodyRenderer.material = mat;
-            }
+            if (mat != null) bodyRenderer.material = mat;
         }
-
-        // B. 更新头顶文字
         UpdateAmmoUI();
     }
     
-    // 强制设置状态 (外部调用)
-    public void SetState(PigState state)
-    {
-        currentState = state;
-    }
+    public void SetState(PigState state) { currentState = state; }
 
     void Update()
     {
-        // 只有在传送带上跑的时候，才进行射击检测
-        // 移动逻辑全部移交给了协程 (Coroutine)，Update 里不再处理移动
-        if (currentState == PigState.OnBelt && ammo > 0)
-        {
-            CheckAndFire();
-        }
+        // Update 置空，逻辑全在协程里
     }
 
-    // 更新 UI 显示
     void UpdateAmmoUI()
     {
-        if (ammoTextUI != null)
-        {
-            ammoTextUI.text = ammo.ToString();
-        }
+        if (ammoTextUI != null) ammoTextUI.text = ammo.ToString();
     }
 
-    // =========================================================
-    // 2. 交互逻辑 (鼠标点击)
-    // =========================================================
-
+    // ================= 交互逻辑 =================
     void OnMouseDown()
     {
-        // 情况 A: 在库存里被点 -> 请求去备战区
         if (currentState == PigState.InTable)
         {
-            if (ShooterTableManager.Instance != null)
-            {
-                ShooterTableManager.Instance.OnPigClicked(this);
-            }
+            if (ShooterTableManager.Instance != null) ShooterTableManager.Instance.OnPigClicked(this);
         }
-        // 情况 B: 在备战区被点 -> 请求上跑道
         else if (currentState == PigState.InQueue)
         {
             GoToBelt();
         }
     }
 
-    // =========================================================
-    // 3. 动作逻辑 (移动与流转)
-    // =========================================================
-
-    // 【动作 1】从库存飞到备战区 (或者在备战区内补位移动)
+    // ================= 动作逻辑 =================
     public void MoveToQueue(int slotIndex, Vector3 pos)
     {
         currentState = PigState.InQueue;
         currentQueueIndex = slotIndex;
-        
-        // 告诉管理器：我占了这个坑
-        if (ReadyQueueManager.Instance != null)
-        {
-            ReadyQueueManager.Instance.RegisterPig(slotIndex, this);
-        }
-        
-        // 启动平滑弹射移动
+        if (ReadyQueueManager.Instance != null) ReadyQueueManager.Instance.RegisterPig(slotIndex, this);
         SmoothMoveTo(pos);
     }
 
-    // 【动作 2】从备战区飞向跑道起点
     void GoToBelt()
     {
-        // 安全检查
         if (beltWalker == null) return;
         
-        // 从备战区注销 (把坑腾出来)
-        if (ReadyQueueManager.Instance != null)
-        {
-            ReadyQueueManager.Instance.UnregisterPig(this);
-        }
+        currentState = PigState.Transitioning;
+        
+        if (ReadyQueueManager.Instance != null) ReadyQueueManager.Instance.UnregisterPig(this);
 
-        // 获取全局路点
         if (BeltPathHolder.Instance != null && BeltPathHolder.Instance.waypoints.Count > 0)
         {
-            // 开启组合拳协程：先飞过去 -> 再跑圈
-            StartCoroutine(EnterBeltSequence(BeltPathHolder.Instance.waypoints));
+            // 1. 预计算路径
+            PreCalculatePath();
+            // 2. 开始跑路 (RunBeltSequence 是预计算版本的跑路逻辑)
+            StartCoroutine(RunBeltSequence(BeltPathHolder.Instance.waypoints));
         }
         else
         {
-            Debug.LogError("错误：场景里找不到 BeltPathHolder 或者没有设置路点！");
+            Debug.LogError("错误：场景里找不到 BeltPathHolder！");
         }
     }
 
-    // 协程：进入跑道序列
-    IEnumerator EnterBeltSequence(List<Transform> path)
+    // =========================================================
+    // 【核心逻辑】预计算射击路径
+    // =========================================================
+    void PreCalculatePath()
     {
-        currentState = PigState.OnBelt; // 标记状态
+        if (GridManager.Instance == null) return;
 
-        // A. 飞向起点 (利用 moveCurve 曲线)
-        // path[0] 是跑道的起点 (右下角)
-        yield return StartCoroutine(MoveRoutine(path[0].position));
+        shotSchedule.Clear();
+        int simulatedAmmo = ammo; 
+        int gridSize = GridManager.Instance.gridSize;
+        int totalSteps = gridSize * 4; 
 
-        // B. 飞到了，把控制权交给 BeltWalker，开始跑圈
-        beltWalker.BeginJourney(path);
+        for (int i = 0; i < totalSteps; i++)
+        {
+            if (simulatedAmmo <= 0) break; 
+
+            Vector3 simPos = GridManager.Instance.GetSimulatedPosition(i);
+            CellController target = GridManager.Instance.GetTargetCellSmart(simPos);
+
+            if (target != null 
+                && !target.isDestroyed 
+                && !target.isPendingDeath 
+                && target.colorID == this.colorID)
+            {
+                ShotScheduleItem item = new ShotScheduleItem();
+                item.beltStepIndex = i;
+                item.target = target;
+                shotSchedule.Enqueue(item);
+
+                target.isPendingDeath = true; // 占位
+                simulatedAmmo--;
+            }
+        }
     }
 
-    // 【动作 3】跑完一圈后的逻辑抉择
-    void OnRunComplete()
+    // =========================================================
+    // 【核心逻辑】执行跑路与射击 (含加速逻辑)
+    // =========================================================
+    IEnumerator RunBeltSequence(List<Transform> path)
     {
+        // 1. 飞向起点
+        currentState = PigState.Transitioning;
+        yield return StartCoroutine(MoveRoutine(path[0].position));
+
+        // 2. 落地，开始跑圈
+        currentState = PigState.OnBelt;
+        
+        int gridSize = GridManager.Instance.gridSize;
+
+        // === 速度控制 (含 Boost) ===
+        float baseSpeed = (beltWalker != null && beltWalker.speed > 0) ? beltWalker.speed : 5f;
+        float currentRunSpeed = isBoosted ? (baseSpeed * 2f) : baseSpeed;
+        // =========================
+
+        List<Vector3> waypoints = new List<Vector3>();
+        foreach(var t in path) waypoints.Add(t.position);
+        
+        for (int segmentIndex = 0; segmentIndex < 4; segmentIndex++)
+        {
+            Vector3 start = waypoints[segmentIndex];
+            Vector3 end = waypoints[(segmentIndex + 1) % waypoints.Count];
+            
+            int minStepIndex = segmentIndex * gridSize;
+            int maxStepIndex = (segmentIndex + 1) * gridSize - 1;
+
+            float segmentDist = Vector3.Distance(start, end);
+            float travelTime = segmentDist / currentRunSpeed; // 应用加速后的速度
+            float timer = 0f;
+
+            while (timer < travelTime)
+            {
+                timer += Time.deltaTime;
+                float fraction = timer / travelTime;
+                transform.position = Vector3.Lerp(start, end, fraction);
+                
+                int currentStep = minStepIndex + Mathf.FloorToInt(fraction * gridSize);
+
+                if (shotSchedule.Count > 0)
+                {
+                    ShotScheduleItem nextShot = shotSchedule.Peek();
+                    if (nextShot.beltStepIndex > maxStepIndex) { }
+                    else if (currentStep >= nextShot.beltStepIndex)
+                    {
+                        PerformVisualFire(nextShot.target);
+                        shotSchedule.Dequeue(); 
+                    }
+                }
+
+// ================= 【核心修改】弹药耗尽处理 =================
+                if (ammo <= 0)
+                {
+                    Debug.Log("弹药耗尽，播放死亡动画...");
+
+                    // 1. 立即停止移动 (不再执行 yield return null 继续跑了)
+                    
+                    // 2. 播放死亡动画，并等待它播完
+                    yield return StartCoroutine(PerformDeathAnimation());
+
+                    // 3. 彻底销毁
+                    Destroy(gameObject);
+                    
+                    // 4. 退出整个 RunBeltSequence 协程
+                    yield break; 
+                }
+                yield return null;
+            }
+            transform.position = end;
+        }
+
         CheckEndGameAndReturn();
     }
 
-    // 核心决策：是回营休息，还是绝地反击？
+    void PerformVisualFire(CellController target)
+    {
+        ammo--; 
+        UpdateAmmoUI();
+
+        if (bulletPrefab != null) 
+        {
+            GameObject b = Instantiate(bulletPrefab);
+            b.GetComponent<BulletController>().Fire(target, transform.position);
+        }
+    }
+
+    // ================= 回营决策逻辑 =================
     void CheckEndGameAndReturn()
     {
         bool isTableEmpty = false;
         bool isQueueEmpty = false;
-
-        // 查询两大管理器状态
         if (ShooterTableManager.Instance != null) isTableEmpty = ShooterTableManager.Instance.IsTableEmpty();
         if (ReadyQueueManager.Instance != null) isQueueEmpty = ReadyQueueManager.Instance.IsQueueEmpty();
 
-        // 判定：如果库存空了 && 备战区也空了
-        // 说明我是最后的希望 (或者场上仅存的几只都在跑道上)
+        // 绝地反击条件：两处全空
         if (isTableEmpty && isQueueEmpty)
         {
-            Debug.Log("🔥 进入绝地反击模式！加速循环！");
             StartCoroutine(AutoRejoinBelt());
         }
         else
         {
-            // 正常情况：回备战区待命
             ReturnToQueueNormal();
         }
     }
 
-    // 逻辑分支 A: 自动加速循环 (Climax Mode)
+    // 绝地反击模式 (修复了之前的报错)
     IEnumerator AutoRejoinBelt()
     {
         currentState = PigState.Returning;
-
-        // 1. 视觉欺骗：假装要飞回备战区，制造“回弹”的视觉张力
         Vector3 bounceTarget = Vector3.zero;
         if (ReadyQueueManager.Instance != null)
         {
-            // 找个位置假装落脚
             int slotIndex = ReadyQueueManager.Instance.GetFirstEmptyIndex();
             if (slotIndex == -1) slotIndex = 0;
             bounceTarget = ReadyQueueManager.Instance.GetSlotPosition(slotIndex);
         }
 
-        // 2. 快速飞向备战区 (时间减半，制造紧迫感)
+        // 视觉回弹效果
         float originalDuration = moveDuration;
         moveDuration = originalDuration * 0.5f; 
         yield return StartCoroutine(MoveRoutine(bounceTarget));
 
-        // 3. 碰到备战区瞬间，反弹回跑道！
-        // 开启 2 倍速 BUFF
-        if (beltWalker != null)
-        {
-            beltWalker.SetDoubleSpeed(); // 需确保 BeltWalker 里有这个方法，或者直接 beltWalker.speed *= 2;
-        }
+        // === 开启加速 ===
+        isBoosted = true; 
+        Debug.Log(">>> 开启 2 倍速狂暴模式！");
 
-        // 恢复飞行时间参数
         moveDuration = originalDuration;
+        
+        // 再次上跑道前，重新进行预计算！
+        // 因为上一圈可能打掉了一些方块，格局变了，必须重算
+        PreCalculatePath(); 
 
-        // 4. 再次上跑道
         if (BeltPathHolder.Instance != null)
         {
-            yield return StartCoroutine(EnterBeltSequence(BeltPathHolder.Instance.waypoints));
+            // 注意：这里调用的是 RunBeltSequence (预计算版)，不是 EnterBeltSequence
+            yield return StartCoroutine(RunBeltSequence(BeltPathHolder.Instance.waypoints));
         }
     }
 
-    // 逻辑分支 B: 正常回营
+    // 正常回营
     void ReturnToQueueNormal()
     {
-        // 如果队列满了，这就尴尬了 (游戏失败逻辑通常在外部处理，这里防止报错)
-        if (ReadyQueueManager.Instance == null || ReadyQueueManager.Instance.IsFull()) return;
+        if (ReadyQueueManager.Instance == null) return;
 
-        // 如果之前被加速过，记得恢复正常速度
-        if (beltWalker != null)
+        // 检查失败条件
+        if (ReadyQueueManager.Instance.IsFull())
         {
-            beltWalker.ResetSpeed(); // 需确保 BeltWalker 里有这个方法
+            Debug.LogError("💀 GAME OVER: 队列已满！");
+            if (GameManager.Instance != null) GameManager.Instance.GameOver(false);
+            Destroy(gameObject);
+            return;
         }
 
-        // 找空位
+        // === 关闭加速 ===
+        isBoosted = false;
+
         int targetSlot = ReadyQueueManager.Instance.GetFirstEmptyIndex();
         Vector3 pos = ReadyQueueManager.Instance.GetSlotPosition(targetSlot);
         
-        // 设置状态
         currentState = PigState.InQueue;
         currentQueueIndex = targetSlot;
         ReadyQueueManager.Instance.RegisterPig(targetSlot, this);
-        
-        // 飞回去
         SmoothMoveTo(pos);
-        
-        // 摆正身体 (防止跑圈时转歪了)
         transform.rotation = Quaternion.identity;
     }
 
-    // =========================================================
-    // 4. 移动核心算法 (AnimationCurve)
-    // =========================================================
-
+    // ================= 移动核心算法 =================
     public void SmoothMoveTo(Vector3 targetPos)
     {
-        StopAllCoroutines(); // 打断之前的移动，防止冲突
+        StopAllCoroutines();
         StartCoroutine(MoveRoutine(targetPos));
     }
 
-    // 通用的非线性移动协程
     IEnumerator MoveRoutine(Vector3 target)
     {
         Vector3 startPos = transform.position;
         float timer = 0f;
-
         while (timer < moveDuration)
         {
             timer += Time.deltaTime;
             float percent = timer / moveDuration;
-
-            // 【关键】使用曲线 Evaluation 计算进度
-            // 如果曲线中间拱起超过 1.0，就会产生“超过目标再弹回来”的效果
-            float curvedPercent = moveCurve.Evaluate(percent);
-
-            // LerpUnclamped 允许插值超过 0-1 的范围
-            transform.position = Vector3.LerpUnclamped(startPos, target, curvedPercent);
-
-            yield return null; // 等下一帧
+            transform.position = Vector3.LerpUnclamped(startPos, target, moveCurve.Evaluate(percent));
+            yield return null;
         }
-
-        // 确保最后精准停在目标点
         transform.position = target;
     }
 
-    // =========================================================
-    // 5. 射击核心逻辑 (Smart Fire)
-    // =========================================================
-
-    void CheckAndFire()
+// ==========================================
+    // 【新增】死亡动画协程 (0.3秒)
+    // 逻辑：变大+顺时针转 -> 变小+逆时针转
+    // ==========================================
+    IEnumerator PerformDeathAnimation()
     {
-        if (GridManager.Instance == null) return;
-
-        // 1. 智能查找目标 (不依赖朝向，依赖绝对坐标分区)
-        CellController currentTarget = GridManager.Instance.GetTargetCellSmart(transform.position);
-
-        // 如果没找到，或者目标没了，重置锁定状态
-        if (currentTarget == null) 
-        { 
-            lastEngagedTarget = null; 
-            return; 
-        }
-
-        // 2. 停火等待逻辑
-        // 如果目标被标记为“即将死亡”，说明别人打过了，我不能穿透它，必须等待
-        if (currentTarget.isPendingDeath) return;
-
-        // 3. 防止对同一个健康目标重复开火
-        if (currentTarget == lastEngagedTarget) return;
-
-        // 4. 颜色匹配判断
-        if (currentTarget.colorID == this.colorID) 
-        {
-            FireBullet(currentTarget);
-            lastEngagedTarget = currentTarget; // 锁定它，防止一帧内多次开火
-        } 
-        else 
-        {
-            // 颜色不对，但也算看过了，避免每帧重复 query 浪费性能
-            lastEngagedTarget = currentTarget;
-        }
-    }
-    
-    void FireBullet(CellController target)
-    {
-        // 1. 立即标记目标为“将死”，防止后面的猪穿透射击
-        target.isPendingDeath = true; 
+        float totalDuration = 0.3f;
+        float halfDuration = totalDuration / 2f;
         
-        // 2. 扣除弹药并更新 UI
-        ammo--;
-        UpdateAmmoUI();
+        Vector3 originalScale = transform.localScale; // 记住初始大小
+        Quaternion originalRot = transform.rotation;  // 记住初始朝向
 
-        // 3. 生成并其发射子弹
-        if (bulletPrefab != null) 
+        // --- 第一阶段：0 ~ 0.15秒 ---
+        // 动作：顺时针旋转 180度 (或者360度)，同时放大到 1.2倍
+        float timer = 0f;
+        while (timer < halfDuration)
         {
-            GameObject b = Instantiate(bulletPrefab);
-            // 子弹脚本负责飞过去并销毁方块
-            b.GetComponent<BulletController>().Fire(target, transform.position);
+            timer += Time.deltaTime;
+            float t = timer / halfDuration; // 0 ~ 1
+
+            // 变大：使用 Lerp 插值
+            transform.localScale = Vector3.Lerp(originalScale, originalScale * 1.2f, t);
+            
+            // 旋转：顺时针转 (绕 Y 轴)
+            // 这里我们用 RotateAround 或者简单的欧拉角插值
+            // 为了简单，直接在原角度基础上加角度
+            transform.rotation = originalRot * Quaternion.Euler(0, 360f * t, 0);
+
+            yield return null;
         }
 
-        // 4. 弹药耗尽逻辑
-        if (ammo <= 0) 
+        // --- 第二阶段：0.15 ~ 0.3秒 ---
+        // 动作：逆时针旋转回去，同时缩小到 0
+        timer = 0f;
+        // 此时已经是 1.2倍大，且转了一圈
+        Vector3 bigScale = originalScale * 1.2f;
+        
+        while (timer < halfDuration)
         {
-            Debug.Log("弹药耗尽，小猪退场！");
-            Destroy(gameObject); // 销毁自身，自动触发 BeltWalker 失效，不会再回营
+            timer += Time.deltaTime;
+            float t = timer / halfDuration; // 0 ~ 1
+
+            // 变小：从 1.2 变到 0
+            transform.localScale = Vector3.Lerp(bigScale, Vector3.zero, t);
+            
+            // 逆时针转：从 360度 转回 0度 (或者继续转，看你喜好，这里按要求逆时针回去)
+            // 这里的 t 是 0->1，我们让角度从 360 -> 0
+            float angle = Mathf.Lerp(360f, 0f, t);
+            transform.rotation = originalRot * Quaternion.Euler(0, angle, 0);
+
+            yield return null;
         }
+
+        // 彻底隐藏 (防止 Destroy 延迟的那一瞬间闪烁)
+        transform.localScale = Vector3.zero;
     }
+
+
 }

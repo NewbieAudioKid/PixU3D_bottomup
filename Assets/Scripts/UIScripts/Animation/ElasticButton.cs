@@ -1,3 +1,20 @@
+// ================================================================================
+// TL;DR:
+// Q弹按钮动效组件，实现"按下缩小 → 松开回弹"的弹性交互效果。
+// 基于 AnimationCurve 和协程实现，支持音效、自定义曲线，零侵入式设计。
+//
+// 目标：
+// - 响应 OnPointerDown/Up 事件，播放弹性缩放动画
+// - 使用 AnimationCurve 实现超过目标值的"回弹"效果（如 1.0 → 1.15 → 0.95 → 1.0）
+// - 支持可选音效播放（AudioClip + AudioSource）
+// - 使用 unscaledDeltaTime 确保即使游戏暂停（TimeScale=0）UI 动画仍正常播放
+// - 可配置弹性曲线、按压比例、动画时长
+//
+// 非目标：
+// - 不处理按钮业务逻辑（由具体 Button 的 OnClick 事件或专用脚本如 UI_StartButton 负责）
+// - 不处理按钮禁用状态的视觉变化（依赖 Unity Button 组件的 interactable）
+// - 不支持长按或双击（仅响应单次点击）
+// ================================================================================
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems; // 必须引用：处理触摸事件

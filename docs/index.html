@@ -3,518 +3,767 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelFlow - Technical Documentation</title>
+    <title>PixelFlow - Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0d1117;
-            --surface: #161b22;
-            --border: #30363d;
-            --text: #c9d1d9;
-            --text-muted: #8b949e;
-            --accent: #58a6ff;
-            --code-bg: #0d1117;
+            --bg-gradient-1: #0f0c29;
+            --bg-gradient-2: #302b63;
+            --bg-gradient-3: #24243e;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-hover: rgba(255, 255, 255, 0.06);
+            --text-primary: #f0f0f0;
+            --text-secondary: rgba(255, 255, 255, 0.6);
+            --text-muted: rgba(255, 255, 255, 0.4);
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.4);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --code-bg: rgba(0, 0, 0, 0.3);
+            --radius: 16px;
+            --radius-sm: 8px;
         }
-        
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            font-size: 14px;
+            font-family: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-3) 100%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+            min-height: 100vh;
         }
-        
-        .container {
-            max-width: 1200px;
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Header */
+        .header {
+            padding: 32px 24px;
+            border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 12, 41, 0.8);
+        }
+
+        .header-inner {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        h1 {
-            font-size: 32px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-        
-        .subtitle {
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            font-size: 16px;
-        }
-        
-        h2 {
-            font-size: 24px;
-            font-weight: 600;
-            margin: 40px 0 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 24px 0 12px;
-        }
-        
-        h4 {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin: 16px 0 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        p {
-            margin-bottom: 12px;
-        }
-        
-        code {
-            font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
-            background: var(--code-bg);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 13px;
-            border: 1px solid var(--border);
-        }
-        
-        pre {
-            background: var(--code-bg);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 16px;
-            overflow-x: auto;
-            margin: 12px 0;
-        }
-        
-        pre code {
-            border: none;
-            padding: 0;
-            background: none;
-        }
-        
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            margin: 12px 0;
-        }
-        
-        .card-header {
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--border);
-            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            user-select: none;
         }
-        
-        .card-header:hover {
-            background: rgba(56, 139, 253, 0.1);
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        
-        .card-header .title {
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 4px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 4px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            color: var(--text-primary);
+            background: var(--glass-hover);
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 2px 10px var(--accent-glow);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 72px);
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 50%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 64px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .section-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 16px;
+            flex-shrink: 0;
         }
-        
-        .card-header .path {
-            color: var(--text-muted);
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .card-header:hover {
+            background: var(--glass-hover);
+        }
+
+        .card-title-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .card-path {
+            font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
-            font-family: 'SF Mono', Consolas, monospace;
-        }
-        
-        .card-header .toggle {
             color: var(--text-muted);
-            font-size: 12px;
-            transition: transform 0.2s;
+            background: var(--code-bg);
+            padding: 4px 10px;
+            border-radius: 6px;
         }
-        
-        .card.open .toggle {
-            transform: rotate(90deg);
+
+        .card-toggle {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-bg);
+            border-radius: 8px;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
         }
-        
+
+        .card.open .card-toggle {
+            transform: rotate(180deg);
+            color: var(--accent);
+        }
+
         .card-body {
             display: none;
-            padding: 16px;
+            padding: 0 24px 24px;
+            border-top: 1px solid var(--glass-border);
         }
-        
+
         .card.open .card-body {
             display: block;
+            padding-top: 24px;
         }
-        
+
+        /* Tags */
         .tag {
             display: inline-block;
-            padding: 2px 8px;
-            border-radius: 12px;
+            padding: 4px 10px;
+            border-radius: 6px;
             font-size: 11px;
-            font-weight: 500;
-            margin-right: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        
-        .tag.singleton { background: #238636; color: #fff; }
-        .tag.component { background: #1f6feb; color: #fff; }
-        .tag.editor { background: #8957e5; color: #fff; }
-        .tag.ui { background: #da3633; color: #fff; }
-        .tag.data { background: #d29922; color: #000; }
-        
+
+        .tag-singleton { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .tag-component { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+        .tag-ui { background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); }
+        .tag-editor { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+        .tag-data { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #000; }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px 16px;
+            background: var(--code-bg);
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        td:first-child {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-light);
+            font-size: 13px;
+        }
+
+        /* Code Blocks */
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+        }
+
+        .inline-code {
+            background: var(--code-bg);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Method List */
         .method-list {
             list-style: none;
         }
-        
-        .method-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border);
+
+        .method-item {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--glass-border);
         }
-        
-        .method-list li:last-child {
+
+        .method-item:last-child {
             border-bottom: none;
         }
-        
+
         .method-name {
-            font-family: 'SF Mono', Consolas, monospace;
-            color: var(--accent);
-            font-size: 13px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-light);
+            font-size: 14px;
+            font-weight: 500;
         }
-        
+
         .method-desc {
-            color: var(--text-muted);
-            font-size: 12px;
-            margin-top: 4px;
-        }
-        
-        .prop-table {
-            width: 100%;
-            border-collapse: collapse;
+            color: var(--text-secondary);
             font-size: 13px;
+            margin-top: 6px;
         }
-        
-        .prop-table th {
-            text-align: left;
-            padding: 8px;
-            background: var(--bg);
-            border-bottom: 1px solid var(--border);
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-        
-        .prop-table td {
-            padding: 8px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .prop-table td:first-child {
-            font-family: 'SF Mono', Consolas, monospace;
-            color: var(--accent);
-        }
-        
-        .hierarchy-tree {
-            font-family: 'SF Mono', Consolas, monospace;
+
+        /* Hierarchy Tree */
+        .hierarchy {
+            font-family: 'JetBrains Mono', monospace;
             font-size: 13px;
-            line-height: 1.8;
+            line-height: 2;
+            background: var(--code-bg);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            overflow-x: auto;
         }
-        
-        .hierarchy-tree .indent {
-            color: var(--border);
-            margin-right: 4px;
-        }
-        
-        .hierarchy-tree .name {
-            color: var(--text);
-        }
-        
-        .hierarchy-tree .desc {
-            color: var(--text-muted);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-        }
-        
-        .flow-diagram {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 6px;
+
+        .h-indent { color: var(--glass-border); }
+        .h-name { color: var(--text-primary); }
+        .h-comment { color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 12px; }
+
+        /* Flow Diagram */
+        .flow {
+            background: var(--code-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
             padding: 24px;
-            margin: 16px 0;
-            font-family: 'SF Mono', Consolas, monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
+            line-height: 1.8;
             overflow-x: auto;
             white-space: pre;
         }
-        
-        .toc {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 16px;
-            margin-bottom: 32px;
-        }
-        
-        .toc-title {
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 0.5px;
-        }
-        
-        .toc a {
-            color: var(--accent);
-            text-decoration: none;
-            display: block;
-            padding: 4px 0;
-        }
-        
-        .toc a:hover {
-            text-decoration: underline;
-        }
-        
-        .section {
-            margin-bottom: 48px;
-        }
-        
+
+        /* Grid Layout */
         .grid-2 {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 16px;
         }
+
+        /* Subsection */
+        .subsection-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 48px 24px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .footer a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Language specific */
+        [data-lang] { display: none; }
+        [data-lang="en"] { display: block; }
         
+        body.lang-zh [data-lang] { display: none; }
+        body.lang-zh [data-lang="zh"] { display: block; }
+        
+        body.lang-ja [data-lang] { display: none; }
+        body.lang-ja [data-lang="ja"] { display: block; }
+
+        body.lang-zh { font-family: 'Noto Sans SC', 'Inter', sans-serif; }
+        body.lang-ja { font-family: 'Noto Sans JP', 'Inter', sans-serif; }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
+            .header-inner {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .card-title-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>PixelFlow</h1>
-        <p class="subtitle">Unity 2D Shooter Game - Technical Documentation</p>
-        
-        <div class="toc">
-            <div class="toc-title">Table of Contents</div>
-            <a href="#overview">1. Project Overview</a>
-            <a href="#scenes">2. Scene Structure</a>
-            <a href="#hierarchy">3. Hierarchy Elements</a>
-            <a href="#scripts">4. Script Reference</a>
-            <a href="#dataflow">5. Data Flow</a>
+    <div class="noise"></div>
+    
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">P</div>
+                <span class="logo-text">PixelFlow</span>
+            </div>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" onclick="setLang('zh')">中文</button>
+                <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+            </div>
         </div>
+    </header>
 
-        <!-- OVERVIEW -->
-        <section id="overview" class="section">
-            <h2>1. Project Overview</h2>
-            <p>PixelFlow is a 2D puzzle shooter where colored shooters (pigs) traverse a conveyor belt around a 20x20 grid, automatically firing at matching colored cells. The game features pre-calculated shot scheduling, "last stand" mechanics, and level progression.</p>
-            
-            <h4>Core Mechanics</h4>
-            <ul>
-                <li><strong>Shooter Selection:</strong> Players click shooters from the table to queue them</li>
-                <li><strong>Belt Patrol:</strong> Queued shooters can be clicked to start conveyor belt patrol</li>
-                <li><strong>Auto-Fire:</strong> Shooters automatically fire at matching colored cells</li>
-                <li><strong>Last Stand:</strong> When no other shooters remain, the current shooter gets 2x speed boost</li>
-                <li><strong>Win/Lose:</strong> Win by clearing all cells; Lose when queue is full</li>
-            </ul>
-        </section>
-
-        <!-- SCENES -->
-        <section id="scenes" class="section">
-            <h2>2. Scene Structure</h2>
-            
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="title">SplashScene</span>
-                        <span class="path">Assets/Resources/Scenes/SplashScene.unity</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Initial loading screen with brand logo display and fade transition.</p>
-                    <h4>Flow</h4>
-                    <div class="flow-diagram">Start -> Wait(1.5s) -> FadeToBlack(2s) -> LoadScene("MenuScene")</div>
-                    <h4>Key Components</h4>
-                    <ul>
-                        <li><code>SplashController</code> - Manages wait time and fade animation</li>
-                        <li><code>BlackCurtain (CanvasGroup)</code> - Overlay for fade effect</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="title">MenuScene</span>
-                        <span class="path">Assets/Resources/Scenes/MenuScene.unity</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Main menu with level selection and play button. Displays current level progress.</p>
-                    <h4>Key Components</h4>
-                    <ul>
-                        <li><code>GameManager</code> - Singleton initialization (DontDestroyOnLoad)</li>
-                        <li><code>MenuLevelDisplay</code> - Shows current level numbers on UI</li>
-                        <li><code>UI_StartButton</code> - Handles play button click</li>
-                        <li><code>ElasticButton</code> - Q-bounce animation on buttons</li>
-                        <li><code>BackgroundScroller</code> - Animated scrolling background</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="title">GameScene</span>
-                        <span class="path">Assets/Resources/Scenes/GameScene.unity</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Main gameplay scene containing grid, shooters, belt, and UI.</p>
-                    <h4>Initialization Flow</h4>
-                    <div class="flow-diagram">Awake -> GridManager.GenerateGrid()
-      -> ShooterTableManager.GenerateTable()
-      -> ReadyQueueManager.Init()
-      -> GameResultPopup.SetActive(false)</div>
-                    <h4>Key Components</h4>
-                    <ul>
-                        <li><code>GridManager</code> - 20x20 cell grid management</li>
-                        <li><code>ShooterTableManager</code> - 5-column shooter inventory</li>
-                        <li><code>ReadyQueueManager</code> - 5-slot ready queue</li>
-                        <li><code>BeltPathHolder</code> - Conveyor belt waypoints</li>
-                        <li><code>GameResultPopup</code> - Victory/GameOver modal</li>
-                    </ul>
-                </div>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>PixelFlow</h1>
+            <p class="hero-subtitle" data-lang="en">A 2D puzzle shooter where colored shooters patrol a conveyor belt, automatically firing at matching cells.</p>
+            <p class="hero-subtitle" data-lang="zh">一款2D益智射击游戏，彩色射手在传送带上巡逻，自动射击匹配颜色的方块。</p>
+            <p class="hero-subtitle" data-lang="ja">色付きシューターがコンベアベルトを巡回し、一致するセルに自動的に発射する2Dパズルシューティングゲーム。</p>
+            <div class="hero-badges">
+                <span class="badge"><span class="badge-dot"></span> Unity 2021.3+</span>
+                <span class="badge">C# / MonoBehaviour</span>
+                <span class="badge">MIT License</span>
             </div>
         </section>
 
-        <!-- HIERARCHY -->
-        <section id="hierarchy" class="section">
-            <h2>3. Hierarchy Elements</h2>
-            
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="title">GameScene Hierarchy</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <div class="hierarchy-tree">
-GameScene
-<span class="indent">|--</span> Main Camera
-<span class="indent">|--</span> Directional Light
-<span class="indent">|--</span> GameManager <span class="desc">// Singleton, DontDestroyOnLoad</span>
-<span class="indent">|--</span> EventSystem
-<span class="indent">|--</span> GameRoot
-<span class="indent">|   |--</span> GridManager <span class="desc">// 20x20 grid of cells</span>
-<span class="indent">|   |   |--</span> Pixel_Cell (x400) <span class="desc">// Generated at runtime</span>
-<span class="indent">|   |--</span> BeltPathHolder <span class="desc">// 4 corner waypoints</span>
-<span class="indent">|   |   |--</span> WP_BottomLeft
-<span class="indent">|   |   |--</span> WP_BottomRight
-<span class="indent">|   |   |--</span> WP_TopRight
-<span class="indent">|   |   |--</span> WP_TopLeft
-<span class="indent">|   |--</span> ReadyQueueManager <span class="desc">// 5 queue slots</span>
-<span class="indent">|   |   |--</span> Slot_0 ... Slot_4
-<span class="indent">|   |--</span> ShooterTableManager <span class="desc">// 5x6 shooter grid</span>
-<span class="indent">|       |--</span> Pig_Prototype (xN) <span class="desc">// Generated at runtime</span>
-<span class="indent">|--</span> Canvas
-<span class="indent">|   |--</span> Top <span class="desc">// Level name display</span>
-<span class="indent">|   |--</span> Bottom <span class="desc">// UI controls</span>
-<span class="indent">|   |--</span> Popup_GameResult <span class="desc">// Victory/GameOver modal</span>
-<span class="indent">|       |--</span> Container_Window
-<span class="indent">|       |--</span> Btn_Retry
-<span class="indent">|       |--</span> Btn_Menu
-<span class="indent">|       |--</span> Btn_Next
-                    </div>
-                </div>
+        <!-- Section 1: Overview -->
+        <section class="section" id="overview">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title" data-lang="en">Overview</h2>
+                <h2 class="section-title" data-lang="zh">概述</h2>
+                <h2 class="section-title" data-lang="ja">概要</h2>
             </div>
-            
-            <div class="card">
+
+            <div class="card open">
                 <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="title">MenuScene Hierarchy</span>
+                    <div class="card-title-group">
+                        <span class="card-title" data-lang="en">Core Mechanics</span>
+                        <span class="card-title" data-lang="zh">核心玩法</span>
+                        <span class="card-title" data-lang="ja">コアメカニクス</span>
                     </div>
-                    <span class="toggle">&gt;</span>
+                    <div class="card-toggle">&#9660;</div>
                 </div>
                 <div class="card-body">
-                    <div class="hierarchy-tree">
-MenuScene
-<span class="indent">|--</span> Main Camera
-<span class="indent">|--</span> Directional Light
-<span class="indent">|--</span> GameManager <span class="desc">// Singleton source</span>
-<span class="indent">|--</span> EventSystem
-<span class="indent">|--</span> Canvas
-<span class="indent">|   |--</span> Background <span class="desc">// BackgroundScroller</span>
-<span class="indent">|   |--</span> Middle <span class="desc">// Level icons with MenuLevelDisplay</span>
-<span class="indent">|   |   |--</span> Bottom_1 ... Bottom_4 <span class="desc">// Level number texts</span>
-<span class="indent">|   |--</span> PlayButton <span class="desc">// ElasticButton + UI_StartButton</span>
-<span class="indent">|   |--</span> BlackCurtain <span class="desc">// SceneFader</span>
+                    <div data-lang="en">
+                        <ul style="color: var(--text-secondary); padding-left: 20px;">
+                            <li><strong>Select Shooters</strong> - Click shooters from the table to move them to the ready queue (5 slots max)</li>
+                            <li><strong>Deploy to Belt</strong> - Click a queued shooter to start conveyor belt patrol</li>
+                            <li><strong>Auto-Fire</strong> - Shooters automatically fire at cells matching their color</li>
+                            <li><strong>Win Condition</strong> - Clear all cells from the grid</li>
+                            <li><strong>Lose Condition</strong> - Ready queue is full when a shooter returns from patrol</li>
+                        </ul>
+                        <h4 style="margin-top: 24px; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Last Stand Mechanic</h4>
+                        <p style="color: var(--text-secondary); margin-top: 8px;">When both table and queue are empty, the current shooter triggers "Last Stand" mode with 2x speed, automatically re-entering the belt until ammo depletes.</p>
+                    </div>
+                    <div data-lang="zh">
+                        <ul style="color: var(--text-secondary); padding-left: 20px;">
+                            <li><strong>选择射手</strong> - 点击备战台上的射手，移动到准备队列（最多5个位置）</li>
+                            <li><strong>部署到传送带</strong> - 点击队列中的射手，开始传送带巡逻</li>
+                            <li><strong>自动射击</strong> - 射手自动射击颜色匹配的方块</li>
+                            <li><strong>胜利条件</strong> - 清除网格中的所有方块</li>
+                            <li><strong>失败条件</strong> - 射手返回时准备队列已满</li>
+                        </ul>
+                        <h4 style="margin-top: 24px; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">绝地反击机制</h4>
+                        <p style="color: var(--text-secondary); margin-top: 8px;">当备战台和队列都为空时，当前射手触发"绝地反击"模式，获得2倍速度加成，自动重新进入传送带直到弹药耗尽。</p>
+                    </div>
+                    <div data-lang="ja">
+                        <ul style="color: var(--text-secondary); padding-left: 20px;">
+                            <li><strong>シューター選択</strong> - テーブルからシューターをクリックして待機キューに移動（最大5スロット）</li>
+                            <li><strong>ベルトへ配置</strong> - キュー内のシューターをクリックしてコンベアベルトパトロールを開始</li>
+                            <li><strong>自動発射</strong> - シューターは同じ色のセルに自動的に発射</li>
+                            <li><strong>勝利条件</strong> - グリッドからすべてのセルをクリア</li>
+                            <li><strong>敗北条件</strong> - シューターが戻ったとき待機キューが満杯</li>
+                        </ul>
+                        <h4 style="margin-top: 24px; color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">ラストスタンドメカニクス</h4>
+                        <p style="color: var(--text-secondary); margin-top: 8px;">テーブルとキューの両方が空のとき、現在のシューターは「ラストスタンド」モードを発動し、2倍の速度でベルトに自動的に再突入します。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SCRIPTS -->
-        <section id="scripts" class="section">
-            <h2>4. Script Reference</h2>
-            
-            <h3>Core Systems</h3>
-            
+        <!-- Section 2: Scenes -->
+        <section class="section" id="scenes">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title" data-lang="en">Scene Structure</h2>
+                <h2 class="section-title" data-lang="zh">场景结构</h2>
+                <h2 class="section-title" data-lang="ja">シーン構造</h2>
+            </div>
+
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-group">
+                        <span class="card-title">SplashScene</span>
+                        <span class="card-path">Resources/Scenes/SplashScene.unity</span>
+                    </div>
+                    <div class="card-toggle">&#9660;</div>
+                </div>
+                <div class="card-body">
+                    <p data-lang="en" style="color: var(--text-secondary);">Initial loading screen with brand logo display and fade transition to MenuScene.</p>
+                    <p data-lang="zh" style="color: var(--text-secondary);">初始加载界面，展示品牌Logo并淡出过渡到主菜单场景。</p>
+                    <p data-lang="ja" style="color: var(--text-secondary);">ブランドロゴを表示し、メニューシーンへフェードトランジションする初期ロード画面。</p>
+                    <div class="flow" style="margin-top: 16px;">Start -> Wait(1.5s) -> FadeToBlack(2s) -> LoadScene("MenuScene")</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-group">
+                        <span class="card-title">MenuScene</span>
+                        <span class="card-path">Resources/Scenes/MenuScene.unity</span>
+                    </div>
+                    <div class="card-toggle">&#9660;</div>
+                </div>
+                <div class="card-body">
+                    <p data-lang="en" style="color: var(--text-secondary);">Main menu with level selection and play button. Initializes GameManager singleton.</p>
+                    <p data-lang="zh" style="color: var(--text-secondary);">主菜单，包含关卡选择和开始按钮。初始化 GameManager 单例。</p>
+                    <p data-lang="ja" style="color: var(--text-secondary);">レベル選択とプレイボタンを含むメインメニュー。GameManagerシングルトンを初期化。</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-group">
+                        <span class="card-title">GameScene</span>
+                        <span class="card-path">Resources/Scenes/GameScene.unity</span>
+                    </div>
+                    <div class="card-toggle">&#9660;</div>
+                </div>
+                <div class="card-body">
+                    <p data-lang="en" style="color: var(--text-secondary);">Main gameplay scene containing 20x20 grid, shooters, conveyor belt, and result popup.</p>
+                    <p data-lang="zh" style="color: var(--text-secondary);">主游戏场景，包含20x20网格、射手、传送带和结果弹窗。</p>
+                    <p data-lang="ja" style="color: var(--text-secondary);">20x20グリッド、シューター、コンベアベルト、結果ポップアップを含むメインゲームプレイシーン。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Hierarchy -->
+        <section class="section" id="hierarchy">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title" data-lang="en">Hierarchy</h2>
+                <h2 class="section-title" data-lang="zh">层级结构</h2>
+                <h2 class="section-title" data-lang="ja">ヒエラルキー</h2>
+            </div>
+
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-group">
+                        <span class="card-title" data-lang="en">GameScene Hierarchy</span>
+                        <span class="card-title" data-lang="zh">游戏场景层级</span>
+                        <span class="card-title" data-lang="ja">ゲームシーンヒエラルキー</span>
+                    </div>
+                    <div class="card-toggle">&#9660;</div>
+                </div>
+                <div class="card-body">
+                    <div class="hierarchy">
+<span class="h-name">GameScene</span>
+<span class="h-indent">|--</span> <span class="h-name">Main Camera</span>
+<span class="h-indent">|--</span> <span class="h-name">GameManager</span> <span class="h-comment">// Singleton, DontDestroyOnLoad</span>
+<span class="h-indent">|--</span> <span class="h-name">GameRoot</span>
+<span class="h-indent">|   |--</span> <span class="h-name">GridManager</span> <span class="h-comment">// 20x20 grid</span>
+<span class="h-indent">|   |   |--</span> <span class="h-name">Pixel_Cell (x400)</span>
+<span class="h-indent">|   |--</span> <span class="h-name">BeltPathHolder</span> <span class="h-comment">// 4 waypoints</span>
+<span class="h-indent">|   |--</span> <span class="h-name">ReadyQueueManager</span> <span class="h-comment">// 5 slots</span>
+<span class="h-indent">|   |--</span> <span class="h-name">ShooterTableManager</span> <span class="h-comment">// 5x6 grid</span>
+<span class="h-indent">|--</span> <span class="h-name">Canvas</span>
+<span class="h-indent">    |--</span> <span class="h-name">Top</span> <span class="h-comment">// Level display</span>
+<span class="h-indent">    |--</span> <span class="h-name">Popup_GameResult</span> <span class="h-comment">// Victory/GameOver</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Scripts -->
+        <section class="section" id="scripts">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title" data-lang="en">Script Reference</h2>
+                <h2 class="section-title" data-lang="zh">脚本参考</h2>
+                <h2 class="section-title" data-lang="ja">スクリプトリファレンス</h2>
+            </div>
+
+            <h3 class="subsection-title" data-lang="en">Core Systems</h3>
+            <h3 class="subsection-title" data-lang="zh">核心系统</h3>
+            <h3 class="subsection-title" data-lang="ja">コアシステム</h3>
+
             <!-- GameManager -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag singleton">Singleton</span>
-                        <span class="title">GameManager</span>
-                        <span class="path">Scripts/GameManager.cs</span>
+                    <div class="card-title-group">
+                        <span class="tag tag-singleton">Singleton</span>
+                        <span class="card-title">GameManager</span>
+                        <span class="card-path">Scripts/GameManager.cs</span>
                     </div>
-                    <span class="toggle">&gt;</span>
+                    <div class="card-toggle">&#9660;</div>
                 </div>
                 <div class="card-body">
-                    <p>Global game state manager. Persists across scenes via DontDestroyOnLoad.</p>
+                    <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 16px;">Global game state manager. Persists across scenes via DontDestroyOnLoad.</p>
+                    <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 16px;">全局游戏状态管理器，通过 DontDestroyOnLoad 跨场景持久化。</p>
+                    <p data-lang="ja" style="color: var(--text-secondary); margin-bottom: 16px;">グローバルゲームステートマネージャー。DontDestroyOnLoadでシーン間で永続化。</p>
                     
-                    <h4>Properties</h4>
-                    <table class="prop-table">
-                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
-                        <tr><td>Instance</td><td>static</td><td>Singleton instance</td></tr>
-                        <tr><td>currentLevelName</td><td>string</td><td>Current level identifier (e.g., "Level_1")</td></tr>
-                    </table>
+                    <h4 style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin-bottom: 12px;">Properties</h4>
+                    <div class="table-wrapper">
+                        <table>
+                            <tr><th>Name</th><th>Type</th><th data-lang="en">Description</th><th data-lang="zh">描述</th><th data-lang="ja">説明</th></tr>
+                            <tr><td>Instance</td><td>static</td><td data-lang="en">Singleton instance</td><td data-lang="zh">单例实例</td><td data-lang="ja">シングルトンインスタンス</td></tr>
+                            <tr><td>currentLevelName</td><td>string</td><td data-lang="en">Current level ID (e.g., "Level_1")</td><td data-lang="zh">当前关卡ID (如 "Level_1")</td><td data-lang="ja">現在のレベルID（例："Level_1"）</td></tr>
+                        </table>
+                    </div>
                     
-                    <h4>Methods</h4>
+                    <h4 style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin: 24px 0 12px;">Methods</h4>
                     <ul class="method-list">
-                        <li>
-                            <span class="method-name">GetCurrentLevelNum() : int</span>
-                            <div class="method-desc">Parses level number from currentLevelName. Returns 1 if invalid.</div>
-                        </li>
-                        <li>
+                        <li class="method-item">
                             <span class="method-name">StartLevel(string levelName)</span>
-                            <div class="method-desc">Sets currentLevelName and loads GameScene.</div>
+                            <div class="method-desc" data-lang="en">Sets currentLevelName and loads GameScene.</div>
+                            <div class="method-desc" data-lang="zh">设置当前关卡名并加载游戏场景。</div>
+                            <div class="method-desc" data-lang="ja">currentLevelNameを設定し、GameSceneをロード。</div>
                         </li>
-                        <li>
+                        <li class="method-item">
                             <span class="method-name">LoadNextLevel()</span>
-                            <div class="method-desc">Advances to next level or returns to menu if none exists.</div>
+                            <div class="method-desc" data-lang="en">Advances to next level or returns to menu if none exists.</div>
+                            <div class="method-desc" data-lang="zh">前进到下一关，如果不存在则返回菜单。</div>
+                            <div class="method-desc" data-lang="ja">次のレベルに進むか、存在しない場合はメニューに戻る。</div>
                         </li>
-                        <li>
-                            <span class="method-name">AdvanceLevelProgress() : bool</span>
-                            <div class="method-desc">Increments currentLevelName. Returns false if no next level data.</div>
-                        </li>
-                        <li>
+                        <li class="method-item">
                             <span class="method-name">GameOver(bool isWin)</span>
-                            <div class="method-desc">Triggers victory or game over popup.</div>
+                            <div class="method-desc" data-lang="en">Triggers victory or game over popup.</div>
+                            <div class="method-desc" data-lang="zh">触发胜利或游戏结束弹窗。</div>
+                            <div class="method-desc" data-lang="ja">勝利またはゲームオーバーポップアップをトリガー。</div>
                         </li>
-                        <li>
+                        <li class="method-item">
                             <span class="method-name">LoadGridData() : LevelGridData</span>
-                            <div class="method-desc">Loads grid JSON from Resources/Levels/.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">LoadTableData() : ShooterTableData</span>
-                            <div class="method-desc">Loads shooter table JSON from Resources/Levels/.</div>
+                            <div class="method-desc" data-lang="en">Loads grid JSON from Resources/Levels/.</div>
+                            <div class="method-desc" data-lang="zh">从 Resources/Levels/ 加载网格 JSON 数据。</div>
+                            <div class="method-desc" data-lang="ja">Resources/Levels/からグリッドJSONをロード。</div>
                         </li>
                     </ul>
                 </div>
@@ -523,42 +772,37 @@ MenuScene
             <!-- GridManager -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag singleton">Singleton</span>
-                        <span class="title">GridManager</span>
-                        <span class="path">Scripts/GameScene/GridManager.cs</span>
+                    <div class="card-title-group">
+                        <span class="tag tag-singleton">Singleton</span>
+                        <span class="card-title">GridManager</span>
+                        <span class="card-path">Scripts/GameScene/GridManager.cs</span>
                     </div>
-                    <span class="toggle">&gt;</span>
+                    <div class="card-toggle">&#9660;</div>
                 </div>
                 <div class="card-body">
-                    <p>Manages 20x20 cell grid generation, lookup, and win condition detection.</p>
+                    <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 16px;">Manages 20x20 cell grid generation, smart target lookup, and win condition detection.</p>
+                    <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 16px;">管理20x20方块网格生成、智能目标查找和胜利条件检测。</p>
+                    <p data-lang="ja" style="color: var(--text-secondary); margin-bottom: 16px;">20x20セルグリッドの生成、スマートターゲット検索、勝利条件検出を管理。</p>
                     
-                    <h4>Properties</h4>
-                    <table class="prop-table">
-                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
-                        <tr><td>gridSize</td><td>int</td><td>Grid dimension (default: 20)</td></tr>
-                        <tr><td>cellSize</td><td>float</td><td>World units per cell (default: 1.0)</td></tr>
-                        <tr><td>activeCellCount</td><td>int</td><td>Remaining cells; triggers win when 0</td></tr>
-                        <tr><td>logicGrid</td><td>CellController[,]</td><td>2D array for O(1) lookup</td></tr>
-                    </table>
-                    
-                    <h4>Methods</h4>
+                    <h4 style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin-bottom: 12px;">Key Methods</h4>
                     <ul class="method-list">
-                        <li>
+                        <li class="method-item">
                             <span class="method-name">GetTargetCellSmart(Vector3 pos) : CellController</span>
-                            <div class="method-desc">Smart zone-based target lookup. Determines scan direction based on shooter position relative to grid edges.</div>
+                            <div class="method-desc" data-lang="en">Smart zone-based target lookup. Determines scan direction based on shooter position.</div>
+                            <div class="method-desc" data-lang="zh">智能分区目标查找，根据射手位置确定扫描方向。</div>
+                            <div class="method-desc" data-lang="ja">スマートゾーンベースのターゲット検索。シューターの位置に基づいてスキャン方向を決定。</div>
                         </li>
-                        <li>
+                        <li class="method-item">
                             <span class="method-name">GetSimulatedPosition(int beltIndex) : Vector3</span>
-                            <div class="method-desc">Converts belt step index (0-79) to world position. Used for pre-calculation.</div>
+                            <div class="method-desc" data-lang="en">Converts belt step index (0-79) to world position for pre-calculation.</div>
+                            <div class="method-desc" data-lang="zh">将传送带步数索引 (0-79) 转换为世界坐标，用于预计算。</div>
+                            <div class="method-desc" data-lang="ja">事前計算用にベルトステップインデックス（0-79）をワールド座標に変換。</div>
                         </li>
-                        <li>
+                        <li class="method-item">
                             <span class="method-name">OnCellDestroyed()</span>
-                            <div class="method-desc">Decrements activeCellCount. Triggers GameOver(true) when 0.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">GetMaterialByColorID(string colorID) : Material</span>
-                            <div class="method-desc">Maps color string to material asset.</div>
+                            <div class="method-desc" data-lang="en">Decrements cell count. Triggers GameOver(true) when all cells cleared.</div>
+                            <div class="method-desc" data-lang="zh">减少方块计数，所有方块消除时触发胜利。</div>
+                            <div class="method-desc" data-lang="ja">セル数をデクリメント。全セルクリア時にGameOver(true)をトリガー。</div>
                         </li>
                     </ul>
                 </div>
@@ -567,607 +811,248 @@ MenuScene
             <!-- PigController -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag component">Component</span>
-                        <span class="title">PigController</span>
-                        <span class="path">Scripts/GameScene/PigController.cs</span>
+                    <div class="card-title-group">
+                        <span class="tag tag-component">Component</span>
+                        <span class="card-title">PigController</span>
+                        <span class="card-path">Scripts/GameScene/PigController.cs</span>
                     </div>
-                    <span class="toggle">&gt;</span>
+                    <div class="card-toggle">&#9660;</div>
                 </div>
                 <div class="card-body">
-                    <p>Core shooter controller. Handles state machine, pre-calculated shooting, and "last stand" mechanics.</p>
+                    <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 16px;">Core shooter controller with state machine, pre-calculated shot scheduling, and "last stand" mechanics.</p>
+                    <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 16px;">核心射手控制器，包含状态机、预计算射击排程和"绝地反击"机制。</p>
+                    <p data-lang="ja" style="color: var(--text-secondary); margin-bottom: 16px;">状態マシン、事前計算ショットスケジューリング、「ラストスタンド」メカニクスを持つコアシューターコントローラー。</p>
                     
-                    <h4>State Machine</h4>
-                    <pre><code>InTable -> InQueue -> OnBelt -> Returning -> InQueue (loop)
+                    <h4 style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin-bottom: 12px;">State Machine</h4>
+                    <div class="flow">InTable -> InQueue -> OnBelt -> Returning -> InQueue (loop)
                                     |
-                                    v
-                             (if table & queue empty)
-                                    |
-                                    v
-                              AutoRejoinBelt (2x speed)</code></pre>
-                    
-                    <h4>Properties</h4>
-                    <table class="prop-table">
-                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
-                        <tr><td>colorID</td><td>string</td><td>Color identifier for matching</td></tr>
-                        <tr><td>ammo</td><td>int</td><td>Remaining shots; death at 0</td></tr>
-                        <tr><td>currentState</td><td>PigState</td><td>Current state in lifecycle</td></tr>
-                        <tr><td>isBoosted</td><td>bool</td><td>2x speed active (last stand)</td></tr>
-                        <tr><td>shotSchedule</td><td>Queue&lt;ShotScheduleItem&gt;</td><td>Pre-calculated shot plan</td></tr>
-                    </table>
-                    
-                    <h4>Key Methods</h4>
-                    <ul class="method-list">
-                        <li>
-                            <span class="method-name">PreCalculatePath()</span>
-                            <div class="method-desc">Simulates entire belt path and builds shot schedule. Marks targets as isPendingDeath to prevent duplicate targeting.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">RunBeltSequence(List&lt;Transform&gt;) : IEnumerator</span>
-                            <div class="method-desc">Main gameplay coroutine. Moves along belt, fires per schedule, handles death animation.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">CheckEndGameAndReturn()</span>
-                            <div class="method-desc">Decision point after belt patrol. Triggers AutoRejoinBelt if last shooter, else ReturnToQueueNormal.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">PerformDeathAnimation() : IEnumerator</span>
-                            <div class="method-desc">0.3s spin+scale animation when ammo depleted.</div>
-                        </li>
-                    </ul>
+                                    v (if table & queue empty)
+                              AutoRejoinBelt (2x speed)</div>
+
+                    <h4 style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin: 24px 0 12px;">Core Algorithm</h4>
+                    <pre><code>PreCalculatePath():
+    for step in 0..79:
+        pos = GetSimulatedPosition(step)
+        target = GetTargetCellSmart(pos)
+        if match && !isPendingDeath:
+            shotSchedule.Enqueue({step, target})
+            target.isPendingDeath = true</code></pre>
                 </div>
             </div>
 
             <!-- ReadyQueueManager -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag singleton">Singleton</span>
-                        <span class="title">ReadyQueueManager</span>
-                        <span class="path">Scripts/GameScene/ReadyQueueManager.cs</span>
+                    <div class="card-title-group">
+                        <span class="tag tag-singleton">Singleton</span>
+                        <span class="card-title">ReadyQueueManager</span>
+                        <span class="card-path">Scripts/GameScene/ReadyQueueManager.cs</span>
                     </div>
-                    <span class="toggle">&gt;</span>
+                    <div class="card-toggle">&#9660;</div>
                 </div>
                 <div class="card-body">
-                    <p>Manages 5-slot ready queue with auto shift-left on removal.</p>
-                    
-                    <h4>Methods</h4>
-                    <ul class="method-list">
-                        <li>
-                            <span class="method-name">GetFirstEmptyIndex() : int</span>
-                            <div class="method-desc">Returns first empty slot index (0-4) or -1 if full.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">RegisterPig(int index, PigController pig)</span>
-                            <div class="method-desc">Assigns pig to slot and sets parent transform.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">UnregisterPig(PigController pig)</span>
-                            <div class="method-desc">Removes pig and shifts remaining pigs left.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">IsFull() : bool</span>
-                            <div class="method-desc">Returns true if all 5 slots occupied (game over condition).</div>
-                        </li>
-                        <li>
-                            <span class="method-name">IsQueueEmpty() : bool</span>
-                            <div class="method-desc">Returns true if all slots empty (used for last stand check).</div>
-                        </li>
-                    </ul>
+                    <p data-lang="en" style="color: var(--text-secondary);">Manages 5-slot ready queue with auto shift-left algorithm on removal.</p>
+                    <p data-lang="zh" style="color: var(--text-secondary);">管理5个槽位的准备队列，移除时自动左移补位。</p>
+                    <p data-lang="ja" style="color: var(--text-secondary);">削除時に自動左シフトアルゴリズムを持つ5スロット待機キューを管理。</p>
                 </div>
             </div>
 
             <!-- ShooterTableManager -->
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag singleton">Singleton</span>
-                        <span class="title">ShooterTableManager</span>
-                        <span class="path">Scripts/GameScene/ShooterTableManager.cs</span>
+                    <div class="card-title-group">
+                        <span class="tag tag-singleton">Singleton</span>
+                        <span class="card-title">ShooterTableManager</span>
+                        <span class="card-path">Scripts/GameScene/ShooterTableManager.cs</span>
                     </div>
-                    <span class="toggle">&gt;</span>
+                    <div class="card-toggle">&#9660;</div>
                 </div>
                 <div class="card-body">
-                    <p>Manages 5-column shooter inventory with stack-like pop behavior.</p>
-                    
-                    <h4>Properties</h4>
-                    <table class="prop-table">
-                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
-                        <tr><td>columns</td><td>int</td><td>Number of columns (default: 5)</td></tr>
-                        <tr><td>rows</td><td>int</td><td>Max rows per column (default: 6)</td></tr>
-                        <tr><td>tableColumns</td><td>List&lt;List&lt;PigController&gt;&gt;</td><td>2D list: columns[col][row]</td></tr>
-                    </table>
-                    
-                    <h4>Methods</h4>
-                    <ul class="method-list">
-                        <li>
-                            <span class="method-name">OnPigClicked(PigController pig)</span>
-                            <div class="method-desc">Handles click on topmost shooter. Moves to queue if space available.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">UpdateColumnPositions(int colIndex)</span>
-                            <div class="method-desc">Shifts remaining shooters up after removal.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">IsTableEmpty() : bool</span>
-                            <div class="method-desc">Returns true if all columns empty (used for last stand check).</div>
-                        </li>
-                    </ul>
+                    <p data-lang="en" style="color: var(--text-secondary);">Manages 5-column shooter inventory with stack-like pop behavior.</p>
+                    <p data-lang="zh" style="color: var(--text-secondary);">管理5列射手库存，采用类似栈的弹出行为。</p>
+                    <p data-lang="ja" style="color: var(--text-secondary);">スタックライクなポップ動作を持つ5列シューターインベントリを管理。</p>
                 </div>
             </div>
 
-            <!-- BeltWalker -->
+            <h3 class="subsection-title" data-lang="en">UI Components</h3>
+            <h3 class="subsection-title" data-lang="zh">UI组件</h3>
+            <h3 class="subsection-title" data-lang="ja">UIコンポーネント</h3>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header" onclick="toggleCard(this)">
+                        <div class="card-title-group">
+                            <span class="tag tag-ui">UI</span>
+                            <span class="card-title">GameResultPopup</span>
+                        </div>
+                        <div class="card-toggle">&#9660;</div>
+                    </div>
+                    <div class="card-body">
+                        <p data-lang="en" style="color: var(--text-secondary);">Victory/GameOver modal with pop animation using AnimationCurve.</p>
+                        <p data-lang="zh" style="color: var(--text-secondary);">胜利/失败弹窗，使用动画曲线实现弹出效果。</p>
+                        <p data-lang="ja" style="color: var(--text-secondary);">AnimationCurveを使用したポップアニメーション付き勝利/ゲームオーバーモーダル。</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" onclick="toggleCard(this)">
+                        <div class="card-title-group">
+                            <span class="tag tag-ui">UI</span>
+                            <span class="card-title">ElasticButton</span>
+                        </div>
+                        <div class="card-toggle">&#9660;</div>
+                    </div>
+                    <div class="card-body">
+                        <p data-lang="en" style="color: var(--text-secondary);">Q-bounce scale animation on press/release with overshoot curve.</p>
+                        <p data-lang="zh" style="color: var(--text-secondary);">按下/松开时的Q弹缩放动画，带有过冲曲线效果。</p>
+                        <p data-lang="ja" style="color: var(--text-secondary);">オーバーシュートカーブを持つプレス/リリース時のQ弾スケールアニメーション。</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title" data-lang="en">Editor Tools</h3>
+            <h3 class="subsection-title" data-lang="zh">编辑器工具</h3>
+            <h3 class="subsection-title" data-lang="ja">エディタツール</h3>
+
             <div class="card">
                 <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag component">Component</span>
-                        <span class="title">BeltWalker</span>
-                        <span class="path">Scripts/GameScene/BeltWalker.cs</span>
+                    <div class="card-title-group">
+                        <span class="tag tag-editor">Editor</span>
+                        <span class="card-title">LevelDataGenerator</span>
+                        <span class="card-path">Scripts/Level/LevelDataGenerator.cs</span>
                     </div>
-                    <span class="toggle">&gt;</span>
+                    <div class="card-toggle">&#9660;</div>
                 </div>
                 <div class="card-body">
-                    <p>Waypoint-based movement component for conveyor belt patrol.</p>
+                    <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 16px;">Editor tool for generating level JSON. Right-click component -> "Generate All 10 Levels".</p>
+                    <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 16px;">关卡JSON生成编辑器工具。右键组件 -> "Generate All 10 Levels"。</p>
+                    <p data-lang="ja" style="color: var(--text-secondary); margin-bottom: 16px;">レベルJSON生成エディタツール。コンポーネントを右クリック -> "Generate All 10 Levels"。</p>
                     
-                    <h4>Properties</h4>
-                    <table class="prop-table">
-                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
-                        <tr><td>speed</td><td>float</td><td>Movement speed (default: 5.0)</td></tr>
-                        <tr><td>OnPathComplete</td><td>UnityEvent</td><td>Fired when path traversal complete</td></tr>
-                    </table>
-                    
-                    <h4>Methods</h4>
-                    <ul class="method-list">
-                        <li>
-                            <span class="method-name">BeginJourney(List&lt;Transform&gt; path)</span>
-                            <div class="method-desc">Starts movement along waypoints.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">SetDoubleSpeed()</span>
-                            <div class="method-desc">Activates 2x speed multiplier.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">ResetSpeed()</span>
-                            <div class="method-desc">Returns to base speed.</div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- BeltPathHolder -->
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag singleton">Singleton</span>
-                        <span class="title">BeltPathHolder</span>
-                        <span class="path">Scripts/GameScene/BeltPathHolder.cs</span>
+                    <h4 style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin-bottom: 12px;" data-lang="en">Generated Patterns</h4>
+                    <h4 style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin-bottom: 12px;" data-lang="zh">生成的图案</h4>
+                    <h4 style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin-bottom: 12px;" data-lang="ja">生成パターン</h4>
+                    <div class="table-wrapper">
+                        <table>
+                            <tr><th>Level</th><th>Pattern</th></tr>
+                            <tr><td>1</td><td>Border + X diagonal</td></tr>
+                            <tr><td>2</td><td>Concentric squares</td></tr>
+                            <tr><td>3</td><td>Checkerboard</td></tr>
+                            <tr><td>4</td><td>Stripes</td></tr>
+                            <tr><td>5</td><td>Spiral</td></tr>
+                            <tr><td>6</td><td>Circles</td></tr>
+                            <tr><td>7</td><td>Diagonal stripes</td></tr>
+                            <tr><td>8</td><td>Quadrants</td></tr>
+                            <tr><td>9</td><td>Radial</td></tr>
+                            <tr><td>10</td><td>Maze</td></tr>
+                        </table>
                     </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Container for conveyor belt waypoints. Configure in Inspector.</p>
-                    
-                    <h4>Properties</h4>
-                    <table class="prop-table">
-                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
-                        <tr><td>waypoints</td><td>List&lt;Transform&gt;</td><td>4 corner transforms (BL, BR, TR, TL)</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- CellController -->
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag component">Component</span>
-                        <span class="title">CellController</span>
-                        <span class="path">Scripts/GameScene/CellController.cs</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Individual grid cell with hit detection and pending-death marking.</p>
-                    
-                    <h4>Properties</h4>
-                    <table class="prop-table">
-                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
-                        <tr><td>colorID</td><td>string</td><td>Color identifier for matching</td></tr>
-                        <tr><td>isDestroyed</td><td>bool</td><td>True after OnHit() called</td></tr>
-                        <tr><td>isPendingDeath</td><td>bool</td><td>Reservation flag for pre-calculation</td></tr>
-                    </table>
-                    
-                    <h4>Methods</h4>
-                    <ul class="method-list">
-                        <li>
-                            <span class="method-name">Init(string color, Material mat)</span>
-                            <div class="method-desc">Initialize cell with color and material.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">OnHit()</span>
-                            <div class="method-desc">Called when bullet hits. Sets isDestroyed, notifies GridManager, deactivates GameObject.</div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- BulletController -->
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag component">Component</span>
-                        <span class="title">BulletController</span>
-                        <span class="path">Scripts/GameScene/BulletController.cs</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Projectile controller using distance-based hit detection (no physics).</p>
-                    
-                    <h4>Methods</h4>
-                    <ul class="method-list">
-                        <li>
-                            <span class="method-name">Fire(CellController target, Vector3 startPos)</span>
-                            <div class="method-desc">Initialize bullet position and target. Begins movement in Update.</div>
-                        </li>
-                    </ul>
-                    <p><strong>Hit Detection:</strong> Distance &lt; 0.1f triggers target.OnHit() and self-destruction.</p>
-                </div>
-            </div>
-
-            <h3>UI Components</h3>
-
-            <!-- GameResultPopup -->
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag ui">UI</span>
-                        <span class="tag singleton">Singleton</span>
-                        <span class="title">GameResultPopup</span>
-                        <span class="path">Scripts/UIScripts/GameResultPopup.cs</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Victory/GameOver modal with pop animation.</p>
-                    
-                    <h4>Methods</h4>
-                    <ul class="method-list">
-                        <li>
-                            <span class="method-name">ShowVictory()</span>
-                            <div class="method-desc">Shows "Victory" title with Next + Menu buttons.</div>
-                        </li>
-                        <li>
-                            <span class="method-name">ShowGameOverDelayed()</span>
-                            <div class="method-desc">Delayed show (0.1s) to avoid coroutine conflicts. Shows "Game Over" with Retry + Menu.</div>
-                        </li>
-                    </ul>
-                    
-                    <h4>Button Handlers</h4>
-                    <ul class="method-list">
-                        <li><span class="method-name">OnClickRetry()</span> - Reloads current scene</li>
-                        <li><span class="method-name">OnClickReturnToMenu()</span> - Returns to MenuScene (advances progress if victory)</li>
-                        <li><span class="method-name">OnClickNext()</span> - Calls GameManager.LoadNextLevel()</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- ElasticButton -->
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag ui">UI</span>
-                        <span class="title">ElasticButton</span>
-                        <span class="path">Scripts/UIScripts/Animation/ElasticButton.cs</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Q-bounce scale animation on press/release. Uses AnimationCurve for overshoot effect.</p>
-                    
-                    <h4>Properties</h4>
-                    <table class="prop-table">
-                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
-                        <tr><td>pressedScale</td><td>float</td><td>Scale on press (default: 0.85)</td></tr>
-                        <tr><td>duration</td><td>float</td><td>Bounce duration (default: 0.5s)</td></tr>
-                        <tr><td>bounceCurve</td><td>AnimationCurve</td><td>Overshoot curve (peaks at 1.15)</td></tr>
-                    </table>
-                    <p>Uses <code>Time.unscaledDeltaTime</code> for TimeScale-independent animation.</p>
-                </div>
-            </div>
-
-            <!-- SceneFader -->
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag ui">UI</span>
-                        <span class="title">SceneFader</span>
-                        <span class="path">Scripts/UIScripts/Animation/SceneFader.cs</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Black overlay fade-in effect. Self-destructs after fade complete.</p>
-                    <p>Attach to full-screen black Image with CanvasGroup.</p>
-                </div>
-            </div>
-
-            <!-- SplashController -->
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag ui">UI</span>
-                        <span class="title">SplashController</span>
-                        <span class="path">Scripts/UIScripts/SplashController.cs</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Splash screen controller: wait -> fade to black -> load next scene.</p>
-                    <h4>Properties</h4>
-                    <table class="prop-table">
-                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
-                        <tr><td>nextSceneName</td><td>string</td><td>Scene to load (default: "MenuScene")</td></tr>
-                        <tr><td>waitTime</td><td>float</td><td>Display duration (default: 1.5s)</td></tr>
-                        <tr><td>fadeDuration</td><td>float</td><td>Fade duration (default: 2.0s)</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Other UI Scripts -->
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag ui">UI</span>
-                        <span class="title">UI_StartButton</span>
-                        <span class="path">Scripts/UIScripts/UI_StartButton.cs</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Play button handler. Delays scene load to allow ElasticButton animation.</p>
-                    <h4>Methods</h4>
-                    <ul class="method-list">
-                        <li>
-                            <span class="method-name">ClickStartGame()</span>
-                            <div class="method-desc">Waits 0.4s then calls GameManager.StartLevel(currentLevelName).</div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag ui">UI</span>
-                        <span class="title">MenuLevelDisplay / GameLevelDisplay</span>
-                        <span class="path">Scripts/UIScripts/</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p><strong>MenuLevelDisplay:</strong> Updates 4 level number texts showing current + next 3 levels.</p>
-                    <p><strong>GameLevelDisplay:</strong> Shows current level name in game scene header.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag ui">UI</span>
-                        <span class="title">BackgroundScroller</span>
-                        <span class="path">Scripts/UIScripts/BackgroundScroller.cs</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Infinite scrolling background via UV offset on RawImage.</p>
-                    <h4>Properties</h4>
-                    <table class="prop-table">
-                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
-                        <tr><td>scrollSpeedX</td><td>float</td><td>Horizontal scroll (default: 0)</td></tr>
-                        <tr><td>scrollSpeedY</td><td>float</td><td>Vertical scroll (default: 0.1)</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag component">Component</span>
-                        <span class="title">UIBillboard</span>
-                        <span class="path">Scripts/GameScene/UIBillboard.cs</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Keeps 3D UI elements (ammo text) facing camera. Uses LateUpdate for smooth results.</p>
-                </div>
-            </div>
-
-            <h3>Editor Tools</h3>
-
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag editor">Editor</span>
-                        <span class="title">LevelDataGenerator</span>
-                        <span class="path">Scripts/Level/LevelDataGenerator.cs</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <p>Editor tool for generating level JSON files. Right-click component -> "Generate All 10 Levels".</p>
-                    
-                    <h4>Generated Patterns</h4>
-                    <table class="prop-table">
-                        <tr><th>Level</th><th>Pattern</th></tr>
-                        <tr><td>1</td><td>Border + X diagonal + quadrants</td></tr>
-                        <tr><td>2</td><td>Concentric squares</td></tr>
-                        <tr><td>3</td><td>4-color checkerboard</td></tr>
-                        <tr><td>4</td><td>Horizontal/vertical stripes</td></tr>
-                        <tr><td>5</td><td>Angle-based spiral</td></tr>
-                        <tr><td>6</td><td>Concentric circles</td></tr>
-                        <tr><td>7</td><td>Diagonal stripes</td></tr>
-                        <tr><td>8</td><td>4 quadrants</td></tr>
-                        <tr><td>9</td><td>8-sector radial</td></tr>
-                        <tr><td>10</td><td>Maze pattern</td></tr>
-                    </table>
-                    
-                    <p>Auto-generates balanced shooter table (ammo = cell count per color).</p>
-                </div>
-            </div>
-
-            <h3>Data Structures</h3>
-
-            <div class="card">
-                <div class="card-header" onclick="toggleCard(this)">
-                    <div>
-                        <span class="tag data">Data</span>
-                        <span class="title">JSON Data Classes</span>
-                        <span class="path">Defined in GameManager.cs</span>
-                    </div>
-                    <span class="toggle">&gt;</span>
-                </div>
-                <div class="card-body">
-                    <h4>LevelGridData</h4>
-                    <pre><code>{
-  "cells": [
-    { "x": 0, "y": 0, "color": "red" },
-    { "x": 0, "y": 1, "color": "blue" },
-    ...
-  ]
-}</code></pre>
-                    
-                    <h4>ShooterTableData</h4>
-                    <pre><code>{
-  "columns": [
-    {
-      "shooters": [
-        { "color": "red", "ammo": 25 },
-        { "color": "blue", "ammo": 30 }
-      ]
-    },
-    ...
-  ]
-}</code></pre>
-
-                    <h4>ShotScheduleItem (internal struct)</h4>
-                    <pre><code>struct ShotScheduleItem {
-    int beltStepIndex;      // 0-79
-    CellController target;  // Target cell reference
-}</code></pre>
                 </div>
             </div>
         </section>
 
-        <!-- DATA FLOW -->
-        <section id="dataflow" class="section">
-            <h2>5. Data Flow</h2>
-            
-            <h3>Game Initialization</h3>
-            <div class="flow-diagram">
-MenuScene.Start()
-    |
-    v
-GameManager.Awake() -> Instance = this, DontDestroyOnLoad
-    |
-    v
-[Click Play Button]
-    |
-    v
-UI_StartButton.ClickStartGame()
-    |
-    v
-GameManager.StartLevel("Level_1")
-    |
-    v
-SceneManager.LoadScene("GameScene")
-    |
-    v
-GridManager.Start()
-    |-> LoadGridData() -> Parse JSON
-    |-> GenerateGrid() -> Create 400 CellController
-    v
-ShooterTableManager.Start()
-    |-> LoadTableData() -> Parse JSON
-    |-> GenerateTable() -> Create PigController instances
+        <!-- Section 5: Data Flow -->
+        <section class="section" id="dataflow">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title" data-lang="en">Data Flow</h2>
+                <h2 class="section-title" data-lang="zh">数据流</h2>
+                <h2 class="section-title" data-lang="ja">データフロー</h2>
             </div>
 
-            <h3>Shooter Lifecycle</h3>
-            <div class="flow-diagram">
-[Click Shooter in Table]
+            <div class="card open">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-group">
+                        <span class="card-title" data-lang="en">Shooter Lifecycle</span>
+                        <span class="card-title" data-lang="zh">射手生命周期</span>
+                        <span class="card-title" data-lang="ja">シューターライフサイクル</span>
+                    </div>
+                    <div class="card-toggle">&#9660;</div>
+                </div>
+                <div class="card-body">
+                    <div class="flow">[Click in Table]
     |
     v
 ShooterTableManager.OnPigClicked()
-    |-> Remove from tableColumns[col]
-    |-> UpdateColumnPositions()
+    |-> Remove from column
     v
 PigController.MoveToQueue()
     |-> ReadyQueueManager.RegisterPig()
-    |-> SmoothMoveTo(slotPosition)
     v
-[Click Shooter in Queue]
+[Click in Queue]
     |
     v
 PigController.GoToBelt()
-    |-> ReadyQueueManager.UnregisterPig()
     |-> PreCalculatePath()
-    |   |-> For each belt step (0-79):
-    |   |   |-> GetSimulatedPosition(step)
-    |   |   |-> GetTargetCellSmart(pos)
-    |   |   |-> if match: queue ShotScheduleItem, mark isPendingDeath
-    |   v
+    |-> RunBeltSequence()
     v
-RunBeltSequence()
-    |-> Move along 4 segments
-    |-> At each step:
-    |   |-> Check shotSchedule.Peek()
-    |   |-> if currentStep >= beltStepIndex:
-    |   |   |-> PerformVisualFire() -> Create BulletController
-    |   |   |-> Dequeue
-    |   v
-    |-> if ammo == 0:
-    |   |-> PerformDeathAnimation()
-    |   |-> Destroy(gameObject)
-    |   v
-    v
-CheckEndGameAndReturn()
-    |-> if (table empty && queue empty):
-    |   |-> AutoRejoinBelt() -> isBoosted = true -> RunBeltSequence()
-    |-> else:
-        |-> ReturnToQueueNormal()
-            |-> if queue full: GameManager.GameOver(false)
-            |-> else: MoveToQueue()
+[Patrol Complete]
+    |
+    +-> if (table & queue empty)
+    |       |-> AutoRejoinBelt() // 2x speed
+    |
+    +-> else
+            |-> ReturnToQueueNormal()
+                |-> if queue full: GameOver(false)</div>
+                </div>
             </div>
 
-            <h3>Win/Lose Conditions</h3>
-            <div class="flow-diagram">
-WIN:
-    CellController.OnHit()
-        |-> GridManager.OnCellDestroyed()
-            |-> activeCellCount--
-            |-> if activeCellCount == 0:
-                |-> GameManager.GameOver(true)
-                    |-> GameResultPopup.ShowVictory()
-
-LOSE:
-    PigController.ReturnToQueueNormal()
-        |-> if ReadyQueueManager.IsFull():
-            |-> GameManager.GameOver(false)
-                |-> GameResultPopup.ShowGameOverDelayed()
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div class="card-title-group">
+                        <span class="card-title" data-lang="en">Win/Lose Conditions</span>
+                        <span class="card-title" data-lang="zh">胜负条件</span>
+                        <span class="card-title" data-lang="ja">勝敗条件</span>
+                    </div>
+                    <div class="card-toggle">&#9660;</div>
+                </div>
+                <div class="card-body">
+                    <div class="grid-2">
+                        <div>
+                            <h4 style="color: var(--success); margin-bottom: 12px;" data-lang="en">WIN</h4>
+                            <h4 style="color: var(--success); margin-bottom: 12px;" data-lang="zh">胜利</h4>
+                            <h4 style="color: var(--success); margin-bottom: 12px;" data-lang="ja">勝利</h4>
+                            <div class="flow" style="font-size: 11px;">CellController.OnHit()
+  -> GridManager.OnCellDestroyed()
+  -> if activeCellCount == 0:
+       GameManager.GameOver(true)</div>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--danger); margin-bottom: 12px;" data-lang="en">LOSE</h4>
+                            <h4 style="color: var(--danger); margin-bottom: 12px;" data-lang="zh">失败</h4>
+                            <h4 style="color: var(--danger); margin-bottom: 12px;" data-lang="ja">敗北</h4>
+                            <div class="flow" style="font-size: 11px;">ReturnToQueueNormal()
+  -> if ReadyQueueManager.IsFull():
+       GameManager.GameOver(false)</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-
-        <footer style="margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 12px;">
-            Generated for PixelFlow Unity Project
-        </footer>
     </div>
+
+    <footer class="footer">
+        <p data-lang="en">PixelFlow Technical Documentation | <a href="https://github.com/NewbieAudioKid/PixU3D_bottomup">GitHub Repository</a></p>
+        <p data-lang="zh">PixelFlow 技术文档 | <a href="https://github.com/NewbieAudioKid/PixU3D_bottomup">GitHub 仓库</a></p>
+        <p data-lang="ja">PixelFlow テクニカルドキュメント | <a href="https://github.com/NewbieAudioKid/PixU3D_bottomup">GitHub リポジトリ</a></p>
+    </footer>
 
     <script>
         function toggleCard(header) {
             header.parentElement.classList.toggle('open');
         }
+
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+            localStorage.setItem('pixelflow-lang', lang);
+        }
+
+        // Load saved language
+        const savedLang = localStorage.getItem('pixelflow-lang');
+        if (savedLang) {
+            setLang(savedLang);
+        }
     </script>
 </body>
 </html>
-

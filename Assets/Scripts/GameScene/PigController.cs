@@ -557,10 +557,13 @@ public class PigController : MonoBehaviour
         // ========================================
         if (ReadyQueueManager.Instance.IsFull())
         {
-            Debug.LogError("💀 GAME OVER: 队列已满！");
+            StopAllCoroutines();
+            
             if (GameManager.Instance != null) 
-                GameManager.Instance.GameOver(false);  // false = 玩家失败
-            Destroy(gameObject);
+                GameManager.Instance.GameOver(false);
+            
+            // 延迟销毁，给弹窗足够时间弹出
+            Destroy(gameObject, 0.5f);
             return;
         }
 

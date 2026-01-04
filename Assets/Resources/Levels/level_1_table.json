@@ -1,40 +1,64 @@
 {
     "columns": [
-      {
-        "shooters": [
-          { "color": "blue", "ammo": 20 },
-          { "color": "green", "ammo": 30 },
-          { "color": "yellow", "ammo": 30 }
-        ]
-      },
-      {
-        "shooters": [
-          { "color": "blue", "ammo": 20 },
-          { "color": "green", "ammo": 30 },
-          { "color": "yellow", "ammo": 30 }
-        ]
-      },
-      {
-        "shooters": [
-          { "color": "blue", "ammo": 20 },
-          { "color": "green", "ammo": 30 },
-          { "color": "yellow", "ammo": 30 }
-        ]
-      },
-      {
-        "shooters": [
-          { "color": "blue", "ammo": 16 },
-          { "color": "red", "ammo": 18 },
-          { "color": "green", "ammo": 27 },
-          { "color": "yellow", "ammo": 27 }
-        ]
-      },
-      {
-        "shooters": [
-          { "color": "red", "ammo": 18 },
-          { "color": "green", "ammo": 27 },
-          { "color": "yellow", "ammo": 27 }
-        ]
-      }
+        {
+            "shooters": [
+                {
+                    "color": "yellow",
+                    "ammo": 36
+                },
+                {
+                    "color": "red",
+                    "ammo": 18
+                },
+                {
+                    "color": "green",
+                    "ammo": 72
+                }
+            ]
+        },
+        {
+            "shooters": [
+                {
+                    "color": "red",
+                    "ammo": 18
+                }
+            ]
+        },
+        {
+            "shooters": [
+                {
+                    "color": "yellow",
+                    "ammo": 36
+                },
+                {
+                    "color": "yellow",
+                    "ammo": 36
+                },
+                {
+                    "color": "yellow",
+                    "ammo": 36
+                },
+                {
+                    "color": "green",
+                    "ammo": 72
+                }
+            ]
+        },
+        {
+            "shooters": [
+                {
+                    "color": "blue",
+                    "ammo": 38
+                }
+            ]
+        },
+        {
+            "shooters": [
+                {
+                    "color": "blue",
+                    "ammo": 38
+                }
+            ]
+        }
     ]
-  }
+}

@@ -27,9 +27,16 @@ public class UI_StartButton : MonoBehaviour
     
     IEnumerator WaitAndGo()
     {
-        // 这里纯粹就是为了等 ElasticButton 的视觉动画播一会儿
         yield return new WaitForSeconds(delayBeforeLoad);
         
-        GameManager.Instance.StartLevel("Level_1");
+        if (GameManager.Instance != null)
+        {
+            // 使用 GameManager 记录的当前关卡，而不是硬编码 Level_1
+            GameManager.Instance.StartLevel(GameManager.Instance.currentLevelName);
+        }
+        else
+        {
+            Debug.LogError("❌ GameManager.Instance 是 null！请检查 MenuScene 中是否有 GameManager 对象。");
+        }
     }
 }

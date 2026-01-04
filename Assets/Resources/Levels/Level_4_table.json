@@ -1,0 +1,84 @@
+{
+    "columns": [
+        {
+            "shooters": [
+                {
+                    "color": "red",
+                    "ammo": 25
+                },
+                {
+                    "color": "red",
+                    "ammo": 25
+                },
+                {
+                    "color": "yellow",
+                    "ammo": 25
+                },
+                {
+                    "color": "green",
+                    "ammo": 25
+                },
+                {
+                    "color": "red",
+                    "ammo": 25
+                },
+                {
+                    "color": "yellow",
+                    "ammo": 25
+                }
+            ]
+        },
+        {
+            "shooters": [
+                {
+                    "color": "green",
+                    "ammo": 25
+                },
+                {
+                    "color": "green",
+                    "ammo": 25
+                },
+                {
+                    "color": "blue",
+                    "ammo": 33
+                },
+                {
+                    "color": "yellow",
+                    "ammo": 25
+                }
+            ]
+        },
+        {
+            "shooters": [
+                {
+                    "color": "yellow",
+                    "ammo": 25
+                },
+                {
+                    "color": "blue",
+                    "ammo": 34
+                }
+            ]
+        },
+        {
+            "shooters": [
+                {
+                    "color": "blue",
+                    "ammo": 33
+                }
+            ]
+        },
+        {
+            "shooters": [
+                {
+                    "color": "red",
+                    "ammo": 25
+                },
+                {
+                    "color": "green",
+                    "ammo": 25
+                }
+            ]
+        }
+    ]
+}

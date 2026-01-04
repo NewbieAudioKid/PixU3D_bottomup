@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelFlow - Technical Documentation</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --text: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --code-bg: #0d1117;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        
+        .subtitle {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+        
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 24px 0 12px;
+        }
+        
+        h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin: 16px 0 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        p {
+            margin-bottom: 12px;
+        }
+        
+        code {
+            font-family: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+            border: 1px solid var(--border);
+        }
+        
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 16px;
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+        
+        pre code {
+            border: none;
+            padding: 0;
+            background: none;
+        }
+        
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            margin: 12px 0;
+        }
+        
+        .card-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        
+        .card-header:hover {
+            background: rgba(56, 139, 253, 0.1);
+        }
+        
+        .card-header .title {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .card-header .path {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-family: 'SF Mono', Consolas, monospace;
+        }
+        
+        .card-header .toggle {
+            color: var(--text-muted);
+            font-size: 12px;
+            transition: transform 0.2s;
+        }
+        
+        .card.open .toggle {
+            transform: rotate(90deg);
+        }
+        
+        .card-body {
+            display: none;
+            padding: 16px;
+        }
+        
+        .card.open .card-body {
+            display: block;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-right: 4px;
+        }
+        
+        .tag.singleton { background: #238636; color: #fff; }
+        .tag.component { background: #1f6feb; color: #fff; }
+        .tag.editor { background: #8957e5; color: #fff; }
+        .tag.ui { background: #da3633; color: #fff; }
+        .tag.data { background: #d29922; color: #000; }
+        
+        .method-list {
+            list-style: none;
+        }
+        
+        .method-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .method-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .method-name {
+            font-family: 'SF Mono', Consolas, monospace;
+            color: var(--accent);
+            font-size: 13px;
+        }
+        
+        .method-desc {
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+        
+        .prop-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        
+        .prop-table th {
+            text-align: left;
+            padding: 8px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+        
+        .prop-table td {
+            padding: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .prop-table td:first-child {
+            font-family: 'SF Mono', Consolas, monospace;
+            color: var(--accent);
+        }
+        
+        .hierarchy-tree {
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        
+        .hierarchy-tree .indent {
+            color: var(--border);
+            margin-right: 4px;
+        }
+        
+        .hierarchy-tree .name {
+            color: var(--text);
+        }
+        
+        .hierarchy-tree .desc {
+            color: var(--text-muted);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        }
+        
+        .flow-diagram {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 24px;
+            margin: 16px 0;
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        
+        .toc {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .toc-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+        
+        .toc a {
+            color: var(--accent);
+            text-decoration: none;
+            display: block;
+            padding: 4px 0;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        
+        .section {
+            margin-bottom: 48px;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PixelFlow</h1>
+        <p class="subtitle">Unity 2D Shooter Game - Technical Documentation</p>
+        
+        <div class="toc">
+            <div class="toc-title">Table of Contents</div>
+            <a href="#overview">1. Project Overview</a>
+            <a href="#scenes">2. Scene Structure</a>
+            <a href="#hierarchy">3. Hierarchy Elements</a>
+            <a href="#scripts">4. Script Reference</a>
+            <a href="#dataflow">5. Data Flow</a>
+        </div>
+
+        <!-- OVERVIEW -->
+        <section id="overview" class="section">
+            <h2>1. Project Overview</h2>
+            <p>PixelFlow is a 2D puzzle shooter where colored shooters (pigs) traverse a conveyor belt around a 20x20 grid, automatically firing at matching colored cells. The game features pre-calculated shot scheduling, "last stand" mechanics, and level progression.</p>
+            
+            <h4>Core Mechanics</h4>
+            <ul>
+                <li><strong>Shooter Selection:</strong> Players click shooters from the table to queue them</li>
+                <li><strong>Belt Patrol:</strong> Queued shooters can be clicked to start conveyor belt patrol</li>
+                <li><strong>Auto-Fire:</strong> Shooters automatically fire at matching colored cells</li>
+                <li><strong>Last Stand:</strong> When no other shooters remain, the current shooter gets 2x speed boost</li>
+                <li><strong>Win/Lose:</strong> Win by clearing all cells; Lose when queue is full</li>
+            </ul>
+        </section>
+
+        <!-- SCENES -->
+        <section id="scenes" class="section">
+            <h2>2. Scene Structure</h2>
+            
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="title">SplashScene</span>
+                        <span class="path">Assets/Resources/Scenes/SplashScene.unity</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Initial loading screen with brand logo display and fade transition.</p>
+                    <h4>Flow</h4>
+                    <div class="flow-diagram">Start -> Wait(1.5s) -> FadeToBlack(2s) -> LoadScene("MenuScene")</div>
+                    <h4>Key Components</h4>
+                    <ul>
+                        <li><code>SplashController</code> - Manages wait time and fade animation</li>
+                        <li><code>BlackCurtain (CanvasGroup)</code> - Overlay for fade effect</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="title">MenuScene</span>
+                        <span class="path">Assets/Resources/Scenes/MenuScene.unity</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Main menu with level selection and play button. Displays current level progress.</p>
+                    <h4>Key Components</h4>
+                    <ul>
+                        <li><code>GameManager</code> - Singleton initialization (DontDestroyOnLoad)</li>
+                        <li><code>MenuLevelDisplay</code> - Shows current level numbers on UI</li>
+                        <li><code>UI_StartButton</code> - Handles play button click</li>
+                        <li><code>ElasticButton</code> - Q-bounce animation on buttons</li>
+                        <li><code>BackgroundScroller</code> - Animated scrolling background</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="title">GameScene</span>
+                        <span class="path">Assets/Resources/Scenes/GameScene.unity</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Main gameplay scene containing grid, shooters, belt, and UI.</p>
+                    <h4>Initialization Flow</h4>
+                    <div class="flow-diagram">Awake -> GridManager.GenerateGrid()
+      -> ShooterTableManager.GenerateTable()
+      -> ReadyQueueManager.Init()
+      -> GameResultPopup.SetActive(false)</div>
+                    <h4>Key Components</h4>
+                    <ul>
+                        <li><code>GridManager</code> - 20x20 cell grid management</li>
+                        <li><code>ShooterTableManager</code> - 5-column shooter inventory</li>
+                        <li><code>ReadyQueueManager</code> - 5-slot ready queue</li>
+                        <li><code>BeltPathHolder</code> - Conveyor belt waypoints</li>
+                        <li><code>GameResultPopup</code> - Victory/GameOver modal</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- HIERARCHY -->
+        <section id="hierarchy" class="section">
+            <h2>3. Hierarchy Elements</h2>
+            
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="title">GameScene Hierarchy</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <div class="hierarchy-tree">
+GameScene
+<span class="indent">|--</span> Main Camera
+<span class="indent">|--</span> Directional Light
+<span class="indent">|--</span> GameManager <span class="desc">// Singleton, DontDestroyOnLoad</span>
+<span class="indent">|--</span> EventSystem
+<span class="indent">|--</span> GameRoot
+<span class="indent">|   |--</span> GridManager <span class="desc">// 20x20 grid of cells</span>
+<span class="indent">|   |   |--</span> Pixel_Cell (x400) <span class="desc">// Generated at runtime</span>
+<span class="indent">|   |--</span> BeltPathHolder <span class="desc">// 4 corner waypoints</span>
+<span class="indent">|   |   |--</span> WP_BottomLeft
+<span class="indent">|   |   |--</span> WP_BottomRight
+<span class="indent">|   |   |--</span> WP_TopRight
+<span class="indent">|   |   |--</span> WP_TopLeft
+<span class="indent">|   |--</span> ReadyQueueManager <span class="desc">// 5 queue slots</span>
+<span class="indent">|   |   |--</span> Slot_0 ... Slot_4
+<span class="indent">|   |--</span> ShooterTableManager <span class="desc">// 5x6 shooter grid</span>
+<span class="indent">|       |--</span> Pig_Prototype (xN) <span class="desc">// Generated at runtime</span>
+<span class="indent">|--</span> Canvas
+<span class="indent">|   |--</span> Top <span class="desc">// Level name display</span>
+<span class="indent">|   |--</span> Bottom <span class="desc">// UI controls</span>
+<span class="indent">|   |--</span> Popup_GameResult <span class="desc">// Victory/GameOver modal</span>
+<span class="indent">|       |--</span> Container_Window
+<span class="indent">|       |--</span> Btn_Retry
+<span class="indent">|       |--</span> Btn_Menu
+<span class="indent">|       |--</span> Btn_Next
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="title">MenuScene Hierarchy</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <div class="hierarchy-tree">
+MenuScene
+<span class="indent">|--</span> Main Camera
+<span class="indent">|--</span> Directional Light
+<span class="indent">|--</span> GameManager <span class="desc">// Singleton source</span>
+<span class="indent">|--</span> EventSystem
+<span class="indent">|--</span> Canvas
+<span class="indent">|   |--</span> Background <span class="desc">// BackgroundScroller</span>
+<span class="indent">|   |--</span> Middle <span class="desc">// Level icons with MenuLevelDisplay</span>
+<span class="indent">|   |   |--</span> Bottom_1 ... Bottom_4 <span class="desc">// Level number texts</span>
+<span class="indent">|   |--</span> PlayButton <span class="desc">// ElasticButton + UI_StartButton</span>
+<span class="indent">|   |--</span> BlackCurtain <span class="desc">// SceneFader</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCRIPTS -->
+        <section id="scripts" class="section">
+            <h2>4. Script Reference</h2>
+            
+            <h3>Core Systems</h3>
+            
+            <!-- GameManager -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag singleton">Singleton</span>
+                        <span class="title">GameManager</span>
+                        <span class="path">Scripts/GameManager.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Global game state manager. Persists across scenes via DontDestroyOnLoad.</p>
+                    
+                    <h4>Properties</h4>
+                    <table class="prop-table">
+                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+                        <tr><td>Instance</td><td>static</td><td>Singleton instance</td></tr>
+                        <tr><td>currentLevelName</td><td>string</td><td>Current level identifier (e.g., "Level_1")</td></tr>
+                    </table>
+                    
+                    <h4>Methods</h4>
+                    <ul class="method-list">
+                        <li>
+                            <span class="method-name">GetCurrentLevelNum() : int</span>
+                            <div class="method-desc">Parses level number from currentLevelName. Returns 1 if invalid.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">StartLevel(string levelName)</span>
+                            <div class="method-desc">Sets currentLevelName and loads GameScene.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">LoadNextLevel()</span>
+                            <div class="method-desc">Advances to next level or returns to menu if none exists.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">AdvanceLevelProgress() : bool</span>
+                            <div class="method-desc">Increments currentLevelName. Returns false if no next level data.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">GameOver(bool isWin)</span>
+                            <div class="method-desc">Triggers victory or game over popup.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">LoadGridData() : LevelGridData</span>
+                            <div class="method-desc">Loads grid JSON from Resources/Levels/.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">LoadTableData() : ShooterTableData</span>
+                            <div class="method-desc">Loads shooter table JSON from Resources/Levels/.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- GridManager -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag singleton">Singleton</span>
+                        <span class="title">GridManager</span>
+                        <span class="path">Scripts/GameScene/GridManager.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Manages 20x20 cell grid generation, lookup, and win condition detection.</p>
+                    
+                    <h4>Properties</h4>
+                    <table class="prop-table">
+                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+                        <tr><td>gridSize</td><td>int</td><td>Grid dimension (default: 20)</td></tr>
+                        <tr><td>cellSize</td><td>float</td><td>World units per cell (default: 1.0)</td></tr>
+                        <tr><td>activeCellCount</td><td>int</td><td>Remaining cells; triggers win when 0</td></tr>
+                        <tr><td>logicGrid</td><td>CellController[,]</td><td>2D array for O(1) lookup</td></tr>
+                    </table>
+                    
+                    <h4>Methods</h4>
+                    <ul class="method-list">
+                        <li>
+                            <span class="method-name">GetTargetCellSmart(Vector3 pos) : CellController</span>
+                            <div class="method-desc">Smart zone-based target lookup. Determines scan direction based on shooter position relative to grid edges.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">GetSimulatedPosition(int beltIndex) : Vector3</span>
+                            <div class="method-desc">Converts belt step index (0-79) to world position. Used for pre-calculation.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">OnCellDestroyed()</span>
+                            <div class="method-desc">Decrements activeCellCount. Triggers GameOver(true) when 0.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">GetMaterialByColorID(string colorID) : Material</span>
+                            <div class="method-desc">Maps color string to material asset.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PigController -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag component">Component</span>
+                        <span class="title">PigController</span>
+                        <span class="path">Scripts/GameScene/PigController.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Core shooter controller. Handles state machine, pre-calculated shooting, and "last stand" mechanics.</p>
+                    
+                    <h4>State Machine</h4>
+                    <pre><code>InTable -> InQueue -> OnBelt -> Returning -> InQueue (loop)
+                                    |
+                                    v
+                             (if table & queue empty)
+                                    |
+                                    v
+                              AutoRejoinBelt (2x speed)</code></pre>
+                    
+                    <h4>Properties</h4>
+                    <table class="prop-table">
+                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+                        <tr><td>colorID</td><td>string</td><td>Color identifier for matching</td></tr>
+                        <tr><td>ammo</td><td>int</td><td>Remaining shots; death at 0</td></tr>
+                        <tr><td>currentState</td><td>PigState</td><td>Current state in lifecycle</td></tr>
+                        <tr><td>isBoosted</td><td>bool</td><td>2x speed active (last stand)</td></tr>
+                        <tr><td>shotSchedule</td><td>Queue&lt;ShotScheduleItem&gt;</td><td>Pre-calculated shot plan</td></tr>
+                    </table>
+                    
+                    <h4>Key Methods</h4>
+                    <ul class="method-list">
+                        <li>
+                            <span class="method-name">PreCalculatePath()</span>
+                            <div class="method-desc">Simulates entire belt path and builds shot schedule. Marks targets as isPendingDeath to prevent duplicate targeting.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">RunBeltSequence(List&lt;Transform&gt;) : IEnumerator</span>
+                            <div class="method-desc">Main gameplay coroutine. Moves along belt, fires per schedule, handles death animation.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">CheckEndGameAndReturn()</span>
+                            <div class="method-desc">Decision point after belt patrol. Triggers AutoRejoinBelt if last shooter, else ReturnToQueueNormal.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">PerformDeathAnimation() : IEnumerator</span>
+                            <div class="method-desc">0.3s spin+scale animation when ammo depleted.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ReadyQueueManager -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag singleton">Singleton</span>
+                        <span class="title">ReadyQueueManager</span>
+                        <span class="path">Scripts/GameScene/ReadyQueueManager.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Manages 5-slot ready queue with auto shift-left on removal.</p>
+                    
+                    <h4>Methods</h4>
+                    <ul class="method-list">
+                        <li>
+                            <span class="method-name">GetFirstEmptyIndex() : int</span>
+                            <div class="method-desc">Returns first empty slot index (0-4) or -1 if full.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">RegisterPig(int index, PigController pig)</span>
+                            <div class="method-desc">Assigns pig to slot and sets parent transform.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">UnregisterPig(PigController pig)</span>
+                            <div class="method-desc">Removes pig and shifts remaining pigs left.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">IsFull() : bool</span>
+                            <div class="method-desc">Returns true if all 5 slots occupied (game over condition).</div>
+                        </li>
+                        <li>
+                            <span class="method-name">IsQueueEmpty() : bool</span>
+                            <div class="method-desc">Returns true if all slots empty (used for last stand check).</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ShooterTableManager -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag singleton">Singleton</span>
+                        <span class="title">ShooterTableManager</span>
+                        <span class="path">Scripts/GameScene/ShooterTableManager.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Manages 5-column shooter inventory with stack-like pop behavior.</p>
+                    
+                    <h4>Properties</h4>
+                    <table class="prop-table">
+                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+                        <tr><td>columns</td><td>int</td><td>Number of columns (default: 5)</td></tr>
+                        <tr><td>rows</td><td>int</td><td>Max rows per column (default: 6)</td></tr>
+                        <tr><td>tableColumns</td><td>List&lt;List&lt;PigController&gt;&gt;</td><td>2D list: columns[col][row]</td></tr>
+                    </table>
+                    
+                    <h4>Methods</h4>
+                    <ul class="method-list">
+                        <li>
+                            <span class="method-name">OnPigClicked(PigController pig)</span>
+                            <div class="method-desc">Handles click on topmost shooter. Moves to queue if space available.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">UpdateColumnPositions(int colIndex)</span>
+                            <div class="method-desc">Shifts remaining shooters up after removal.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">IsTableEmpty() : bool</span>
+                            <div class="method-desc">Returns true if all columns empty (used for last stand check).</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- BeltWalker -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag component">Component</span>
+                        <span class="title">BeltWalker</span>
+                        <span class="path">Scripts/GameScene/BeltWalker.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Waypoint-based movement component for conveyor belt patrol.</p>
+                    
+                    <h4>Properties</h4>
+                    <table class="prop-table">
+                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+                        <tr><td>speed</td><td>float</td><td>Movement speed (default: 5.0)</td></tr>
+                        <tr><td>OnPathComplete</td><td>UnityEvent</td><td>Fired when path traversal complete</td></tr>
+                    </table>
+                    
+                    <h4>Methods</h4>
+                    <ul class="method-list">
+                        <li>
+                            <span class="method-name">BeginJourney(List&lt;Transform&gt; path)</span>
+                            <div class="method-desc">Starts movement along waypoints.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">SetDoubleSpeed()</span>
+                            <div class="method-desc">Activates 2x speed multiplier.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">ResetSpeed()</span>
+                            <div class="method-desc">Returns to base speed.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- BeltPathHolder -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag singleton">Singleton</span>
+                        <span class="title">BeltPathHolder</span>
+                        <span class="path">Scripts/GameScene/BeltPathHolder.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Container for conveyor belt waypoints. Configure in Inspector.</p>
+                    
+                    <h4>Properties</h4>
+                    <table class="prop-table">
+                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+                        <tr><td>waypoints</td><td>List&lt;Transform&gt;</td><td>4 corner transforms (BL, BR, TR, TL)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CellController -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag component">Component</span>
+                        <span class="title">CellController</span>
+                        <span class="path">Scripts/GameScene/CellController.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Individual grid cell with hit detection and pending-death marking.</p>
+                    
+                    <h4>Properties</h4>
+                    <table class="prop-table">
+                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+                        <tr><td>colorID</td><td>string</td><td>Color identifier for matching</td></tr>
+                        <tr><td>isDestroyed</td><td>bool</td><td>True after OnHit() called</td></tr>
+                        <tr><td>isPendingDeath</td><td>bool</td><td>Reservation flag for pre-calculation</td></tr>
+                    </table>
+                    
+                    <h4>Methods</h4>
+                    <ul class="method-list">
+                        <li>
+                            <span class="method-name">Init(string color, Material mat)</span>
+                            <div class="method-desc">Initialize cell with color and material.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">OnHit()</span>
+                            <div class="method-desc">Called when bullet hits. Sets isDestroyed, notifies GridManager, deactivates GameObject.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- BulletController -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag component">Component</span>
+                        <span class="title">BulletController</span>
+                        <span class="path">Scripts/GameScene/BulletController.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Projectile controller using distance-based hit detection (no physics).</p>
+                    
+                    <h4>Methods</h4>
+                    <ul class="method-list">
+                        <li>
+                            <span class="method-name">Fire(CellController target, Vector3 startPos)</span>
+                            <div class="method-desc">Initialize bullet position and target. Begins movement in Update.</div>
+                        </li>
+                    </ul>
+                    <p><strong>Hit Detection:</strong> Distance &lt; 0.1f triggers target.OnHit() and self-destruction.</p>
+                </div>
+            </div>
+
+            <h3>UI Components</h3>
+
+            <!-- GameResultPopup -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag ui">UI</span>
+                        <span class="tag singleton">Singleton</span>
+                        <span class="title">GameResultPopup</span>
+                        <span class="path">Scripts/UIScripts/GameResultPopup.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Victory/GameOver modal with pop animation.</p>
+                    
+                    <h4>Methods</h4>
+                    <ul class="method-list">
+                        <li>
+                            <span class="method-name">ShowVictory()</span>
+                            <div class="method-desc">Shows "Victory" title with Next + Menu buttons.</div>
+                        </li>
+                        <li>
+                            <span class="method-name">ShowGameOverDelayed()</span>
+                            <div class="method-desc">Delayed show (0.1s) to avoid coroutine conflicts. Shows "Game Over" with Retry + Menu.</div>
+                        </li>
+                    </ul>
+                    
+                    <h4>Button Handlers</h4>
+                    <ul class="method-list">
+                        <li><span class="method-name">OnClickRetry()</span> - Reloads current scene</li>
+                        <li><span class="method-name">OnClickReturnToMenu()</span> - Returns to MenuScene (advances progress if victory)</li>
+                        <li><span class="method-name">OnClickNext()</span> - Calls GameManager.LoadNextLevel()</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ElasticButton -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag ui">UI</span>
+                        <span class="title">ElasticButton</span>
+                        <span class="path">Scripts/UIScripts/Animation/ElasticButton.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Q-bounce scale animation on press/release. Uses AnimationCurve for overshoot effect.</p>
+                    
+                    <h4>Properties</h4>
+                    <table class="prop-table">
+                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+                        <tr><td>pressedScale</td><td>float</td><td>Scale on press (default: 0.85)</td></tr>
+                        <tr><td>duration</td><td>float</td><td>Bounce duration (default: 0.5s)</td></tr>
+                        <tr><td>bounceCurve</td><td>AnimationCurve</td><td>Overshoot curve (peaks at 1.15)</td></tr>
+                    </table>
+                    <p>Uses <code>Time.unscaledDeltaTime</code> for TimeScale-independent animation.</p>
+                </div>
+            </div>
+
+            <!-- SceneFader -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag ui">UI</span>
+                        <span class="title">SceneFader</span>
+                        <span class="path">Scripts/UIScripts/Animation/SceneFader.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Black overlay fade-in effect. Self-destructs after fade complete.</p>
+                    <p>Attach to full-screen black Image with CanvasGroup.</p>
+                </div>
+            </div>
+
+            <!-- SplashController -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag ui">UI</span>
+                        <span class="title">SplashController</span>
+                        <span class="path">Scripts/UIScripts/SplashController.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Splash screen controller: wait -> fade to black -> load next scene.</p>
+                    <h4>Properties</h4>
+                    <table class="prop-table">
+                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+                        <tr><td>nextSceneName</td><td>string</td><td>Scene to load (default: "MenuScene")</td></tr>
+                        <tr><td>waitTime</td><td>float</td><td>Display duration (default: 1.5s)</td></tr>
+                        <tr><td>fadeDuration</td><td>float</td><td>Fade duration (default: 2.0s)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Other UI Scripts -->
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag ui">UI</span>
+                        <span class="title">UI_StartButton</span>
+                        <span class="path">Scripts/UIScripts/UI_StartButton.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Play button handler. Delays scene load to allow ElasticButton animation.</p>
+                    <h4>Methods</h4>
+                    <ul class="method-list">
+                        <li>
+                            <span class="method-name">ClickStartGame()</span>
+                            <div class="method-desc">Waits 0.4s then calls GameManager.StartLevel(currentLevelName).</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag ui">UI</span>
+                        <span class="title">MenuLevelDisplay / GameLevelDisplay</span>
+                        <span class="path">Scripts/UIScripts/</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p><strong>MenuLevelDisplay:</strong> Updates 4 level number texts showing current + next 3 levels.</p>
+                    <p><strong>GameLevelDisplay:</strong> Shows current level name in game scene header.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag ui">UI</span>
+                        <span class="title">BackgroundScroller</span>
+                        <span class="path">Scripts/UIScripts/BackgroundScroller.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Infinite scrolling background via UV offset on RawImage.</p>
+                    <h4>Properties</h4>
+                    <table class="prop-table">
+                        <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+                        <tr><td>scrollSpeedX</td><td>float</td><td>Horizontal scroll (default: 0)</td></tr>
+                        <tr><td>scrollSpeedY</td><td>float</td><td>Vertical scroll (default: 0.1)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag component">Component</span>
+                        <span class="title">UIBillboard</span>
+                        <span class="path">Scripts/GameScene/UIBillboard.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Keeps 3D UI elements (ammo text) facing camera. Uses LateUpdate for smooth results.</p>
+                </div>
+            </div>
+
+            <h3>Editor Tools</h3>
+
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag editor">Editor</span>
+                        <span class="title">LevelDataGenerator</span>
+                        <span class="path">Scripts/Level/LevelDataGenerator.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <p>Editor tool for generating level JSON files. Right-click component -> "Generate All 10 Levels".</p>
+                    
+                    <h4>Generated Patterns</h4>
+                    <table class="prop-table">
+                        <tr><th>Level</th><th>Pattern</th></tr>
+                        <tr><td>1</td><td>Border + X diagonal + quadrants</td></tr>
+                        <tr><td>2</td><td>Concentric squares</td></tr>
+                        <tr><td>3</td><td>4-color checkerboard</td></tr>
+                        <tr><td>4</td><td>Horizontal/vertical stripes</td></tr>
+                        <tr><td>5</td><td>Angle-based spiral</td></tr>
+                        <tr><td>6</td><td>Concentric circles</td></tr>
+                        <tr><td>7</td><td>Diagonal stripes</td></tr>
+                        <tr><td>8</td><td>4 quadrants</td></tr>
+                        <tr><td>9</td><td>8-sector radial</td></tr>
+                        <tr><td>10</td><td>Maze pattern</td></tr>
+                    </table>
+                    
+                    <p>Auto-generates balanced shooter table (ammo = cell count per color).</p>
+                </div>
+            </div>
+
+            <h3>Data Structures</h3>
+
+            <div class="card">
+                <div class="card-header" onclick="toggleCard(this)">
+                    <div>
+                        <span class="tag data">Data</span>
+                        <span class="title">JSON Data Classes</span>
+                        <span class="path">Defined in GameManager.cs</span>
+                    </div>
+                    <span class="toggle">&gt;</span>
+                </div>
+                <div class="card-body">
+                    <h4>LevelGridData</h4>
+                    <pre><code>{
+  "cells": [
+    { "x": 0, "y": 0, "color": "red" },
+    { "x": 0, "y": 1, "color": "blue" },
+    ...
+  ]
+}</code></pre>
+                    
+                    <h4>ShooterTableData</h4>
+                    <pre><code>{
+  "columns": [
+    {
+      "shooters": [
+        { "color": "red", "ammo": 25 },
+        { "color": "blue", "ammo": 30 }
+      ]
+    },
+    ...
+  ]
+}</code></pre>
+
+                    <h4>ShotScheduleItem (internal struct)</h4>
+                    <pre><code>struct ShotScheduleItem {
+    int beltStepIndex;      // 0-79
+    CellController target;  // Target cell reference
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- DATA FLOW -->
+        <section id="dataflow" class="section">
+            <h2>5. Data Flow</h2>
+            
+            <h3>Game Initialization</h3>
+            <div class="flow-diagram">
+MenuScene.Start()
+    |
+    v
+GameManager.Awake() -> Instance = this, DontDestroyOnLoad
+    |
+    v
+[Click Play Button]
+    |
+    v
+UI_StartButton.ClickStartGame()
+    |
+    v
+GameManager.StartLevel("Level_1")
+    |
+    v
+SceneManager.LoadScene("GameScene")
+    |
+    v
+GridManager.Start()
+    |-> LoadGridData() -> Parse JSON
+    |-> GenerateGrid() -> Create 400 CellController
+    v
+ShooterTableManager.Start()
+    |-> LoadTableData() -> Parse JSON
+    |-> GenerateTable() -> Create PigController instances
+            </div>
+
+            <h3>Shooter Lifecycle</h3>
+            <div class="flow-diagram">
+[Click Shooter in Table]
+    |
+    v
+ShooterTableManager.OnPigClicked()
+    |-> Remove from tableColumns[col]
+    |-> UpdateColumnPositions()
+    v
+PigController.MoveToQueue()
+    |-> ReadyQueueManager.RegisterPig()
+    |-> SmoothMoveTo(slotPosition)
+    v
+[Click Shooter in Queue]
+    |
+    v
+PigController.GoToBelt()
+    |-> ReadyQueueManager.UnregisterPig()
+    |-> PreCalculatePath()
+    |   |-> For each belt step (0-79):
+    |   |   |-> GetSimulatedPosition(step)
+    |   |   |-> GetTargetCellSmart(pos)
+    |   |   |-> if match: queue ShotScheduleItem, mark isPendingDeath
+    |   v
+    v
+RunBeltSequence()
+    |-> Move along 4 segments
+    |-> At each step:
+    |   |-> Check shotSchedule.Peek()
+    |   |-> if currentStep >= beltStepIndex:
+    |   |   |-> PerformVisualFire() -> Create BulletController
+    |   |   |-> Dequeue
+    |   v
+    |-> if ammo == 0:
+    |   |-> PerformDeathAnimation()
+    |   |-> Destroy(gameObject)
+    |   v
+    v
+CheckEndGameAndReturn()
+    |-> if (table empty && queue empty):
+    |   |-> AutoRejoinBelt() -> isBoosted = true -> RunBeltSequence()
+    |-> else:
+        |-> ReturnToQueueNormal()
+            |-> if queue full: GameManager.GameOver(false)
+            |-> else: MoveToQueue()
+            </div>
+
+            <h3>Win/Lose Conditions</h3>
+            <div class="flow-diagram">
+WIN:
+    CellController.OnHit()
+        |-> GridManager.OnCellDestroyed()
+            |-> activeCellCount--
+            |-> if activeCellCount == 0:
+                |-> GameManager.GameOver(true)
+                    |-> GameResultPopup.ShowVictory()
+
+LOSE:
+    PigController.ReturnToQueueNormal()
+        |-> if ReadyQueueManager.IsFull():
+            |-> GameManager.GameOver(false)
+                |-> GameResultPopup.ShowGameOverDelayed()
+            </div>
+        </section>
+
+        <footer style="margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 12px;">
+            Generated for PixelFlow Unity Project
+        </footer>
+    </div>
+
+    <script>
+        function toggleCard(header) {
+            header.parentElement.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
+

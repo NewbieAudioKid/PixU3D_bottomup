@@ -2,9 +2,9 @@
 
 # PixelFlow
 
-**A 2D Puzzle Shooter Game**
+**一款2D益智射击游戏**
 
-一款2D益智射击游戏 | 2Dパズルシューティングゲーム
+A 2D Puzzle Shooter Game | 2Dパズルシューティングゲーム
 
 ---
 
@@ -12,73 +12,11 @@
 [![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)](https://docs.microsoft.com/dotnet/csharp/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
-[English](#english) | [中文](#中文) | [日本語](#日本語)
+### [技术文档 / Documentation](https://newbieaudiokid.github.io/PixU3D_bottomup/)
+
+[中文](#中文) | [English](#english) | [日本語](#日本語)
 
 </div>
-
----
-
-<a name="english"></a>
-
-## Overview
-
-PixelFlow is a strategic puzzle game where colored shooters patrol a conveyor belt, automatically firing at matching cells. Players must strategically deploy shooters from their inventory to clear all cells from the grid.
-
-### Gameplay
-
-- **Select**: Click shooters from the table to queue (5 slots max)
-- **Deploy**: Click queued shooter to start belt patrol
-- **Auto-Fire**: Shooters automatically target matching cells
-- **Win**: Clear all cells from the grid
-- **Lose**: Ready queue is full when a shooter returns
-
-### Last Stand Mechanic
-
-When both the shooter table and ready queue are empty, the current shooter triggers "Last Stand" mode with 2x speed bonus, automatically re-entering the conveyor belt until ammunition depletes.
-
-## Project Structure
-
-```
-Assets/
-├── Scripts/
-│   ├── GameManager.cs              # Global state, scene transitions
-│   ├── GameScene/
-│   │   ├── GridManager.cs          # 20x20 cell grid
-│   │   ├── PigController.cs        # Shooter state machine
-│   │   ├── CellController.cs       # Grid cell logic
-│   │   ├── BeltWalker.cs           # Belt movement
-│   │   ├── ReadyQueueManager.cs    # 5-slot queue
-│   │   ├── ShooterTableManager.cs  # Shooter inventory
-│   │   └── BeltPathHolder.cs       # Waypoints
-│   ├── UIScripts/
-│   │   ├── GameResultPopup.cs      # Victory/GameOver modal
-│   │   ├── ElasticButton.cs        # Animated buttons
-│   │   └── SceneFader.cs           # Scene transitions
-│   └── Level/
-│       └── LevelDataGenerator.cs   # Editor tool
-├── Resources/
-│   └── Levels/                     # JSON level data
-└── Scenes/
-    ├── SplashScene.unity
-    ├── MenuScene.unity
-    └── GameScene.unity
-```
-
-## Requirements
-
-- Unity 2021.3 LTS or higher
-- TextMeshPro package
-
-## Getting Started
-
-1. Clone the repository
-2. Open project in Unity
-3. Open `Assets/Scenes/SplashScene.unity`
-4. Press Play
-
-## Documentation
-
-Full technical documentation: [PixelFlow Docs](https://newbieaudiokid.github.io/PixU3D_bottomup/)
 
 ---
 
@@ -140,9 +78,65 @@ Assets/
 3. 打开 `Assets/Scenes/SplashScene.unity`
 4. 点击播放
 
-## 文档
+---
 
-完整技术文档: [PixelFlow 文档](https://newbieaudiokid.github.io/PixU3D_bottomup/)
+<a name="english"></a>
+
+## Overview
+
+PixelFlow is a strategic puzzle game where colored shooters patrol a conveyor belt, automatically firing at matching cells. Players must strategically deploy shooters from their inventory to clear all cells from the grid.
+
+### Gameplay
+
+- **Select**: Click shooters from the table to queue (5 slots max)
+- **Deploy**: Click queued shooter to start belt patrol
+- **Auto-Fire**: Shooters automatically target matching cells
+- **Win**: Clear all cells from the grid
+- **Lose**: Ready queue is full when a shooter returns
+
+### Last Stand Mechanic
+
+When both the shooter table and ready queue are empty, the current shooter triggers "Last Stand" mode with 2x speed bonus, automatically re-entering the conveyor belt until ammunition depletes.
+
+## Project Structure
+
+```
+Assets/
+├── Scripts/
+│   ├── GameManager.cs              # Global state, scene transitions
+│   ├── GameScene/
+│   │   ├── GridManager.cs          # 20x20 cell grid
+│   │   ├── PigController.cs        # Shooter state machine
+│   │   ├── CellController.cs       # Grid cell logic
+│   │   ├── BeltWalker.cs           # Belt movement
+│   │   ├── ReadyQueueManager.cs    # 5-slot queue
+│   │   ├── ShooterTableManager.cs  # Shooter inventory
+│   │   └── BeltPathHolder.cs       # Waypoints
+│   ├── UIScripts/
+│   │   ├── GameResultPopup.cs      # Victory/GameOver modal
+│   │   ├── ElasticButton.cs        # Animated buttons
+│   │   └── SceneFader.cs           # Scene transitions
+│   └── Level/
+│       └── LevelDataGenerator.cs   # Editor tool
+├── Resources/
+│   └── Levels/                     # JSON level data
+└── Scenes/
+    ├── SplashScene.unity
+    ├── MenuScene.unity
+    └── GameScene.unity
+```
+
+## Requirements
+
+- Unity 2021.3 LTS or higher
+- TextMeshPro package
+
+## Getting Started
+
+1. Clone the repository
+2. Open project in Unity
+3. Open `Assets/Scenes/SplashScene.unity`
+4. Press Play
 
 ---
 
@@ -203,10 +197,6 @@ Assets/
 2. Unityでプロジェクトを開く
 3. `Assets/Scenes/SplashScene.unity`を開く
 4. プレイを押す
-
-## ドキュメント
-
-完全な技術ドキュメント: [PixelFlow ドキュメント](https://newbieaudiokid.github.io/PixU3D_bottomup/)
 
 ---
 

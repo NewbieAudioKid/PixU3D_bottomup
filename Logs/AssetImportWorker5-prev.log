@@ -1,0 +1,862 @@
+Unity Editor version:    2021.3.45f1 (0da89fac8e79)
+Branch:                  2021.3/staging
+Build type:              Release
+Batch mode:              YES
+macOS version:           Version 14.4.1 (Build 23E224)
+Darwin version:          23.4.0
+Architecture:            x86_64
+Running under Rosetta:   NO
+Available memory:        32768 MB
+Using pre-set license
+Pro License: YES
+2025-12-31 13:10:20.930 Unity[79466:129749083] WARNING: Secure coding is not enabled for restorable state! Enable secure coding by implementing NSApplicationDelegate.applicationSupportsSecureRestorableState: and returning YES.
+
+COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker5
+-projectPath
+/Users/benz/Desktop/Stanford/FA25/Guru/PixelFlow_prototype2/My project (2)
+-logFile
+Logs/AssetImportWorker5.log
+-srvPort
+64983
+Successfully changed project path to: /Users/benz/Desktop/Stanford/FA25/Guru/PixelFlow_prototype2/My project (2)
+/Users/benz/Desktop/Stanford/FA25/Guru/PixelFlow_prototype2/My project (2)
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [140704594186496] Host "[IP] 10.60.244.25 [Port] 0 [Flags] 2 [Guid] 3853052311 [EditorId] 3853052311 [Version] 1048832 [Id] OSXEditor(0,Bens-MacBook-Pro-5.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [140704594186496] Host "[IP] 10.60.244.25 [Port] 0 [Flags] 2 [Guid] 3853052311 [EditorId] 3853052311 [Version] 1048832 [Id] OSXEditor(0,Bens-MacBook-Pro-5.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with {0} workers.
+Refreshing native plugins compatible for Editor in 128.74 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.3.45f1 (0da89fac8e79)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/benz/Desktop/Stanford/FA25/Guru/PixelFlow_prototype2/My project (2)/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Mi Monitor preferred device: AMD Radeon Pro 555X (high power)
+Metal devices available: 2
+0: AMD Radeon Pro 555X (high power)
+1: Intel(R) UHD Graphics 630 (low power)
+Using device AMD Radeon Pro 555X (high power)
+Initializing Metal device caps: AMD Radeon Pro 555X
+Initialize mono
+Mono path[0] = '/Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
+Mono config path = '/Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56466
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: /Applications/Unity/Hub/Editor/2021.3.45f1/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: /Applications/Unity/Hub/Editor/2021.3.45f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
+Registered in 0.005515 seconds.
+[usbmuxd] Start listen thread
+[usbmuxd] Listen thread started
+[usbmuxd] Send listen message
+[usbmuxd] Attached: 123 00008110-000E15A60261801E
+Native extension for iOS target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 254 ms
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 150.33 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.482 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1483ms)
+		BeginReloadAssembly (170ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (1151ms)
+			LoadAssemblies (172ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (172ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (47ms)
+			SetupLoadedEditorAssemblies (864ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (502ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (150ms)
+				BeforeProcessingInitializeOnLoad (2ms)
+				ProcessInitializeOnLoadAttributes (149ms)
+				ProcessInitializeOnLoadMethodAttributes (59ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.013825 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for iOS target not found
+Native extension for Android target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 1.58 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Completed reload, in  1.620 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1621ms)
+		BeginReloadAssembly (145ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (30ms)
+		EndReloadAssembly (1339ms)
+			LoadAssemblies (145ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (407ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (78ms)
+			SetupLoadedEditorAssemblies (644ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (36ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (2ms)
+				BeforeProcessingInitializeOnLoad (63ms)
+				ProcessInitializeOnLoadAttributes (514ms)
+				ProcessInitializeOnLoadMethodAttributes (27ms)
+				AfterProcessingInitializeOnLoad (1ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launching external process: /Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.09 seconds
+Refreshing native plugins compatible for Editor in 1.06 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3147 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 24 unused Assets / (40.7 KB). Loaded Objects now: 3609.
+Memory consumption went from 127.8 MB to 127.7 MB.
+Total: 4.915636 ms (FindLiveObjects: 0.321344 ms CreateObjectMapping: 0.308070 ms MarkObjects: 4.144641 ms  DeleteObjects: 0.140329 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:CustomObjectIndexerAttribute: bc11b3a6c3213fcdd17b65e7da85e133 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 5122623.101441 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_UI_Etc/Alert_Dot_White.prefab
+  artifactKey: Guid(2b3f8504cc87d4b95affb81fd8e665d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_UI_Etc/Alert_Dot_White.prefab using Guid(2b3f8504cc87d4b95affb81fd8e665d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d1ecd45eaf03a918872a0ded0423aee') in 0.318008 seconds 
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_UI_Etc/Toggle01_Check_Green.prefab
+  artifactKey: Guid(c067694fa8e5f4f8d9a75fbf23cf7002) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_UI_Etc/Toggle01_Check_Green.prefab using Guid(c067694fa8e5f4f8d9a75fbf23cf7002) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e68299b59750250fdc8b1ba6f1eeced9') in 0.007340 seconds 
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000080 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_UI_Etc/InputField03_Dark.prefab
+  artifactKey: Guid(f295284c2cf874deaa12f453058f252f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_Component_UI_Etc/InputField03_Dark.prefab using Guid(f295284c2cf874deaa12f453058f252f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb4a2cfcf5f95fc4f19c43b415c55e0d') in 0.048415 seconds 
+Number of asset objects unloaded after import = 26
+========================================================================
+Received Import Request.
+  Time since last request: 9.411522 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Character_List.prefab
+  artifactKey: Guid(1bd849e3442624e8ea1d212432f8c7b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Character_List.prefab using Guid(1bd849e3442624e8ea1d212432f8c7b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b4391b2dd62e11e2513f1695876b93a9') in 0.089889 seconds 
+Number of asset objects unloaded after import = 978
+========================================================================
+Received Import Request.
+  Time since last request: 0.000096 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Title.prefab
+  artifactKey: Guid(1426f5d2177c943109be8466853efc7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Title.prefab using Guid(1426f5d2177c943109be8466853efc7e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '220a93144ca5a3208840fdf80c287700') in 0.043460 seconds 
+Number of asset objects unloaded after import = 50
+========================================================================
+Received Import Request.
+  Time since last request: 0.000074 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_UserInfo.prefab
+  artifactKey: Guid(d71acdde421ef4404aabb9f4d9370a89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_UserInfo.prefab using Guid(d71acdde421ef4404aabb9f4d9370a89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43707a54f8606d226fd699ad308f8438') in 0.090595 seconds 
+Number of asset objects unloaded after import = 321
+========================================================================
+Received Import Request.
+  Time since last request: 0.000067 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Play_Type1.prefab
+  artifactKey: Guid(2e0e2cd2571d246449beb1edb8790f10) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Play_Type1.prefab using Guid(2e0e2cd2571d246449beb1edb8790f10) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b8f9be0f34256d0faaa921250e4f048') in 0.099124 seconds 
+Number of asset objects unloaded after import = 679
+========================================================================
+Received Import Request.
+  Time since last request: 0.000113 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_Checking.prefab
+  artifactKey: Guid(d993f6eb18e474d75a954a96725b30ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_Checking.prefab using Guid(d993f6eb18e474d75a954a96725b30ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1539aaa09075000cdab672a88d79456') in 0.040742 seconds 
+Number of asset objects unloaded after import = 66
+========================================================================
+Received Import Request.
+  Time since last request: 0.000163 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Pass.prefab
+  artifactKey: Guid(efebfd7ccb70c4691a85d209e5ec8920) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Pass.prefab using Guid(efebfd7ccb70c4691a85d209e5ec8920) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c392d5e0a6df58ed0d6735fc8f8f579') in 0.292417 seconds 
+Number of asset objects unloaded after import = 1112
+========================================================================
+Received Import Request.
+  Time since last request: 0.000124 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_Inbox.prefab
+  artifactKey: Guid(7324086926b6b4e9689f83fa106c169b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_Inbox.prefab using Guid(7324086926b6b4e9689f83fa106c169b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a129b97aef2604ecd1bd7a03487d3009') in 0.052572 seconds 
+Number of asset objects unloaded after import = 279
+========================================================================
+Received Import Request.
+  Time since last request: 0.000077 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Missions.prefab
+  artifactKey: Guid(d5fee338863454a8dbce04de6ced285e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Missions.prefab using Guid(d5fee338863454a8dbce04de6ced285e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f0d656a79a5bd2b53dc5035753a4b2f') in 0.158877 seconds 
+Number of asset objects unloaded after import = 704
+========================================================================
+Received Import Request.
+  Time since last request: 0.000072 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Chat.prefab
+  artifactKey: Guid(d76d9a379cc33451f989132bbbaf44f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Chat.prefab using Guid(d76d9a379cc33451f989132bbbaf44f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b184bedee07a162c5e52170f4a4d358') in 0.041365 seconds 
+Number of asset objects unloaded after import = 294
+========================================================================
+Received Import Request.
+  Time since last request: 0.000086 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_ChangeName.prefab
+  artifactKey: Guid(9ea65b51f2f34449e9c096656930ad27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_ChangeName.prefab using Guid(9ea65b51f2f34449e9c096656930ad27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7ea566a593bfd0f7f3f70e72d65d4f76') in 0.062555 seconds 
+Number of asset objects unloaded after import = 92
+========================================================================
+Received Import Request.
+  Time since last request: 0.000097 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/LockScreen.prefab
+  artifactKey: Guid(a7b7e7cd4fde44d95839ec05f12d2525) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/LockScreen.prefab using Guid(a7b7e7cd4fde44d95839ec05f12d2525) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27c6668bbffece8f7f761665d2ad3bde') in 0.112158 seconds 
+Number of asset objects unloaded after import = 104
+========================================================================
+Received Import Request.
+  Time since last request: 0.000071 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Tutorial_Hand.prefab
+  artifactKey: Guid(ba7f4ed0cc0af46cf86c01ba89ab9169) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Tutorial_Hand.prefab using Guid(ba7f4ed0cc0af46cf86c01ba89ab9169) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a422e4bb1aa70d849b630ed0e23cc4d') in 0.021409 seconds 
+Number of asset objects unloaded after import = 26
+========================================================================
+Received Import Request.
+  Time since last request: 0.000105 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Component_1.prefab
+  artifactKey: Guid(c4cfd3a1f7a85454daf3acd340372a69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Component_1.prefab using Guid(c4cfd3a1f7a85454daf3acd340372a69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8082be0458c3f55813b821140663a0a2') in 0.154208 seconds 
+Number of asset objects unloaded after import = 748
+========================================================================
+Received Import Request.
+  Time since last request: 0.000083 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_Name.prefab
+  artifactKey: Guid(525bf541ea3d34ba78690cb5fd782c68) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_Name.prefab using Guid(525bf541ea3d34ba78690cb5fd782c68) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de726fd9e7bace7edd0c949f6e0bb950') in 0.062783 seconds 
+Number of asset objects unloaded after import = 96
+========================================================================
+Received Import Request.
+  Time since last request: 0.000061 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Character_SuperPassive.prefab
+  artifactKey: Guid(c64a462a3bdc64485a5ad1f1ea22d62e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Character_SuperPassive.prefab using Guid(c64a462a3bdc64485a5ad1f1ea22d62e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3cd68517e4d1c23b0bddcc2e685ecfe') in 0.058258 seconds 
+Number of asset objects unloaded after import = 56
+========================================================================
+Received Import Request.
+  Time since last request: 0.000097 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Equipment_Popup_Detail1.prefab
+  artifactKey: Guid(76ed3ba9b25bc4e33a988a4535196c23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Equipment_Popup_Detail1.prefab using Guid(76ed3ba9b25bc4e33a988a4535196c23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '393bffaf7d3b4bbcf22dc6a54955db09') in 0.040870 seconds 
+Number of asset objects unloaded after import = 146
+========================================================================
+Received Import Request.
+  Time since last request: 0.000085 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Title_LoadingBar.prefab
+  artifactKey: Guid(befb31d6f13a04c5ebc0dd806736487b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Title_LoadingBar.prefab using Guid(befb31d6f13a04c5ebc0dd806736487b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b70675c13f99277f466cb07773b173d') in 0.010830 seconds 
+Number of asset objects unloaded after import = 32
+========================================================================
+Received Import Request.
+  Time since last request: 0.000078 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Rate.prefab
+  artifactKey: Guid(b2215456975784b59a08cf607d9c0b70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Rate.prefab using Guid(b2215456975784b59a08cf607d9c0b70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33d548059993350148afcc25f703f787') in 0.020027 seconds 
+Number of asset objects unloaded after import = 73
+========================================================================
+Received Import Request.
+  Time since last request: 0.000078 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Component_5.prefab
+  artifactKey: Guid(7a0d28979cd72420c8765d24ee4ec566) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Component_5.prefab using Guid(7a0d28979cd72420c8765d24ee4ec566) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1cbe8dd1e0c59c70ab0ce52ec68ae31') in 0.089596 seconds 
+Number of asset objects unloaded after import = 1095
+========================================================================
+Received Import Request.
+  Time since last request: 0.000070 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_Subscribe.prefab
+  artifactKey: Guid(d15130e03be424c33ac9a12ed9010246) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_Subscribe.prefab using Guid(d15130e03be424c33ac9a12ed9010246) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf75ba0d1fa59a29321e499f5eac1540') in 0.066391 seconds 
+Number of asset objects unloaded after import = 174
+========================================================================
+Received Import Request.
+  Time since last request: 0.000072 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Play_Continue.prefab
+  artifactKey: Guid(d8eaba58d9e454056a88c211c0ccf93b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Play_Continue.prefab using Guid(d8eaba58d9e454056a88c211c0ccf93b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5da98474ea21efbc31241fc20f5b5c72') in 0.066312 seconds 
+Number of asset objects unloaded after import = 111
+========================================================================
+Received Import Request.
+  Time since last request: 0.000088 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_Setting.prefab
+  artifactKey: Guid(cd8db5f9e064e4668acdf9aee5f73757) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_Setting.prefab using Guid(cd8db5f9e064e4668acdf9aee5f73757) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87ad878e2e8a5feb5e8ac21e8377c70c') in 0.061478 seconds 
+Number of asset objects unloaded after import = 533
+========================================================================
+Received Import Request.
+  Time since last request: 0.000127 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Equipment_Popup_AddSlot.prefab
+  artifactKey: Guid(9ade2d27289d049409e3f7a6c834a1ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Equipment_Popup_AddSlot.prefab using Guid(9ade2d27289d049409e3f7a6c834a1ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d918ec9746048ad8003f31de5d11b9e') in 0.032737 seconds 
+Number of asset objects unloaded after import = 94
+========================================================================
+Received Import Request.
+  Time since last request: 0.000083 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_RewardWeek.prefab
+  artifactKey: Guid(8fdadb506c7e24b0883e00116d9aa5f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Panels/Popup_RewardWeek.prefab using Guid(8fdadb506c7e24b0883e00116d9aa5f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6c0b2be7f2c458e4fbbfc421900cb1e') in 0.103505 seconds 
+Number of asset objects unloaded after import = 344
+========================================================================
+Received Import Request.
+  Time since last request: 33.800257 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Rotate_Light03.prefab
+  artifactKey: Guid(ffde5f937f43e45f48b9c4e7094b1daa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Rotate_Light03.prefab using Guid(ffde5f937f43e45f48b9c4e7094b1daa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b72e35fe9a14d0c4b773c2b9da0b58a7') in 0.021243 seconds 
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time since last request: 0.000092 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Shines_Glow03.prefab
+  artifactKey: Guid(93de259191edb408eaf9a2e960277512) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Shines_Glow03.prefab using Guid(93de259191edb408eaf9a2e960277512) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fabf067b367fa9a2459041e816684058') in 0.013659 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000118 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_LongStar02_BlurryGreen.prefab
+  artifactKey: Guid(b272963bdf5ad4eda92eee3e922bbc79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_LongStar02_BlurryGreen.prefab using Guid(b272963bdf5ad4eda92eee3e922bbc79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a09774fa0ec2ba83cc74a5ee046905ec') in 0.012835 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000092 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_Star01_CustomColor_Blue.prefab
+  artifactKey: Guid(9577694fcc7544ebda745a73a601862c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_Star01_CustomColor_Blue.prefab using Guid(9577694fcc7544ebda745a73a601862c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a84148ecb205e3d86c07889a0b60cdb') in 0.014303 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000123 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_XStar01_BlurryGreen.prefab
+  artifactKey: Guid(07ec2176522ca454fa10ed02baedfb77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_XStar01_BlurryGreen.prefab using Guid(07ec2176522ca454fa10ed02baedfb77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d24541d299e461c87b4648317805c61') in 0.013618 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000094 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_XStar02_ClearPurple.prefab
+  artifactKey: Guid(b3f1ba70e7e4049a2a712dd0d0ebade2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_XStar02_ClearPurple.prefab using Guid(b3f1ba70e7e4049a2a712dd0d0ebade2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f9b9abfe2a0a3161ba74c7e48c27ce6') in 0.010457 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000102 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Spread_Circle01.prefab
+  artifactKey: Guid(10946a8e3fb2543ca87b9ab8465e46fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Spread_Circle01.prefab using Guid(10946a8e3fb2543ca87b9ab8465e46fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7da8cb9f121a2cf96bc466a9740c473c') in 0.018532 seconds 
+Number of asset objects unloaded after import = 23
+========================================================================
+Received Import Request.
+  Time since last request: 0.000071 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Shines_Light02.prefab
+  artifactKey: Guid(09ee501c197b44229b8de422eb1cbfc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Shines_Light02.prefab using Guid(09ee501c197b44229b8de422eb1cbfc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '15442537f5bba8f8bfe4eaa8008fc435') in 0.014750 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000114 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Snow.prefab
+  artifactKey: Guid(750990e90431f499487035e155ff4b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Snow.prefab using Guid(750990e90431f499487035e155ff4b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a43cf76cff253f1d257e9df91223271f') in 0.013702 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Rotate_Light05.prefab
+  artifactKey: Guid(268324af584364d348cd0e2eefe493eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Rotate_Light05.prefab using Guid(268324af584364d348cd0e2eefe493eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad16778bc497719743b87af8c2e838e8') in 0.025019 seconds 
+Number of asset objects unloaded after import = 40
+========================================================================
+Received Import Request.
+  Time since last request: 0.000082 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_XStar01_BlurryPurple.prefab
+  artifactKey: Guid(1e5ba30d40ef14197a99be62f5f43e96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_XStar01_BlurryPurple.prefab using Guid(1e5ba30d40ef14197a99be62f5f43e96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8508d125b40e90d965a34d21bf55ea68') in 0.019772 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000085 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_LongStar02_BlurryPurple.prefab
+  artifactKey: Guid(95f9b4e35b99d4483be46036d7063076) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_LongStar02_BlurryPurple.prefab using Guid(95f9b4e35b99d4483be46036d7063076) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cafd73ef282b9ddb6f9edc0d0f29ea84') in 0.013070 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000116 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_Star02_ClearWhite.prefab
+  artifactKey: Guid(0b38262b712984ef29726269c228e237) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_Star02_ClearWhite.prefab using Guid(0b38262b712984ef29726269c228e237) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41dc95c471a16f4103d34033aacdcbc2') in 0.015178 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_LongStar01_ClearPurple.prefab
+  artifactKey: Guid(e909e46486694411eb8c10d1bfab7b4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_LongStar01_ClearPurple.prefab using Guid(e909e46486694411eb8c10d1bfab7b4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2741a4a268969f932d7bf1e7f144cbe8') in 0.012127 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000063 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_LongStar02_BlurryWhite.prefab
+  artifactKey: Guid(07244fc016be747c2a1ecfba4c949872) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_LongStar02_BlurryWhite.prefab using Guid(07244fc016be747c2a1ecfba4c949872) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09b981690bffe3e8398c23614f7c67fa') in 0.019472 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000124 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_XStar02_ClearBlue.prefab
+  artifactKey: Guid(f6f09cbd2620441f290836455f932e22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_XStar02_ClearBlue.prefab using Guid(f6f09cbd2620441f290836455f932e22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e54463eedfebcfb5ee81207eca815bf') in 0.011625 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000075 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_XStar01_BlurryYellow.prefab
+  artifactKey: Guid(670f74eb019d54f83be52c178c883c40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Sparkle_XStar01_BlurryYellow.prefab using Guid(670f74eb019d54f83be52c178c883c40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '70d13ac22cdcdd55914aacf612937e10') in 0.018705 seconds 
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000088 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Rotate_Light06.prefab
+  artifactKey: Guid(699ad122873c34a34818e185b77d4ac3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Prefabs/Prefabs_DemoScene_Particle/Fx_Rotate_Light06.prefab using Guid(699ad122873c34a34818e185b77d4ac3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0eeec19c3bf9f6405fadb1f41bef5ce9') in 0.021239 seconds 
+Number of asset objects unloaded after import = 40
+========================================================================
+Received Import Request.
+  Time since last request: 58.491005 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/_Component_3.png
+  artifactKey: Guid(531af8be9d79a4bd3bdccba8ab2f33e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/_Component_3.png using Guid(531af8be9d79a4bd3bdccba8ab2f33e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95809941b4c0d6e9817e8575ec9e39bb') in 1.197931 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000117 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Character_SuperPassive.png
+  artifactKey: Guid(d224a7e3c91704061a7ec571c50fa410) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Character_SuperPassive.png using Guid(d224a7e3c91704061a7ec571c50fa410) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35ab29ffe95f9b66dd2b4a8539620781') in 0.151411 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000074 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Clan.png
+  artifactKey: Guid(e88bad29599824d1a8406aa8ac017d00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Clan.png using Guid(e88bad29599824d1a8406aa8ac017d00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9b93249d9065dc01351fe8b883361d3') in 0.166891 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000112 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/_FunctionIcons.png
+  artifactKey: Guid(2e9d5b2c134f646e0a003db48e1a893f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/_FunctionIcons.png using Guid(2e9d5b2c134f646e0a003db48e1a893f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2975fdaa39c452df80f1dab96eedf71') in 0.361883 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000062 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/LevelUp.png
+  artifactKey: Guid(822050348cd1d4cfeaf59a68d8b403e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/LevelUp.png using Guid(822050348cd1d4cfeaf59a68d8b403e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98bb1da3c09501b031b6c8047d5fb21c') in 0.166785 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000066 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/_Component_4.png
+  artifactKey: Guid(16a32ae14e0434c57b89cfca1418d9cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/_Component_4.png using Guid(16a32ae14e0434c57b89cfca1418d9cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87c9d5afa9f0a54e4eccaa6eb3423400') in 0.166915 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000072 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Popup_RewardGet.png
+  artifactKey: Guid(a3347da72cae54bc8a850152921def28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Popup_RewardGet.png using Guid(a3347da72cae54bc8a850152921def28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '443f1cba14a5ca23971c6e0101235c4b') in 0.168514 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000057 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Pass.png
+  artifactKey: Guid(1eae1135e79544865b1d02ee9eae296d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Pass.png using Guid(1eae1135e79544865b1d02ee9eae296d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd33713aca5224ab9e8cbd3f508c5fd14') in 0.191278 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000061 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Popup_RewardWeek.png
+  artifactKey: Guid(35951b99104c54aa9a9cd6f40cac8fb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Popup_RewardWeek.png using Guid(35951b99104c54aa9a9cd6f40cac8fb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'faf8d788760a1faf596376ac7ae95478') in 0.325195 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.002245 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Equipment.png
+  artifactKey: Guid(246a6f98d1a8640c9b3aa64528182d24) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Equipment.png using Guid(246a6f98d1a8640c9b3aa64528182d24) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77e803e4cb2247d0b4043da2518beb99') in 0.216458 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000060 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Popup_Signup.png
+  artifactKey: Guid(c77595c35a06e4437ad435cedee3f03c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Popup_Signup.png using Guid(c77595c35a06e4437ad435cedee3f03c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62d03f4f333378b7f2559bf25c3e6283') in 0.197650 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000067 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Play_Type2.png
+  artifactKey: Guid(e36fb51cbddd34af98742d5003f072a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Play_Type2.png using Guid(e36fb51cbddd34af98742d5003f072a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca941ff2784febd133821ecf649c3b68') in 0.355017 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000093 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Roulette.png
+  artifactKey: Guid(edc9a68f1e2bf4feead105bf2644b7c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Roulette.png using Guid(edc9a68f1e2bf4feead105bf2644b7c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6730582df35522361f13f8ebe8188f6f') in 0.212239 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000078 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Stage_Select_Type2_Detail.png
+  artifactKey: Guid(b72d3428ede544543a1a5087a1ded6a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Stage_Select_Type2_Detail.png using Guid(b72d3428ede544543a1a5087a1ded6a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c27f1a0a13472852ffdc5d0d89301d1d') in 0.194437 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000102 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Play_Continue.png
+  artifactKey: Guid(35f3a278f0d914b0b91e87e64b1d8c99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Play_Continue.png using Guid(35f3a278f0d914b0b91e87e64b1d8c99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '534becd3dc5e2cad843ebc784fe57230') in 0.203048 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000114 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Inventory.png
+  artifactKey: Guid(333b571a4b1004ecf8c43488392a552e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Inventory.png using Guid(333b571a4b1004ecf8c43488392a552e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'caa31daac3ef67d20778decb65278232') in 0.182309 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000079 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Stage_Select_Type1.png
+  artifactKey: Guid(dafb0946b8e8d48b9be9cf44df16f833) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Stage_Select_Type1.png using Guid(dafb0946b8e8d48b9be9cf44df16f833) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f94723c331a98c4245e36a43b6509509') in 0.182746 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000082 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Shop1.png
+  artifactKey: Guid(bc1b22ecdcdcf4d30a549cd0d0419d94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Shop1.png using Guid(bc1b22ecdcdcf4d30a549cd0d0419d94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f384cd9a31c17797f6f3b9df4036cede') in 0.358783 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.001879 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Loading.png
+  artifactKey: Guid(3245094d5f43045c882ade0bc45cedc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Loading.png using Guid(3245094d5f43045c882ade0bc45cedc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0d8c8052cf9cdd9e55821a795e610f0') in 0.246863 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000106 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/Preview/Popup_UserInfo.png
+  artifactKey: Guid(79be564f36fdc4ab2840643c05d5b11d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/Preview/Popup_UserInfo.png using Guid(79be564f36fdc4ab2840643c05d5b11d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6c16a4741dcc8d27e141726eb05221d') in 0.169346 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 14.042410 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline 40 SDF Atlas.png
+  artifactKey: Guid(aa9fdc7ac23d342798922793111065d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline 40 SDF Atlas.png using Guid(aa9fdc7ac23d342798922793111065d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e65ba5c85bb0c94330811778721d3660') in 0.037351 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000253 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline 50 SDF.asset
+  artifactKey: Guid(c2f49fe8c22d94f9a9e6cd06ad490155) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline 50 SDF.asset using Guid(c2f49fe8c22d94f9a9e6cd06ad490155) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47fd476ec38d19e94cf6584e2592b6d9') in 0.286146 seconds 
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 0.000110 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline_Extended ASCII_210 SDF Atlas.png
+  artifactKey: Guid(c0ea2ae774e27444a8284898f02e41a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline_Extended ASCII_210 SDF Atlas.png using Guid(c0ea2ae774e27444a8284898f02e41a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24f337bc2635942a2d7ee0347dfb5218') in 0.171116 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000176 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline_Extended ASCII_54 SDF Atlas.png
+  artifactKey: Guid(dd36f1e4d1d8145d4ae67ed98e44ce90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline_Extended ASCII_54 SDF Atlas.png using Guid(dd36f1e4d1d8145d4ae67ed98e44ce90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f318c4ad1f7e442b0bd0f9018292970') in 0.087608 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000093 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline 50 SDF Atlas.png
+  artifactKey: Guid(51bda5a7ed19c4c39bbb02ae0c80c2c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline 50 SDF Atlas.png using Guid(51bda5a7ed19c4c39bbb02ae0c80c2c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e1af7a63cb045481fa35e7911925c8e') in 0.042050 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000080 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline_Extended ASCII_40 SDF Atlas.png
+  artifactKey: Guid(b69bbc81e50d34f86a06fa187435ee02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular Outline_Extended ASCII_40 SDF Atlas.png using Guid(b69bbc81e50d34f86a06fa187435ee02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a65c69e3f2da8995699a4edfd041f0b') in 0.052848 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000121 seconds.
+  path: Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular.ttf
+  artifactKey: Guid(c16eb7d7c3953489db00312b8b09df4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI Pro-CasualGame/ResourcesData/Fonts/LilitaOne-Regular.ttf using Guid(c16eb7d7c3953489db00312b8b09df4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f30d7bf644ed598e4b8d17535c9044c9') in 1.979425 seconds 
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 122.915870 seconds.
+  path: Assets/Layer Lab/GUI-SimpleRound/Preview/00_Components.png
+  artifactKey: Guid(8162df7c2091c468aaa56cf3acee6853) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-SimpleRound/Preview/00_Components.png using Guid(8162df7c2091c468aaa56cf3acee6853) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3f782644e89ed40d401fa0b3141b3c7') in 0.178163 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000082 seconds.
+  path: Assets/Layer Lab/GUI-SimpleRound/Preview/08_Shop_Coin.png
+  artifactKey: Guid(8efc8157c666244d29927d34d4521384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-SimpleRound/Preview/08_Shop_Coin.png using Guid(8efc8157c666244d29927d34d4521384) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd742a29ee3db07f78368cbc80c4f439b') in 0.166269 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000075 seconds.
+  path: Assets/Layer Lab/GUI-SimpleRound/Preview/15_Ranking.png
+  artifactKey: Guid(63cb000fa0e8c41b080babc02df1bcd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-SimpleRound/Preview/15_Ranking.png using Guid(63cb000fa0e8c41b080babc02df1bcd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23b6aa83df789e7a4ce0e41f35865ea8') in 0.164912 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000079 seconds.
+  path: Assets/Layer Lab/GUI-SimpleRound/Preview/06_Level_Up.png
+  artifactKey: Guid(b90cfefe27b0b4f13ac3dbdad2505c50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-SimpleRound/Preview/06_Level_Up.png using Guid(b90cfefe27b0b4f13ac3dbdad2505c50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e2ac8e46835d410c57efa67b82077b5') in 0.263480 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000081 seconds.
+  path: Assets/Layer Lab/GUI-SimpleRound/Preview/11_Item.png
+  artifactKey: Guid(e66e54c54625240c780387e780d65ba3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-SimpleRound/Preview/11_Item.png using Guid(e66e54c54625240c780387e780d65ba3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc6b1f4927ed6b98b4a0a23a38e20595') in 0.166233 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000056 seconds.
+  path: Assets/Layer Lab/GUI-SimpleRound/Preview/05_Complete.png
+  artifactKey: Guid(098c450a47a3d4dd0b373fb20ec63b0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-SimpleRound/Preview/05_Complete.png using Guid(098c450a47a3d4dd0b373fb20ec63b0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfddb63491eb83d5d41211c6ec1dfcfe') in 0.145841 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000065 seconds.
+  path: Assets/Layer Lab/GUI-SimpleRound/Preview/09_Shop_Gem.png
+  artifactKey: Guid(539ebe941d458481c848ed601934c7cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-SimpleRound/Preview/09_Shop_Gem.png using Guid(539ebe941d458481c848ed601934c7cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73d5c6f3fcf313fde15eeb1cc5ed16a1') in 0.164328 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000085 seconds.
+  path: Assets/Layer Lab/GUI-SimpleRound/Preview/02_Login.png
+  artifactKey: Guid(45cd62b1adf434658b78ce069358af96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-SimpleRound/Preview/02_Login.png using Guid(45cd62b1adf434658b78ce069358af96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c70b410c340a89e1ce0cef23ef962e09') in 0.151383 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000073 seconds.
+  path: Assets/Layer Lab/GUI-SimpleRound/Preview/12_Message.png
+  artifactKey: Guid(8dc6822ed24b244298074924f3dd4b70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-SimpleRound/Preview/12_Message.png using Guid(8dc6822ed24b244298074924f3dd4b70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a606621bada59d2bfe2a9078d5edfeb8') in 0.152393 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000080 seconds.
+  path: Assets/Layer Lab/GUI-SimpleRound/Preview/00_Function_Button_Gray.png
+  artifactKey: Guid(828b3ca619fd24231be5b49a8fda1509) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-SimpleRound/Preview/00_Function_Button_Gray.png using Guid(828b3ca619fd24231be5b49a8fda1509) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '566f5952c7b5a534090086092a052cc8') in 0.199649 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000059 seconds.
+  path: Assets/Layer Lab/GUI-SimpleRound/Preview/14_Pause.png
+  artifactKey: Guid(cf852ea2410144228ac9832914711990) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-SimpleRound/Preview/14_Pause.png using Guid(cf852ea2410144228ac9832914711990) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18f83942c36a19bd59cd7cf39d6c4912') in 0.232418 seconds 
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.003174 seconds.
+  path: Assets/Layer Lab/GUI-SimpleRound/Preview/04_Stage_start.png
+  artifactKey: Guid(4615aa00c41804e7197450eef9e45ff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-SimpleRound/Preview/04_Stage_start.png using Guid(4615aa00c41804e7197450eef9e45ff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73c8c83b776d7b0b27e5fdfcca9a487c') in 0.287088 seconds 
+Number of asset objects unloaded after import = 3
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting

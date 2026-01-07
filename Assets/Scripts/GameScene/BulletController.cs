@@ -1,13 +1,14 @@
 // ================================================================================
 // TL;DR:
-// 子弹飞行控制器，采用基于距离检测的高性能碰撞判定。
-// 无需物理引擎，避免复杂碰撞体配置。
+// 子弹飞行控制器，采用 Ground Truth 位置缓存 + sqrMagnitude 高性能碰撞判定。
+// 子弹发射时立即缓存目标位置，确保即使目标被提前销毁也能飞到正确位置。
 //
 // 目标：
-// - 实现子弹从射手到目标的平滑飞行
-// - 使用距离检测替代物理碰撞，提升性能
-// - 自动朝向目标（LookAt）提升视觉真实感
-// - 击中后自动销毁，避免内存泄漏
+// - 实现子弹从发射点到目标的平滑飞行
+// - 使用 Ground Truth 缓存，避免目标销毁导致的空指针
+// - 使用 sqrMagnitude 替代 Distance，提升性能 (避免开方运算)
+// - 自动朝向目标（LookAt），提升视觉真实感
+// - 击中后调用 target.OnHit() 并自毁
 //
 // 非目标：
 // - 不处理弹道物理（如重力、空气阻力）
@@ -18,36 +19,64 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    private CellController targetCell;
-    private float speed = 20f;
-    private bool isFired = false;
+    // ==================== 内部状态 ====================
+    private CellController targetCell;  // 目标方块引用 (用于命中回调)
+    private Vector3 targetPos;          // 目标位置缓存 (Ground Truth，防止空指针)
+    private float speed = 25f;          // 飞行速度 (单位/秒)
+    private bool isFired = false;       // 是否已发射
 
+    // ==================== 发射接口 ====================
+    /// <summary>
+    /// 发射子弹到指定目标
+    /// </summary>
+    /// <param name="target">目标方块控制器</param>
+    /// <param name="startPos">发射起点 (Ground Truth 位置，由 PigController 提供)</param>
     public void Fire(CellController target, Vector3 startPos)
     {
         transform.position = startPos;
         targetCell = target;
+        
+        // 【关键】立即缓存目标位置 (Ground Truth)
+        // 即使目标下一帧被其他子弹销毁，本子弹也能飞到正确位置
+        targetPos = target.transform.position; 
         isFired = true;
         
-        // 朝着目标看
-        transform.LookAt(target.transform);
+        // 朝向目标 (视觉效果)
+        transform.LookAt(targetPos);
     }
 
+    // ==================== 飞行逻辑 ====================
     void Update()
     {
-        if (!isFired || targetCell == null) 
-        {
-            Destroy(gameObject); // 目标没了，子弹自毁
-            return;
-        }
+        if (!isFired) return;
 
-        // 飞向目标
-        transform.position = Vector3.MoveTowards(transform.position, targetCell.transform.position, speed * Time.deltaTime);
+        // 计算本帧飞行距离
+        float step = speed * Time.deltaTime;
 
-        // 击中判定 (不用碰撞体，用距离判断，极快)
-        if (Vector3.Distance(transform.position, targetCell.transform.position) < 0.1f)
+        // MoveTowards 内置边界处理，不会越过目标
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
+
+        // 【性能优化】使用 sqrMagnitude 替代 Distance (避免开方)
+        // 0.001f 是浮点容差，表示距离 < 0.03 单位视为到达
+        if ((transform.position - targetPos).sqrMagnitude < 0.001f)
         {
-            targetCell.OnHit(); // 告诉方块它碎了
-            Destroy(gameObject); // 子弹自毁
+            Hit();
         }
+    }
+
+    // ==================== 命中处理 ====================
+    /// <summary>
+    /// 到达目标位置后的处理：通知目标销毁 + 自毁
+    /// </summary>
+    void Hit()
+    {
+        // 再次检查目标是否还存在 (可能被前面的子弹打爆了)
+        if (targetCell != null)
+        {
+            targetCell.OnHit();
+        }
+        
+        // 无论目标还在不在，子弹到达目的地后必须销毁
+        Destroy(gameObject);
     }
 }

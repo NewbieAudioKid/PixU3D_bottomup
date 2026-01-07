@@ -235,59 +235,54 @@ public class PigController : MonoBehaviour
     // =========================================================
     // 【核心算法】预计算射击路径
     // =========================================================
-    // 这是游戏最核心的算法之一：在射手上传送带前，模拟整个传送带路径
-    // 计算出每一步应该向哪个目标开火，生成一个完整的"射击排期表"
+    // 在射手上传送带前，模拟整个传送带路径(80步)，预计算所有射击点
+    // 生成"射击排期表"(shotSchedule Queue)，存储每个射击的 (步数, 目标) 配对
     //
     // 工作原理：
-    // 1. 清空旧的射击排期表
-    // 2. 模拟射手沿着传送带每一步的位置
-    // 3. 在每个位置检测是否有可射击的目标（颜色匹配、未被摧毁）
-    // 4. 如果有目标，记录到排期表中，并标记目标为"待死亡"（占位，避免重复瞄准）
-    // 5. 每次射击消耗1发模拟弹药，直到弹药耗尽或路径走完
+    // 1. 遍历传送带 80 步 (gridSize * 4)
+    // 2. 调用 GridManager.GetTargetCellSmart(位置, 颜色) 查找可命中目标
+    //    - 支持颜色阻挡：异色方块会阻挡射线
+    //    - 支持 isPendingDeath 穿透：已被前面射手"预定"的方块视为透明
+    // 3. 找到目标后：加入排期表 + 标记 isPendingDeath + 模拟弹药 -1
+    // 4. 模拟弹药归零或路径走完时停止
     //
     // 优势：
     // - 避免实时计算开销，提高性能
     // - 保证射击时机准确（不会因为帧率波动漏射）
-    // - 方便调试和可视化射击计划
+    // - 支持多射手"流水线"：后面的射手能看到前面射手的射击计划
     // =========================================================
     void PreCalculatePath()
     {
         if (GridManager.Instance == null) return;
 
-        shotSchedule.Clear();                       // 清空旧的排期表
-        int simulatedAmmo = ammo;                   // 模拟弹药（不影响真实弹药）
-        int gridSize = GridManager.Instance.gridSize; // 获取网格大小
-        int totalSteps = gridSize * 4;              // 总步数 = 4条边 × 每边的格子数
+        shotSchedule.Clear();
+        int simulatedAmmo = ammo;
+        int gridSize = GridManager.Instance.gridSize;
+        int totalSteps = gridSize * 4;
 
-        // 遍历传送带上的每一步
         for (int i = 0; i < totalSteps; i++)
         {
-            if (simulatedAmmo <= 0) break;          // 模拟弹药耗尽，停止计算
+            if (simulatedAmmo <= 0) break;
 
-            // 获取第i步的模拟位置
             Vector3 simPos = GridManager.Instance.GetSimulatedPosition(i);
             
-            // 智能检测该位置能命中的最佳目标
-            CellController target = GridManager.Instance.GetTargetCellSmart(simPos);
+            // 【修改点】传入 this.colorID，让 GridManager 帮我们判断阻挡
+            CellController target = GridManager.Instance.GetTargetCellSmart(simPos, this.colorID);
 
-            // 检查目标是否有效且匹配条件
-            if (target != null 
-                && !target.isDestroyed                // 目标未被摧毁
-                && !target.isPendingDeath             // 目标未被其他射击计划占位
-                && target.colorID == this.colorID)    // 颜色匹配
+            // 这里的条件可以简化了，因为 GridManager 已经做了大部分判断
+            if (target != null)
             {
-                // 创建射击排期项
                 ShotScheduleItem item = new ShotScheduleItem();
-                item.beltStepIndex = i;               // 记录在第几步开火
-                item.target = target;                 // 记录目标引用
-                shotSchedule.Enqueue(item);           // 加入排期表
+                item.beltStepIndex = i;
+                item.target = target;
+                shotSchedule.Enqueue(item);
 
-                target.isPendingDeath = true;         // 标记目标为"待死亡"（占位）
-                simulatedAmmo--;                      // 消耗模拟弹药
+                // 标记为"待死亡"，这样下一只猪计算时就会透视它
+                target.isPendingDeath = true;
+                simulatedAmmo--;
             }
         }
     }
-
     // =========================================================
     // 【核心协程】执行传送带巡逻与射击序列
     // =========================================================
@@ -334,53 +329,54 @@ public class PigController : MonoBehaviour
         // 阶段3：巡逻4条边
         // ========================================
         // 传送带是方形路径，有4个角点，射手会沿着这4条边移动
+       // 阶段3：巡逻4条边
         for (int segmentIndex = 0; segmentIndex < 4; segmentIndex++)
         {
-            // 当前边的起点和终点
             Vector3 start = waypoints[segmentIndex];
             Vector3 end = waypoints[(segmentIndex + 1) % waypoints.Count];
             
-            // 计算当前边对应的步数范围
-            // 例如：边0对应步数 0~(gridSize-1)，边1对应步数 gridSize~(2*gridSize-1)
             int minStepIndex = segmentIndex * gridSize;
             int maxStepIndex = (segmentIndex + 1) * gridSize - 1;
 
-            // 计算移动时间
             float segmentDist = Vector3.Distance(start, end);
-            float travelTime = segmentDist / currentRunSpeed;  // 应用加速后的速度
+            float travelTime = segmentDist / currentRunSpeed;
             float timer = 0f;
 
-            // 在这条边上移动
             while (timer < travelTime)
             {
                 timer += Time.deltaTime;
-                float fraction = timer / travelTime;               // 移动进度 0~1
-                transform.position = Vector3.Lerp(start, end, fraction);  // 线性插值移动
+                float fraction = timer / travelTime;
                 
-                // 计算当前所在的步数索引
+                // 视觉位置：依然受帧率影响，但这只是为了让玩家看到猪在动
+                transform.position = Vector3.Lerp(start, end, fraction);
+                
+                // 逻辑进度：计算当前理论上走到了第几步
                 int currentStep = minStepIndex + Mathf.FloorToInt(fraction * gridSize);
 
                 // ========================================
-                // 检查射击排期表
+                // 【核心】基于 Ground Truth 的射击执行
                 // ========================================
-                // 如果排期表中下一个射击点的步数 <= 当前步数，则开火
-                if (shotSchedule.Count > 0)
+                // 遍历排期表，执行所有"应该在当前步数之前发射"的子弹
+                // 使用 while 而非 if，确保即使一帧跨越多步也不会漏射
+                while (shotSchedule.Count > 0 && shotSchedule.Peek().beltStepIndex <= currentStep)
                 {
-                    ShotScheduleItem nextShot = shotSchedule.Peek();
+                    ShotScheduleItem nextShot = shotSchedule.Dequeue();
                     
-                    // 如果下一个射击点在后面的边上，跳过
-                    if (nextShot.beltStepIndex > maxStepIndex) 
-                    { 
-                        // 什么也不做，继续移动
-                    }
-                    // 如果当前步数已到达或超过射击点，执行射击
-                    else if (currentStep >= nextShot.beltStepIndex)
+                    // 确保不跨边射击 (防止本边的子弹在下一边发射)
+                    if (nextShot.beltStepIndex <= maxStepIndex)
                     {
-                        PerformVisualFire(nextShot.target);  // 开火！
-                        shotSchedule.Dequeue();              // 从排期表中移除
+                        // 1. 获取预计算时的理论发射位置 (Ground Truth)
+                        //    这个位置是 PreCalculatePath 时计算好的，与帧率无关
+                        Vector3 idealFirePos = GridManager.Instance.GetSimulatedPosition(nextShot.beltStepIndex);
+                        
+                        // 2. 修正 Z 坐标 (保持和射手同一平面)
+                        idealFirePos.z = transform.position.z; 
+
+                        // 3. 从理论位置开火，确保子弹轨迹正确
+                        //    即使射手当前位置因帧率波动已经偏离
+                        PerformVisualFire(nextShot.target, idealFirePos);
                     }
                 }
-
                 // ========================================
                 // 【关键检测】弹药耗尽处理
                 // ========================================
@@ -415,26 +411,34 @@ public class PigController : MonoBehaviour
     }
 
     // ========================================
-    // 执行视觉射击效果
+    // 执行视觉射击效果 (Ground Truth 版)
     // ========================================
     // 当射手到达射击点时，调用此方法执行实际的射击动作
-    // 包括：
-    // 1. 消耗1发弹药
-    // 2. 更新UI显示
-    // 3. 生成子弹对象并发射向目标
+    //
+    // 【关键设计】Ground Truth 发射位置
+    // 由于帧率波动，射手的实际位置可能与预计算时的理论位置有偏差
+    // 为保证子弹轨迹正确，使用预计算时的理论位置 (fireOrigin) 作为发射点
+    // 而非射手当前的 transform.position
+    //
+    // 流程：
+    // 1. 消耗1发弹药 (ammo--)
+    // 2. 更新UI显示 (UpdateAmmoUI)
+    // 3. 实例化子弹，从 fireOrigin 发射向 target
     //
     // 参数：
-    //   target - 要射击的目标方块
-    void PerformVisualFire(CellController target)
+    //   target - 目标方块
+    //   fireOrigin - Ground Truth 发射位置 (来自 GetSimulatedPosition)
+    // ========================================
+    void PerformVisualFire(CellController target, Vector3 fireOrigin)
     {
-        ammo--;                     // 消耗弹药
-        UpdateAmmoUI();             // 更新UI显示
+        ammo--; 
+        UpdateAmmoUI(); 
 
-        // 生成子弹并发射
         if (bulletPrefab != null) 
         {
             GameObject b = Instantiate(bulletPrefab);
-            b.GetComponent<BulletController>().Fire(target, transform.position);
+            // 【关键】使用传入的 fireOrigin，而不是 transform.position
+            b.GetComponent<BulletController>().Fire(target, fireOrigin);
         }
     }
 

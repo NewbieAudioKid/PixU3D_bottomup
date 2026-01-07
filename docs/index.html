@@ -141,6 +141,7 @@
         .tag-ui { background: #fdf2f8; color: #ec4899; }
         .tag-editor { background: #f5f3ff; color: #8b5cf6; }
         .tag-data { background: #fffbeb; color: #d97706; }
+        .tag-new { background: #fef2f2; color: #dc2626; }
         table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0; }
         th {
             text-align: left; padding: 12px 16px; background: var(--bg-main);
@@ -166,6 +167,8 @@
         .info-box { background: var(--accent-bg); border: 1px solid #c7d2fe; border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
         .info-box h4 { color: var(--accent); font-size: 13px; font-weight: 600; margin-bottom: 8px; }
         .info-box p { color: var(--text-secondary); font-size: 14px; }
+        .info-box.warning { background: #fffbeb; border-color: #fcd34d; }
+        .info-box.warning h4 { color: #d97706; }
         .footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 13px; }
         .footer a { color: var(--accent); text-decoration: none; }
         [data-lang] { display: none; }
@@ -252,41 +255,44 @@
                         <div class="card-body">
                             <div data-lang="zh">
                                 <ul style="color: var(--text-secondary); padding-left: 20px; line-height: 2.2;">
-                                    <li><strong>选择射手</strong> - 点击备战台(ShooterTable)上的射手，移动到准备队列(ReadyQueue)，最多5个槽位</li>
-                                    <li><strong>部署到传送带</strong> - 点击队列中的射手，开始传送带(Belt)巡逻</li>
-                                    <li><strong>自动射击</strong> - 射手沿传送带移动，自动射击颜色匹配的方块(Cell)</li>
-                                    <li><strong>胜利条件</strong> - 清除网格(Grid)中的所有方块</li>
+                                    <li><strong>选择射手</strong> - 点击备战台上的射手，移动到准备队列（最多5个槽位）</li>
+                                    <li><strong>部署传送带</strong> - 点击队列中的射手，开始传送带巡逻</li>
+                                    <li><strong>自动射击</strong> - 射手沿传送带移动，自动射击颜色匹配的方块</li>
+                                    <li><strong>颜色阻挡</strong> - 异色方块会阻挡射线，不会穿透击中后面的同色方块</li>
+                                    <li><strong>胜利条件</strong> - 清除网格中所有方块</li>
                                     <li><strong>失败条件</strong> - 射手返回时准备队列已满</li>
                                 </ul>
                                 <div class="info-box">
                                     <h4>绝地反击机制 (Last Stand)</h4>
-                                    <p>当备战台和准备队列都为空时，当前射手触发"绝地反击"模式，获得<strong>2倍速度加成</strong>，自动重新进入传送带直到弹药耗尽。这是翻盘的最后机会！</p>
+                                    <p>当备战台和准备队列都为空时，当前射手触发"绝地反击"模式，获得<strong>2倍速度加成</strong>，自动重新进入传送带直到弹药耗尽。</p>
                                 </div>
                             </div>
                             <div data-lang="en">
                                 <ul style="color: var(--text-secondary); padding-left: 20px; line-height: 2.2;">
-                                    <li><strong>Select Shooters</strong> - Click shooters from the table to move them to the ready queue (5 slots max)</li>
-                                    <li><strong>Deploy to Belt</strong> - Click a queued shooter to start conveyor belt patrol</li>
-                                    <li><strong>Auto-Fire</strong> - Shooters automatically fire at cells matching their color</li>
-                                    <li><strong>Win Condition</strong> - Clear all cells from the grid</li>
-                                    <li><strong>Lose Condition</strong> - Ready queue is full when a shooter returns from patrol</li>
+                                    <li><strong>Select Shooters</strong> - Click shooters from table to ready queue (5 slots max)</li>
+                                    <li><strong>Deploy to Belt</strong> - Click queued shooter to start belt patrol</li>
+                                    <li><strong>Auto-Fire</strong> - Shooters auto-fire at color-matching cells</li>
+                                    <li><strong>Color Blocking</strong> - Different-color cells block shots, no penetration</li>
+                                    <li><strong>Win</strong> - Clear all cells from grid</li>
+                                    <li><strong>Lose</strong> - Ready queue full when shooter returns</li>
                                 </ul>
                                 <div class="info-box">
                                     <h4>Last Stand Mechanic</h4>
-                                    <p>When both table and queue are empty, the current shooter triggers "Last Stand" mode with <strong>2x speed bonus</strong>, automatically re-entering the belt until ammo depletes.</p>
+                                    <p>When table and queue are empty, shooter triggers "Last Stand" with <strong>2x speed</strong>, auto re-enters belt until ammo depletes.</p>
                                 </div>
                             </div>
                             <div data-lang="ja">
                                 <ul style="color: var(--text-secondary); padding-left: 20px; line-height: 2.2;">
-                                    <li><strong>シューター選択</strong> - テーブルからシューターをクリックして待機キューに移動（最大5スロット）</li>
-                                    <li><strong>ベルトへ配置</strong> - キュー内のシューターをクリックしてベルトパトロールを開始</li>
-                                    <li><strong>自動発射</strong> - シューターは同じ色のセルに自動的に発射</li>
-                                    <li><strong>勝利条件</strong> - グリッドからすべてのセルをクリア</li>
-                                    <li><strong>敗北条件</strong> - シューターが戻ったとき待機キューが満杯</li>
+                                    <li><strong>シューター選択</strong> - テーブルから待機キューに移動（最大5スロット）</li>
+                                    <li><strong>ベルトへ配置</strong> - キュー内のシューターをクリックしてベルトパトロール開始</li>
+                                    <li><strong>自動発射</strong> - 同色セルに自動発射</li>
+                                    <li><strong>色ブロッキング</strong> - 異色セルはショットをブロック</li>
+                                    <li><strong>勝利</strong> - すべてのセルをクリア</li>
+                                    <li><strong>敗北</strong> - シューターが戻ったときキューが満杯</li>
                                 </ul>
                                 <div class="info-box">
-                                    <h4>ラストスタンドメカニクス</h4>
-                                    <p>テーブルとキューの両方が空のとき、「ラストスタンド」モードを発動し、<strong>2倍の速度</strong>でベルトに自動再突入します。</p>
+                                    <h4>ラストスタンド</h4>
+                                    <p>テーブルとキューが空のとき<strong>2倍速</strong>でベルトに自動再突入。</p>
                                 </div>
                             </div>
                         </div>
@@ -308,9 +314,9 @@
                                 <div class="card-toggle">&#9660;</div>
                             </div>
                             <div class="card-body">
-                                <p data-lang="zh" style="color: var(--text-secondary);">启动画面，展示Logo后淡入淡出过渡到MenuScene。<br><br><strong>主要组件：</strong>SplashController, SceneFader</p>
-                                <p data-lang="en" style="color: var(--text-secondary);">Splash screen showing logo with fade transition to MenuScene.<br><br><strong>Components:</strong> SplashController, SceneFader</p>
-                                <p data-lang="ja" style="color: var(--text-secondary);">ロゴを表示し、MenuSceneへフェードトランジション。<br><br><strong>コンポーネント：</strong>SplashController, SceneFader</p>
+                                <p data-lang="zh" style="color: var(--text-secondary);">启动画面，展示Logo后淡入淡出过渡到MenuScene。</p>
+                                <p data-lang="en" style="color: var(--text-secondary);">Splash screen with fade transition to MenuScene.</p>
+                                <p data-lang="ja" style="color: var(--text-secondary);">ロゴ表示後MenuSceneへフェードトランジション。</p>
                             </div>
                         </div>
                         <div class="card">
@@ -319,9 +325,9 @@
                                 <div class="card-toggle">&#9660;</div>
                             </div>
                             <div class="card-body">
-                                <p data-lang="zh" style="color: var(--text-secondary);">主菜单，包含关卡选择和开始按钮。初始化GameManager单例(DontDestroyOnLoad)。<br><br><strong>主要组件：</strong>GameManager, LevelSelectorUI, UI_StartButton</p>
-                                <p data-lang="en" style="color: var(--text-secondary);">Main menu with level selection. Initializes GameManager singleton (DontDestroyOnLoad).<br><br><strong>Components:</strong> GameManager, LevelSelectorUI, UI_StartButton</p>
-                                <p data-lang="ja" style="color: var(--text-secondary);">レベル選択を含むメインメニュー。GameManagerシングルトンを初期化。<br><br><strong>コンポーネント：</strong>GameManager, LevelSelectorUI, UI_StartButton</p>
+                                <p data-lang="zh" style="color: var(--text-secondary);">主菜单，初始化GameManager单例(DontDestroyOnLoad)。</p>
+                                <p data-lang="en" style="color: var(--text-secondary);">Main menu. Initializes GameManager singleton.</p>
+                                <p data-lang="ja" style="color: var(--text-secondary);">メインメニュー。GameManagerシングルトンを初期化。</p>
                             </div>
                         </div>
                         <div class="card">
@@ -330,9 +336,9 @@
                                 <div class="card-toggle">&#9660;</div>
                             </div>
                             <div class="card-body">
-                                <p data-lang="zh" style="color: var(--text-secondary);">主游戏场景，包含20x20网格、射手系统、传送带和结果弹窗。<br><br><strong>主要组件：</strong>GridManager, ShooterTableManager, ReadyQueueManager, BeltPathHolder, GameResultPopup</p>
-                                <p data-lang="en" style="color: var(--text-secondary);">Main gameplay with 20x20 grid, shooters, conveyor belt, and result popup.<br><br><strong>Components:</strong> GridManager, ShooterTableManager, ReadyQueueManager, BeltPathHolder, GameResultPopup</p>
-                                <p data-lang="ja" style="color: var(--text-secondary);">20x20グリッド、シューター、コンベアベルト、結果ポップアップを含むゲームプレイ。<br><br><strong>コンポーネント：</strong>GridManager, ShooterTableManager, ReadyQueueManager, BeltPathHolder, GameResultPopup</p>
+                                <p data-lang="zh" style="color: var(--text-secondary);">主游戏场景：20x20网格、射手系统、传送带、结果弹窗。</p>
+                                <p data-lang="en" style="color: var(--text-secondary);">Main gameplay: 20x20 grid, shooters, belt, result popup.</p>
+                                <p data-lang="ja" style="color: var(--text-secondary);">メインゲームプレイ：20x20グリッド、シューター、ベルト。</p>
                             </div>
                         </div>
                     </div>
@@ -355,28 +361,31 @@
                         </div>
                         <div class="card-body">
 <pre>GameScene
+|
 |-- Main Camera
-|-- GameManager                    <span style="color:var(--text-muted)"># Singleton, DontDestroyOnLoad</span>
+|
+|-- GameManager                        <span style="color:var(--text-muted)"># Singleton, DontDestroyOnLoad</span>
 |
 |-- GameRoot
-|   |-- GridManager                <span style="color:var(--text-muted)"># 20x20 网格管理器</span>
-|   |   |-- Pixel_Cell (x400)      <span style="color:var(--text-muted)"># 方块实例</span>
 |   |
-|   |-- BeltPathHolder             <span style="color:var(--text-muted)"># 传送带路径 (4个角点)</span>
-|   |   |-- Waypoint_0             <span style="color:var(--text-muted)"># 左下</span>
-|   |   |-- Waypoint_1             <span style="color:var(--text-muted)"># 右下</span>
-|   |   |-- Waypoint_2             <span style="color:var(--text-muted)"># 右上</span>
-|   |   |-- Waypoint_3             <span style="color:var(--text-muted)"># 左上</span>
+|   |-- GridManager                    <span style="color:var(--text-muted)"># 20x20 网格管理器</span>
+|   |   |-- Pixel_Cell (x400)          <span style="color:var(--text-muted)"># 方块实例 (动态生成)</span>
 |   |
-|   |-- ReadyQueueManager          <span style="color:var(--text-muted)"># 准备队列 (5槽位)</span>
+|   |-- BeltPathHolder                 <span style="color:var(--text-muted)"># 传送带路径 (4个角点)</span>
+|   |   |-- Waypoint_0                 <span style="color:var(--text-muted)"># 左下角</span>
+|   |   |-- Waypoint_1                 <span style="color:var(--text-muted)"># 右下角</span>
+|   |   |-- Waypoint_2                 <span style="color:var(--text-muted)"># 右上角</span>
+|   |   |-- Waypoint_3                 <span style="color:var(--text-muted)"># 左上角</span>
+|   |
+|   |-- ReadyQueueManager              <span style="color:var(--text-muted)"># 准备队列 (5槽位)</span>
 |   |   |-- Slot_0 ~ Slot_4
 |   |
-|   |-- ShooterTableManager        <span style="color:var(--text-muted)"># 备战台 (5列x6行)</span>
+|   |-- ShooterTableManager            <span style="color:var(--text-muted)"># 备战台 (5列x6行)</span>
 |       |-- Pig_Shooter (动态生成)
 |
 |-- Canvas
-    |-- Top                        <span style="color:var(--text-muted)"># 顶部UI (关卡显示)</span>
-    |-- Popup_GameResult           <span style="color:var(--text-muted)"># 结果弹窗</span>
+    |-- Top                            <span style="color:var(--text-muted)"># 顶部UI (关卡显示)</span>
+    |-- Popup_GameResult               <span style="color:var(--text-muted)"># 结果弹窗</span>
         |-- WindowContainer
         |-- BtnRetry / BtnMenu / BtnNext</pre>
                         </div>
@@ -403,51 +412,15 @@
                             <div class="card-toggle">&#9660;</div>
                         </div>
                         <div class="card-body">
-                            <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 16px;">全局游戏管理器，使用 DontDestroyOnLoad 跨场景持久化。负责关卡状态、场景切换、JSON数据加载和游戏结束触发。</p>
-                            <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 16px;">Global game state manager persisting across scenes via DontDestroyOnLoad. Handles level state, scene transitions, JSON loading, and game over triggers.</p>
-                            <p data-lang="ja" style="color: var(--text-secondary); margin-bottom: 16px;">DontDestroyOnLoadでシーン間で永続化するグローバルゲームステートマネージャー。</p>
-                            <table>
-                                <tr><th>Property</th><th>Type</th><th data-lang="zh">说明</th><th data-lang="en">Description</th><th data-lang="ja">説明</th></tr>
-                                <tr><td>Instance</td><td>static</td><td data-lang="zh">单例实例</td><td data-lang="en">Singleton instance</td><td data-lang="ja">シングルトン</td></tr>
-                                <tr><td>currentLevelName</td><td>string</td><td data-lang="zh">当前关卡ID (如 "Level_1")</td><td data-lang="en">Current level ID (e.g., "Level_1")</td><td data-lang="ja">現在レベルID</td></tr>
-                            </table>
+                            <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 16px;">全局游戏管理器 (DontDestroyOnLoad)。负责关卡状态、场景切换、JSON数据加载和游戏结束触发。</p>
+                            <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 16px;">Global game manager (DontDestroyOnLoad). Handles level state, scene transitions, JSON loading, game over.</p>
+                            <p data-lang="ja" style="color: var(--text-secondary); margin-bottom: 16px;">グローバルゲームマネージャー (DontDestroyOnLoad)。</p>
                             <ul class="method-list">
-                                <li class="method-item">
-                                    <span class="method-name">StartLevel(string levelName)</span>
-                                    <div class="method-desc" data-lang="zh">设置 currentLevelName 并加载 GameScene</div>
-                                    <div class="method-desc" data-lang="en">Sets currentLevelName and loads GameScene</div>
-                                    <div class="method-desc" data-lang="ja">currentLevelNameを設定しGameSceneをロード</div>
-                                </li>
-                                <li class="method-item">
-                                    <span class="method-name">LoadNextLevel()</span>
-                                    <div class="method-desc" data-lang="zh">进入下一关，如果不存在则返回菜单</div>
-                                    <div class="method-desc" data-lang="en">Advances to next level or returns to menu if none exists</div>
-                                    <div class="method-desc" data-lang="ja">次のレベルに進む、存在しない場合はメニューに戻る</div>
-                                </li>
-                                <li class="method-item">
-                                    <span class="method-name">GameOver(bool isWin)</span>
-                                    <div class="method-desc" data-lang="zh">触发胜利(true)或失败(false)弹窗</div>
-                                    <div class="method-desc" data-lang="en">Triggers victory (true) or game over (false) popup</div>
-                                    <div class="method-desc" data-lang="ja">勝利(true)またはゲームオーバー(false)ポップアップをトリガー</div>
-                                </li>
-                                <li class="method-item">
-                                    <span class="method-name">LoadGridData() : LevelGridData</span>
-                                    <div class="method-desc" data-lang="zh">从 Resources/Levels/{currentLevelName}_grid.json 加载网格数据</div>
-                                    <div class="method-desc" data-lang="en">Loads grid JSON from Resources/Levels/</div>
-                                    <div class="method-desc" data-lang="ja">Resources/Levels/からグリッドJSONをロード</div>
-                                </li>
-                                <li class="method-item">
-                                    <span class="method-name">LoadTableData() : ShooterTableData</span>
-                                    <div class="method-desc" data-lang="zh">从 Resources/Levels/{currentLevelName}_table.json 加载射手表数据</div>
-                                    <div class="method-desc" data-lang="en">Loads shooter table JSON from Resources/Levels/</div>
-                                    <div class="method-desc" data-lang="ja">Resources/Levels/からシューターテーブルJSONをロード</div>
-                                </li>
-                                <li class="method-item">
-                                    <span class="method-name">AdvanceLevelProgress() : bool</span>
-                                    <div class="method-desc" data-lang="zh">只更新 currentLevelName+1，不切换场景。用于胜利后返回菜单时更新进度</div>
-                                    <div class="method-desc" data-lang="en">Updates currentLevelName+1 without scene change. Used for menu return after victory</div>
-                                    <div class="method-desc" data-lang="ja">シーン遷移なしでcurrentLevelName+1を更新</div>
-                                </li>
+                                <li class="method-item"><span class="method-name">StartLevel(string levelName)</span><div class="method-desc">设置 currentLevelName 并加载 GameScene</div></li>
+                                <li class="method-item"><span class="method-name">LoadNextLevel()</span><div class="method-desc">进入下一关，不存在则返回菜单</div></li>
+                                <li class="method-item"><span class="method-name">GameOver(bool isWin)</span><div class="method-desc">触发胜利(true)/失败(false)弹窗</div></li>
+                                <li class="method-item"><span class="method-name">LoadGridData() : LevelGridData</span><div class="method-desc">加载 Level_X_grid.json</div></li>
+                                <li class="method-item"><span class="method-name">LoadTableData() : ShooterTableData</span><div class="method-desc">加载 Level_X_table.json</div></li>
                             </ul>
                         </div>
                     </div>
@@ -457,40 +430,47 @@
                         <div class="card-header" onclick="toggleCard(this)">
                             <div class="card-title-group">
                                 <span class="tag tag-singleton">Singleton</span>
+                                <span class="tag tag-new">Updated</span>
                                 <span class="card-title">GridManager</span>
                                 <span class="card-path">Scripts/GameScene/GridManager.cs</span>
                             </div>
                             <div class="card-toggle">&#9660;</div>
                         </div>
                         <div class="card-body">
-                            <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 16px;">网格系统核心，负责20x20方块网格的生成、智能目标查找（GetTargetCellSmart）和胜利条件检测。采用 O(1) 二维数组存储。</p>
-                            <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 16px;">Core grid system managing 20x20 cell generation, smart target lookup (GetTargetCellSmart), and win condition detection. Uses O(1) 2D array storage.</p>
-                            <p data-lang="ja" style="color: var(--text-secondary); margin-bottom: 16px;">20x20セルグリッドの生成、スマートターゲット検索、勝利条件検出を管理するコアグリッドシステム。</p>
-                            <table>
-                                <tr><th>Property</th><th>Type</th><th data-lang="zh">说明</th><th data-lang="en">Description</th><th data-lang="ja">説明</th></tr>
-                                <tr><td>gridSize</td><td>int</td><td data-lang="zh">网格大小 (默认20)</td><td data-lang="en">Grid size (default 20)</td><td data-lang="ja">グリッドサイズ</td></tr>
-                                <tr><td>cellSize</td><td>float</td><td data-lang="zh">单格尺寸 (默认1.0)</td><td data-lang="en">Cell size (default 1.0)</td><td data-lang="ja">セルサイズ</td></tr>
-                                <tr><td>activeCellCount</td><td>int</td><td data-lang="zh">当前存活方块数，归零触发胜利</td><td data-lang="en">Active cells count, triggers win when 0</td><td data-lang="ja">アクティブセル数</td></tr>
-                                <tr><td>logicGrid</td><td>CellController[,]</td><td data-lang="zh">二维数组存储，O(1)访问</td><td data-lang="en">2D array storage, O(1) access</td><td data-lang="ja">2D配列ストレージ</td></tr>
-                            </table>
+                            <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 16px;">网格系统核心，负责20x20方块的生成、<strong>智能穿透查找 + 颜色阻挡</strong>、胜利检测。采用 O(1) 二维数组存储。</p>
+                            <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 16px;">Core grid system. 20x20 cell generation, <strong>smart lookup with color blocking</strong>, win detection. O(1) 2D array storage.</p>
+                            <p data-lang="ja" style="color: var(--text-secondary); margin-bottom: 16px;">20x20セルグリッドの生成、<strong>色ブロッキング付きスマート検索</strong>、勝利検出。</p>
+                            
+                            <h4 class="subsection" data-lang="zh">核心算法: GetTargetCellSmart</h4>
+                            <h4 class="subsection" data-lang="en">Core Algorithm: GetTargetCellSmart</h4>
+                            <h4 class="subsection" data-lang="ja">コアアルゴリズム: GetTargetCellSmart</h4>
+                            <div class="info-box warning">
+                                <h4 data-lang="zh">新增: 颜色阻挡判定</h4>
+                                <h4 data-lang="en">NEW: Color Blocking</h4>
+                                <h4 data-lang="ja">NEW: 色ブロッキング</h4>
+                                <p data-lang="zh">函数签名更新: <code>GetTargetCellSmart(Vector3 pos, string shooterColor)</code><br>扫描到的方块会根据颜色判定：同色=目标，异色=阻挡(返回null)，isPendingDeath=穿透</p>
+                                <p data-lang="en">Signature updated: <code>GetTargetCellSmart(Vector3 pos, string shooterColor)</code><br>Scanned cells: same color=target, different color=blocked(null), isPendingDeath=penetrate</p>
+                                <p data-lang="ja">シグネチャ更新: <code>GetTargetCellSmart(Vector3 pos, string shooterColor)</code></p>
+                            </div>
+<pre>// 查找逻辑 (CheckCell 委托)
+if (c == null || c.isDestroyed) return 0;  // 空气，继续
+if (c.isPendingDeath) return 0;            // 已被预定，穿透
+if (c.colorID != shooterColor) return 2;   // 异色，阻挡！
+return 1;                                   // 同色，命中！</pre>
                             <ul class="method-list">
                                 <li class="method-item">
-                                    <span class="method-name">GetTargetCellSmart(Vector3 shooterPos) : CellController</span>
-                                    <div class="method-desc" data-lang="zh"><strong>智能分区查找算法</strong>：根据射手位置判断所在区域(底部/右侧/顶部/左侧)，强制钳制(Clamp)查询范围，解决拐角漏射和边缘盲区问题</div>
-                                    <div class="method-desc" data-lang="en"><strong>Smart zone-based lookup</strong>: Determines scan direction based on shooter position (Bottom/Right/Top/Left), clamps query range to fix corner missing shots</div>
-                                    <div class="method-desc" data-lang="ja"><strong>スマートゾーンベース検索</strong>：シューター位置に基づいてスキャン方向を決定</div>
+                                    <span class="method-name">GetTargetCellSmart(Vector3 pos, string color) : CellController</span>
+                                    <div class="method-desc" data-lang="zh">智能分区查找 + 颜色阻挡。根据位置判断区域(底/右/顶/左)向内扫描</div>
+                                    <div class="method-desc" data-lang="en">Smart zone lookup + color blocking. Scans inward based on position zone</div>
                                 </li>
                                 <li class="method-item">
                                     <span class="method-name">GetSimulatedPosition(int beltIndex) : Vector3</span>
-                                    <div class="method-desc" data-lang="zh">传送带步数索引(0-79)转世界坐标。用于预计算射击路径<br>0~19=底部, 20~39=右侧, 40~59=顶部, 60~79=左侧</div>
-                                    <div class="method-desc" data-lang="en">Converts belt step index (0-79) to world position for path pre-calculation<br>0~19=Bottom, 20~39=Right, 40~59=Top, 60~79=Left</div>
-                                    <div class="method-desc" data-lang="ja">ベルトステップインデックス(0-79)をワールド座標に変換</div>
+                                    <div class="method-desc" data-lang="zh">传送带步数(0-79)转世界坐标。用于 Ground Truth 预计算</div>
+                                    <div class="method-desc" data-lang="en">Belt step index (0-79) to world position. For Ground Truth pre-calculation</div>
                                 </li>
                                 <li class="method-item">
                                     <span class="method-name">OnCellDestroyed()</span>
-                                    <div class="method-desc" data-lang="zh">方块销毁回调，activeCellCount--。归零时触发 GameManager.GameOver(true)</div>
-                                    <div class="method-desc" data-lang="en">Cell destruction callback, decrements activeCellCount. Triggers GameOver(true) when 0</div>
-                                    <div class="method-desc" data-lang="ja">セル破壊コールバック、activeCellCountをデクリメント</div>
+                                    <div class="method-desc">方块销毁回调，activeCellCount--。归零触发胜利</div>
                                 </li>
                             </ul>
                         </div>
@@ -511,80 +491,102 @@
                         <div class="card-header" onclick="toggleCard(this)">
                             <div class="card-title-group">
                                 <span class="tag tag-component">Component</span>
+                                <span class="tag tag-new">Updated</span>
                                 <span class="card-title">PigController</span>
-                                <span class="card-path">Scripts/GameScene/PigController.cs</span>
+                                <span class="card-path">Scripts/GameScene/PigController.cs (721行)</span>
                             </div>
                             <div class="card-toggle">&#9660;</div>
                         </div>
                         <div class="card-body">
-                            <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 16px;"><strong>核心射手控制器 (721行)</strong>：整合状态管理、预计算射击、传送带巡逻和绝地反击机制。采用协程驱动的事件流架构。</p>
-                            <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 16px;"><strong>Core shooter controller (721 lines)</strong>: Integrates state management, pre-calculated shooting, belt patrol, and "last stand" mechanics. Uses coroutine-driven event flow.</p>
-                            <p data-lang="ja" style="color: var(--text-secondary); margin-bottom: 16px;"><strong>コアシューターコントローラー(721行)</strong>：状態管理、事前計算ショット、ベルトパトロール、ラストスタンドを統合。</p>
+                            <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 16px;"><strong>核心射手控制器</strong>：状态机、预计算射击、传送带巡逻、绝地反击、Ground Truth 发射。</p>
+                            <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 16px;"><strong>Core shooter controller</strong>: State machine, pre-calculated shots, belt patrol, last stand, Ground Truth firing.</p>
+                            <p data-lang="ja" style="color: var(--text-secondary); margin-bottom: 16px;"><strong>コアシューターコントローラー</strong>：状態マシン、事前計算ショット、ベルトパトロール。</p>
                             
                             <h4 class="subsection" data-lang="zh">状态机 (PigState)</h4>
                             <h4 class="subsection" data-lang="en">State Machine (PigState)</h4>
-                            <h4 class="subsection" data-lang="ja">状態マシン (PigState)</h4>
-<pre>InTable       -> InQueue       -> OnBelt        -> Returning -> InQueue (循环)
-(备战台)         (准备队列)        (传送带巡逻)      (返回中)
-   |              |                  |
-   |              |                  v  (如果 Table & Queue 都空)
-   |              |            AutoRejoinBelt (绝地反击, 2x速度)
-   |              |
-   +-- 点击 ------+-- 点击 -------> GoToBelt() -> PreCalculatePath() -> RunBeltSequence()</pre>
+                            <h4 class="subsection" data-lang="ja">状態マシン</h4>
+<pre>InTable -> InQueue -> OnBelt -> Returning -> InQueue (循环)
+              |          |
+              |          v (Table & Queue 都空)
+              |     AutoRejoinBelt (绝地反击, 2x速度)
+              |
+              +-> GoToBelt() -> PreCalculatePath() -> RunBeltSequence()</pre>
                             
-                            <h4 class="subsection" data-lang="zh">核心算法: PreCalculatePath()</h4>
-                            <h4 class="subsection" data-lang="en">Core Algorithm: PreCalculatePath()</h4>
-                            <h4 class="subsection" data-lang="ja">コアアルゴリズム: PreCalculatePath()</h4>
-                            <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 12px;">在上传送带前，模拟整个传送带路径(80步)，预计算所有射击点，生成"射击排期表"(shotSchedule Queue)。</p>
-                            <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 12px;">Before entering belt, simulates entire belt path (80 steps), pre-calculates all shot points, generates "shot schedule" queue.</p>
-                            <p data-lang="ja" style="color: var(--text-secondary); margin-bottom: 12px;">ベルト進入前に80ステップのベルトパスをシミュレートし、すべてのショットポイントを事前計算。</p>
-<pre>for (int i = 0; i < 80; i++) {
-    Vector3 simPos = GridManager.GetSimulatedPosition(i);
-    CellController target = GridManager.GetTargetCellSmart(simPos);
+                            <h4 class="subsection" data-lang="zh">Ground Truth 射击系统</h4>
+                            <h4 class="subsection" data-lang="en">Ground Truth Firing System</h4>
+                            <h4 class="subsection" data-lang="ja">Ground Truth 射撃システム</h4>
+                            <div class="info-box warning">
+                                <h4 data-lang="zh">帧率无关射击</h4>
+                                <h4 data-lang="en">Frame-Rate Independent Firing</h4>
+                                <h4 data-lang="ja">フレームレート非依存射撃</h4>
+                                <p data-lang="zh">由于帧率波动，射手的实际位置可能与预计算位置有偏差。<br>解决方案: <strong>PerformVisualFire(target, fireOrigin)</strong> 使用预计算的理论位置(Ground Truth)作为发射点。</p>
+                                <p data-lang="en">Due to frame rate fluctuation, shooter's actual position may differ from pre-calculated position.<br>Solution: <strong>PerformVisualFire(target, fireOrigin)</strong> uses pre-calculated theoretical position (Ground Truth) as fire origin.</p>
+                                <p data-lang="ja">フレームレート変動により実際の位置が事前計算位置と異なる場合があります。<br>解決策: Ground Truth 位置を発射点として使用。</p>
+                            </div>
+<pre>// RunBeltSequence 中的射击逻辑
+while (shotSchedule.Count > 0 && shotSchedule.Peek().beltStepIndex <= currentStep)
+{
+    ShotScheduleItem nextShot = shotSchedule.Dequeue();
     
-    if (target != null 
-        && !target.isDestroyed           // 未被销毁
-        && !target.isPendingDeath        // 未被其他射击占位
-        && target.colorID == this.colorID) // 颜色匹配
-    {
-        shotSchedule.Enqueue({i, target});
-        target.isPendingDeath = true;    // 标记占位,避免重复瞄准
-        simulatedAmmo--;
-    }
+    // 获取预计算时的理论发射位置 (Ground Truth)
+    Vector3 idealFirePos = GridManager.Instance.GetSimulatedPosition(nextShot.beltStepIndex);
+    idealFirePos.z = transform.position.z;
+    
+    // 从理论位置开火，确保子弹轨迹正确
+    PerformVisualFire(nextShot.target, idealFirePos);
 }</pre>
-                            
                             <ul class="method-list">
                                 <li class="method-item">
-                                    <span class="method-name">MoveToQueue(int slotIndex, Vector3 pos)</span>
-                                    <div class="method-desc" data-lang="zh">从备战台移动到队列指定槽位，更新状态为 InQueue</div>
-                                    <div class="method-desc" data-lang="en">Moves from table to specified queue slot, sets state to InQueue</div>
-                                    <div class="method-desc" data-lang="ja">テーブルから指定キュースロットに移動、状態をInQueueに設定</div>
+                                    <span class="method-name">PreCalculatePath()</span>
+                                    <div class="method-desc" data-lang="zh">预计算80步射击路径，生成 shotSchedule 队列。调用 GetTargetCellSmart(pos, colorID)</div>
+                                    <div class="method-desc" data-lang="en">Pre-calculates 80-step shot path, generates shotSchedule queue. Calls GetTargetCellSmart(pos, colorID)</div>
                                 </li>
                                 <li class="method-item">
-                                    <span class="method-name">GoToBelt()</span>
-                                    <div class="method-desc" data-lang="zh">从队列进入传送带：注销队列 -> PreCalculatePath() -> RunBeltSequence()</div>
-                                    <div class="method-desc" data-lang="en">Enters belt from queue: unregister -> PreCalculatePath() -> RunBeltSequence()</div>
-                                    <div class="method-desc" data-lang="ja">キューからベルトに進入：登録解除 -> PreCalculatePath() -> RunBeltSequence()</div>
+                                    <span class="method-name">RunBeltSequence(List&lt;Transform&gt;)</span>
+                                    <div class="method-desc">主巡逻协程：飞向起点 -> 遍历4边 -> Ground Truth射击 -> CheckEndGameAndReturn</div>
                                 </li>
                                 <li class="method-item">
-                                    <span class="method-name">IEnumerator RunBeltSequence(List&lt;Transform&gt; path)</span>
-                                    <div class="method-desc" data-lang="zh">主巡逻协程：飞向起点 -> 遍历4条边 -> 按排期表射击 -> 检测弹药归零 -> CheckEndGameAndReturn()</div>
-                                    <div class="method-desc" data-lang="en">Main patrol coroutine: fly to start -> traverse 4 edges -> fire per schedule -> check ammo -> CheckEndGameAndReturn()</div>
-                                    <div class="method-desc" data-lang="ja">メインパトロールコルーチン：開始点へ飛ぶ -> 4辺を走査 -> スケジュールに従って発射</div>
+                                    <span class="method-name">PerformVisualFire(target, fireOrigin)</span>
+                                    <div class="method-desc" data-lang="zh"><strong>[更新]</strong> 接受 fireOrigin 参数，从 Ground Truth 位置发射子弹</div>
+                                    <div class="method-desc" data-lang="en"><strong>[Updated]</strong> Accepts fireOrigin param, fires bullet from Ground Truth position</div>
                                 </li>
                                 <li class="method-item">
-                                    <span class="method-name">IEnumerator AutoRejoinBelt()</span>
-                                    <div class="method-desc" data-lang="zh"><strong>绝地反击</strong>：回弹到队列位置 -> isBoosted=true(2x速度) -> 重新 PreCalculatePath() -> 再次 RunBeltSequence()</div>
-                                    <div class="method-desc" data-lang="en"><strong>Last Stand</strong>: bounce to queue -> isBoosted=true (2x speed) -> re-PreCalculatePath() -> RunBeltSequence() again</div>
-                                    <div class="method-desc" data-lang="ja"><strong>ラストスタンド</strong>：キューにバウンス -> isBoosted=true(2x速度) -> 再度RunBeltSequence()</div>
-                                </li>
-                                <li class="method-item">
-                                    <span class="method-name">IEnumerator PerformDeathAnimation()</span>
-                                    <div class="method-desc" data-lang="zh">0.3秒死亡动画：膨胀+顺时针旋转(0~0.15s) -> 收缩+逆时针旋转(0.15~0.3s) -> Destroy</div>
-                                    <div class="method-desc" data-lang="en">0.3s death animation: expand+clockwise rotate (0~0.15s) -> shrink+counter-clockwise (0.15~0.3s) -> Destroy</div>
-                                    <div class="method-desc" data-lang="ja">0.3秒死亡アニメーション：膨張+時計回り回転 -> 収縮+反時計回り回転 -> Destroy</div>
+                                    <span class="method-name">AutoRejoinBelt()</span>
+                                    <div class="method-desc">绝地反击：isBoosted=true(2x速度) -> 重新 PreCalculatePath -> RunBeltSequence</div>
                                 </li>
                             </ul>
+                        </div>
+                    </div>
+
+                    <!-- BulletController -->
+                    <div class="card">
+                        <div class="card-header" onclick="toggleCard(this)">
+                            <div class="card-title-group">
+                                <span class="tag tag-component">Component</span>
+                                <span class="tag tag-new">Updated</span>
+                                <span class="card-title">BulletController</span>
+                                <span class="card-path">Scripts/GameScene/BulletController.cs</span>
+                            </div>
+                            <div class="card-toggle">&#9660;</div>
+                        </div>
+                        <div class="card-body">
+                            <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 16px;">子弹飞行控制器。<strong>Ground Truth 位置缓存</strong> + <strong>sqrMagnitude 高性能碰撞</strong>。</p>
+                            <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 16px;">Bullet flight controller. <strong>Ground Truth position caching</strong> + <strong>sqrMagnitude high-performance collision</strong>.</p>
+                            <p data-lang="ja" style="color: var(--text-secondary); margin-bottom: 16px;">弾丸飛行コントローラー。Ground Truth 位置キャッシュ + sqrMagnitude 高性能衝突。</p>
+                            <div class="info-box">
+                                <h4 data-lang="zh">优化点</h4>
+                                <h4 data-lang="en">Optimizations</h4>
+                                <h4 data-lang="ja">最適化</h4>
+                                <p data-lang="zh">1. 发射时立即缓存 targetPos，即使目标被提前销毁也能飞到正确位置<br>2. 使用 sqrMagnitude 替代 Distance (避免开方运算)，提升性能</p>
+                                <p data-lang="en">1. Caches targetPos immediately on fire, bullet reaches correct position even if target destroyed<br>2. Uses sqrMagnitude instead of Distance (avoids sqrt), improves performance</p>
+                                <p data-lang="ja">1. 発射時にtargetPosを即座にキャッシュ<br>2. Distance の代わりに sqrMagnitude を使用（sqrt回避）</p>
+                            </div>
+<pre>// Fire 时缓存目标位置 (Ground Truth)
+targetPos = target.transform.position;
+
+// Update 中使用 sqrMagnitude 判定到达
+if ((transform.position - targetPos).sqrMagnitude < 0.001f)
+    Hit();</pre>
                         </div>
                     </div>
 
@@ -600,14 +602,12 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-path" style="margin-bottom: 12px;">Scripts/GameScene/ReadyQueueManager.cs</p>
-                                <p data-lang="zh" style="color: var(--text-secondary);">管理5个射手准备位(slots)的占用状态。采用 <strong>Shift Left 算法</strong>实现射手离开后的自动左移补位。</p>
-                                <p data-lang="en" style="color: var(--text-secondary);">Manages 5 ready slots. Uses <strong>Shift Left algorithm</strong> for auto-filling when a shooter leaves.</p>
-                                <p data-lang="ja" style="color: var(--text-secondary);">5つの待機スロットを管理。<strong>Shift Leftアルゴリズム</strong>で自動補填。</p>
+                                <p data-lang="zh" style="color: var(--text-secondary);">5槽位准备队列。<strong>Shift Left 算法</strong>自动左移补位。</p>
+                                <p data-lang="en" style="color: var(--text-secondary);">5-slot ready queue. <strong>Shift Left algorithm</strong> for auto-filling.</p>
                                 <ul class="method-list" style="margin-top:12px">
-                                    <li class="method-item"><span class="method-name">GetFirstEmptyIndex() : int</span><div class="method-desc">返回第一个空槽位索引，满则返回-1</div></li>
-                                    <li class="method-item"><span class="method-name">RegisterPig(int, PigController)</span><div class="method-desc">注册射手到指定槽位</div></li>
-                                    <li class="method-item"><span class="method-name">UnregisterPig(PigController)</span><div class="method-desc">注销并自动 Shift Left 补位</div></li>
-                                    <li class="method-item"><span class="method-name">IsFull() : bool</span><div class="method-desc">队列是否已满(失败条件检测)</div></li>
+                                    <li class="method-item"><span class="method-name">RegisterPig(int, PigController)</span></li>
+                                    <li class="method-item"><span class="method-name">UnregisterPig(PigController)</span><div class="method-desc">注销 + Shift Left</div></li>
+                                    <li class="method-item"><span class="method-name">IsFull() : bool</span><div class="method-desc">失败条件检测</div></li>
                                 </ul>
                             </div>
                         </div>
@@ -623,51 +623,12 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-path" style="margin-bottom: 12px;">Scripts/GameScene/ShooterTableManager.cs</p>
-                                <p data-lang="zh" style="color: var(--text-secondary);">射手备战台管理器(5列x6行)。从JSON加载并生成射手，采用 <strong>List&lt;List&gt;</strong> 嵌套结构实现"下层自动顶上"的堆栈效果。</p>
-                                <p data-lang="en" style="color: var(--text-secondary);">Shooter table manager (5 cols x 6 rows). Loads from JSON, uses <strong>List&lt;List&gt;</strong> for stack-like "bottom auto-rise" effect.</p>
-                                <p data-lang="ja" style="color: var(--text-secondary);">シューターテーブルマネージャー(5列x6行)。</p>
+                                <p data-lang="zh" style="color: var(--text-secondary);">5列x6行备战台。<strong>List&lt;List&gt;</strong> 实现堆栈式顶上。</p>
+                                <p data-lang="en" style="color: var(--text-secondary);">5x6 shooter table. <strong>List&lt;List&gt;</strong> for stack-like auto-rise.</p>
                                 <ul class="method-list" style="margin-top:12px">
-                                    <li class="method-item"><span class="method-name">OnPigClicked(PigController)</span><div class="method-desc">点击最上层射手，移动到队列并补位</div></li>
-                                    <li class="method-item"><span class="method-name">IsTableEmpty() : bool</span><div class="method-desc">备战台是否清空(绝地反击条件)</div></li>
+                                    <li class="method-item"><span class="method-name">OnPigClicked(PigController)</span></li>
+                                    <li class="method-item"><span class="method-name">IsTableEmpty() : bool</span><div class="method-desc">绝地反击条件</div></li>
                                 </ul>
-                            </div>
-                        </div>
-
-                        <!-- BeltWalker -->
-                        <div class="card">
-                            <div class="card-header" onclick="toggleCard(this)">
-                                <div class="card-title-group">
-                                    <span class="tag tag-component">Component</span>
-                                    <span class="card-title">BeltWalker</span>
-                                </div>
-                                <div class="card-toggle">&#9660;</div>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-path" style="margin-bottom: 12px;">Scripts/GameScene/BeltWalker.cs</p>
-                                <p data-lang="zh" style="color: var(--text-secondary);">传送带行走组件，沿路径点自动移动和转向。支持 <strong>SetDoubleSpeed()</strong> 实现绝地反击2倍速。</p>
-                                <p data-lang="en" style="color: var(--text-secondary);">Belt walking component, auto-moves along waypoints. Supports <strong>SetDoubleSpeed()</strong> for last stand 2x speed.</p>
-                                <p data-lang="ja" style="color: var(--text-secondary);">ベルト歩行コンポーネント、ウェイポイントに沿って自動移動。</p>
-                                <ul class="method-list" style="margin-top:12px">
-                                    <li class="method-item"><span class="method-name">BeginJourney(List&lt;Transform&gt;)</span><div class="method-desc">开始沿路径移动</div></li>
-                                    <li class="method-item"><span class="method-name">OnPathComplete : UnityEvent</span><div class="method-desc">路径完成事件回调</div></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- BulletController -->
-                        <div class="card">
-                            <div class="card-header" onclick="toggleCard(this)">
-                                <div class="card-title-group">
-                                    <span class="tag tag-component">Component</span>
-                                    <span class="card-title">BulletController</span>
-                                </div>
-                                <div class="card-toggle">&#9660;</div>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-path" style="margin-bottom: 12px;">Scripts/GameScene/BulletController.cs</p>
-                                <p data-lang="zh" style="color: var(--text-secondary);">子弹飞行控制器，采用<strong>距离检测</strong>替代物理碰撞(高性能)。命中后调用 target.OnHit() 并自毁。</p>
-                                <p data-lang="en" style="color: var(--text-secondary);">Bullet controller using <strong>distance detection</strong> instead of physics collision. Calls target.OnHit() and self-destructs on hit.</p>
-                                <p data-lang="ja" style="color: var(--text-secondary);">距離検出を使用する弾丸コントローラー。</p>
                             </div>
                         </div>
 
@@ -682,26 +643,29 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-path" style="margin-bottom: 12px;">Scripts/GameScene/CellController.cs</p>
-                                <p data-lang="zh" style="color: var(--text-secondary);">单个方块控制器。<strong>isPendingDeath</strong> 占位标记用于预计算避免重复瞄准。销毁时通知 GridManager 更新计数。</p>
-                                <p data-lang="en" style="color: var(--text-secondary);">Single cell controller. <strong>isPendingDeath</strong> flag for pre-calculation to avoid duplicate targeting. Notifies GridManager on destruction.</p>
-                                <p data-lang="ja" style="color: var(--text-secondary);">単一セルコントローラー。isPendingDeathフラグで重複ターゲットを回避。</p>
+                                <p data-lang="zh" style="color: var(--text-secondary);">单个方块控制器。<strong>isPendingDeath</strong> 占位标记用于预计算穿透。</p>
+                                <p data-lang="en" style="color: var(--text-secondary);">Cell controller. <strong>isPendingDeath</strong> flag for pre-calc penetration.</p>
+                                <table style="margin-top:12px">
+                                    <tr><td>colorID</td><td>颜色ID (red/blue/green/yellow)</td></tr>
+                                    <tr><td>isDestroyed</td><td>是否已物理销毁</td></tr>
+                                    <tr><td>isPendingDeath</td><td>是否已被预计算"预定"</td></tr>
+                                </table>
                             </div>
                         </div>
 
-                        <!-- BeltPathHolder -->
+                        <!-- UIBillboard -->
                         <div class="card">
                             <div class="card-header" onclick="toggleCard(this)">
                                 <div class="card-title-group">
-                                    <span class="tag tag-singleton">Singleton</span>
-                                    <span class="card-title">BeltPathHolder</span>
+                                    <span class="tag tag-component">Component</span>
+                                    <span class="card-title">UIBillboard</span>
                                 </div>
                                 <div class="card-toggle">&#9660;</div>
                             </div>
                             <div class="card-body">
-                                <p class="card-path" style="margin-bottom: 12px;">Scripts/GameScene/BeltPathHolder.cs</p>
-                                <p data-lang="zh" style="color: var(--text-secondary);">传送带路径数据容器，存储4个角点(waypoints)。在Inspector中拖拽配置，全局单例访问。</p>
-                                <p data-lang="en" style="color: var(--text-secondary);">Belt path data container with 4 corner waypoints. Drag-and-drop config in Inspector, global singleton access.</p>
-                                <p data-lang="ja" style="color: var(--text-secondary);">4つのコーナーウェイポイントを持つベルトパスデータコンテナ。</p>
+                                <p class="card-path" style="margin-bottom: 12px;">Scripts/GameScene/UIBillboard.cs</p>
+                                <p data-lang="zh" style="color: var(--text-secondary);">UI看板效果，让3D世界中的UI元素（如弹药数）始终面向摄像机。在 LateUpdate 中同步摄像机旋转。</p>
+                                <p data-lang="en" style="color: var(--text-secondary);">Billboard effect for 3D UI elements (e.g., ammo text). Syncs camera rotation in LateUpdate.</p>
                             </div>
                         </div>
                     </div>
@@ -726,13 +690,11 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-path" style="margin-bottom: 12px;">Scripts/UIScripts/GameResultPopup.cs</p>
-                                <p data-lang="zh" style="color: var(--text-secondary);">胜利/失败结果弹窗。使用 <strong>AnimationCurve</strong> 实现弹性弹出动画，<strong>Time.unscaledDeltaTime</strong> 确保 timeScale=0 时动画正常。</p>
-                                <p data-lang="en" style="color: var(--text-secondary);">Victory/GameOver popup. Uses <strong>AnimationCurve</strong> for pop animation, <strong>Time.unscaledDeltaTime</strong> for timeScale=0 compatibility.</p>
-                                <p data-lang="ja" style="color: var(--text-secondary);">勝利/ゲームオーバーポップアップ。AnimationCurveでポップアニメーション。</p>
+                                <p data-lang="zh" style="color: var(--text-secondary);">胜利/失败弹窗。AnimationCurve 弹性动画 + Time.unscaledDeltaTime。</p>
+                                <p data-lang="en" style="color: var(--text-secondary);">Victory/GameOver popup. AnimationCurve pop animation + Time.unscaledDeltaTime.</p>
                                 <ul class="method-list" style="margin-top:12px">
-                                    <li class="method-item"><span class="method-name">ShowVictory()</span><div class="method-desc">显示胜利弹窗(Next+Menu按钮)</div></li>
-                                    <li class="method-item"><span class="method-name">ShowGameOverDelayed()</span><div class="method-desc">延迟0.1s显示失败弹窗(Retry+Menu按钮)</div></li>
-                                    <li class="method-item"><span class="method-name">IEnumerator PopAnimation()</span><div class="method-desc">弹出动画：0->1.1->1 缩放曲线</div></li>
+                                    <li class="method-item"><span class="method-name">ShowVictory()</span></li>
+                                    <li class="method-item"><span class="method-name">ShowGameOverDelayed()</span><div class="method-desc">延迟0.1s显示，避免协程冲突</div></li>
                                 </ul>
                             </div>
                         </div>
@@ -740,14 +702,13 @@
                             <div class="card-header" onclick="toggleCard(this)">
                                 <div class="card-title-group">
                                     <span class="tag tag-ui">UI</span>
-                                    <span class="card-title">SceneFader / SplashController</span>
+                                    <span class="card-title">BeltWalker / BeltPathHolder</span>
                                 </div>
                                 <div class="card-toggle">&#9660;</div>
                             </div>
                             <div class="card-body">
-                                <p data-lang="zh" style="color: var(--text-secondary);">场景过渡动画和启动画面控制。SceneFader 实现淡入淡出，SplashController 控制 Logo 显示时间后自动跳转。</p>
-                                <p data-lang="en" style="color: var(--text-secondary);">Scene transition and splash screen. SceneFader handles fade in/out, SplashController manages logo display before auto-transition.</p>
-                                <p data-lang="ja" style="color: var(--text-secondary);">シーン遷移とスプラッシュスクリーン。</p>
+                                <p data-lang="zh" style="color: var(--text-secondary);"><strong>BeltWalker</strong>: 传送带行走组件，支持 SetDoubleSpeed() 2倍速<br><strong>BeltPathHolder</strong>: 4角点路径数据容器 (Inspector配置)</p>
+                                <p data-lang="en" style="color: var(--text-secondary);"><strong>BeltWalker</strong>: Belt walking, supports SetDoubleSpeed() 2x<br><strong>BeltPathHolder</strong>: 4-corner waypoint container (Inspector config)</p>
                             </div>
                         </div>
                     </div>
@@ -780,7 +741,7 @@
   "cells": [
     {"x": 0, "y": 0, "color": "red"},
     {"x": 0, "y": 1, "color": "blue"},
-    // ... 共400个方块 (20x20)
+    // 共400个方块 (20x20)
   ]
 }</pre>
                                 </div>
@@ -792,7 +753,7 @@
       {"color": "red", "ammo": 25},
       {"color": "blue", "ammo": 30}
     ]},
-    // ... 共5列
+    // 共5列
   ]
 }</pre>
                                 </div>
@@ -805,14 +766,13 @@
                             <div class="card-title-group">
                                 <span class="tag tag-editor">Editor</span>
                                 <span class="card-title">LevelDataGenerator</span>
-                                <span class="card-path">Scripts/Level/LevelDataGenerator.cs</span>
                             </div>
                             <div class="card-toggle">&#9660;</div>
                         </div>
                         <div class="card-body">
-                            <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 16px;">编辑器关卡生成工具。右键组件 → <strong>[ContextMenu] Generate All 10 Levels</strong>。自动保证每关射手弹药总和 = 方块颜色总和。</p>
-                            <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 16px;">Editor level generation tool. Right-click → <strong>[ContextMenu] Generate All 10 Levels</strong>. Auto-balances shooter ammo = cell color counts.</p>
-                            <p data-lang="ja" style="color: var(--text-secondary); margin-bottom: 16px;">エディタレベル生成ツール。右クリック → Generate All 10 Levels。</p>
+                            <p class="card-path" style="margin-bottom: 12px;">Scripts/Level/LevelDataGenerator.cs</p>
+                            <p data-lang="zh" style="color: var(--text-secondary); margin-bottom: 16px;">编辑器关卡生成工具。右键组件 → <strong>[ContextMenu] Generate All 10 Levels</strong>。自动保证射手弹药 = 方块数量。</p>
+                            <p data-lang="en" style="color: var(--text-secondary); margin-bottom: 16px;">Editor level generation. Right-click → <strong>[ContextMenu] Generate All 10 Levels</strong>. Auto-balances ammo = cell counts.</p>
                             <table>
                                 <tr><th>Level</th><th>Pattern</th><th>Level</th><th>Pattern</th></tr>
                                 <tr><td>1</td><td>Border + X diagonal</td><td>6</td><td>Circles</td></tr>

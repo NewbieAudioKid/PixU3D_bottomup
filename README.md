@@ -2,9 +2,9 @@
 
 # PixelFlow
 
-**一款2D益智射击游戏**
+**一款 2D 益智射击游戏**
 
-A 2D Puzzle Shooter Game | 2Dパズルシューティングゲーム
+A 2D Puzzle Shooter Game | 2D パズルシューティングゲーム
 
 ---
 
@@ -28,21 +28,23 @@ PixelFlow 是一款策略益智游戏。彩色射手在传送带上巡逻，自�
 
 ### 核心玩法
 
-- **选择射手** - 点击备战台(ShooterTable)上的射手，移动到准备队列(ReadyQueue)，最多5个槽位
+- **选择射手** - 点击备战台(ShooterTable)上的射手，移动到准备队列(ReadyQueue)，最多 5 个槽位
 - **部署传送带** - 点击队列中的射手，开始传送带巡逻
 - **自动射击** - 射手沿传送带移动，自动射击颜色匹配的方块
+- **颜色阻挡** - 异色方块会阻挡射线，不会穿透击中后面的同色方块
 - **胜利条件** - 清除网格中所有方块
 - **失败条件** - 射手返回时准备队列已满
 
 ### 绝地反击机制
 
-当备战台和准备队列都为空时，当前射手触发"绝地反击"模式，获得 **2倍速度加成**，自动重新进入传送带直到弹药耗尽。这是翻盘的最后机会！
+当备战台和准备队列都为空时，当前射手触发"绝地反击"模式，获得 **2 倍速度加成**，自动重新进入传送带直到弹药耗尽。这是翻盘的最后机会！
 
 ### 核心技术亮点
 
-- **PreCalculatePath 预计算算法** - 射手上传送带前模拟80步路径，预计算所有射击点生成"射击排期表"
-- **GetTargetCellSmart 智能分区查找** - 根据射手位置判断区域(底/右/顶/左)，强制钳制查询范围解决拐角漏射
-- **isPendingDeath 占位机制** - 方块被预瞄准后标记，避免多个射手重复瞄准同一目标
+- **PreCalculatePath 预计算算法** - 射手上传送带前模拟 80 步路径，预计算所有射击点生成"射击排期表"
+- **GetTargetCellSmart 智能穿透查找** - 根据射手位置判断区域，支持**颜色阻挡判定**（异色方块阻挡射线）+ **isPendingDeath 穿透**（已被预定的方块视为透明）
+- **Ground Truth 射击系统** - 子弹从预计算的理论位置发射，确保帧率波动不影响射击精度
+- **sqrMagnitude 高性能碰撞** - 子弹碰撞检测使用平方距离替代开方运算，提升性能
 - **协程驱动事件流** - 使用 IEnumerator + yield 实现复杂时序控制和动画编排
 
 ## 项目结构
@@ -99,6 +101,7 @@ PixelFlow is a strategic puzzle game where colored shooters patrol a conveyor be
 - **Select Shooters** - Click shooters from the table to move them to the ready queue (5 slots max)
 - **Deploy to Belt** - Click a queued shooter to start conveyor belt patrol
 - **Auto-Fire** - Shooters automatically fire at cells matching their color
+- **Color Blocking** - Different-color cells block shots, no penetration to same-color cells behind
 - **Win Condition** - Clear all cells from the grid
 - **Lose Condition** - Ready queue is full when a shooter returns
 
@@ -109,8 +112,9 @@ When both the shooter table and ready queue are empty, the current shooter trigg
 ### Technical Highlights
 
 - **PreCalculatePath Algorithm** - Simulates 80-step belt path before entry, pre-calculates all shot points into a "shot schedule"
-- **GetTargetCellSmart Zone Lookup** - Determines scan direction based on shooter position (Bottom/Right/Top/Left), clamps query range to fix corner misses
-- **isPendingDeath Flag** - Marks cells as "pending death" to prevent duplicate targeting by multiple shooters
+- **GetTargetCellSmart Zone Lookup** - Zone-based scan with **color blocking** (different-color cells block shots) + **isPendingDeath penetration** (pre-targeted cells are transparent)
+- **Ground Truth Firing System** - Bullets fire from pre-calculated theoretical positions, ensuring frame-rate independent accuracy
+- **sqrMagnitude High-Performance Collision** - Uses squared distance instead of sqrt for bullet collision detection
 - **Coroutine-Driven Event Flow** - Uses IEnumerator + yield for complex timing control and animation orchestration
 
 ## Project Structure
@@ -164,22 +168,24 @@ PixelFlow は戦略パズルゲームです。色付きシューターがコン�
 
 ### ゲームプレイ
 
-- **シューター選択** - テーブルからシューターをクリックして待機キューに移動（最大5スロット）
+- **シューター選択** - テーブルからシューターをクリックして待機キューに移動（最大 5 スロット）
 - **ベルトへ配置** - キュー内のシューターをクリックしてベルトパトロールを開始
 - **自動発射** - シューターは同じ色のセルに自動的に発射
+- **色ブロッキング** - 異色セルはショットをブロック、後ろの同色セルに貫通しない
 - **勝利条件** - グリッドからすべてのセルをクリア
 - **敗北条件** - シューターが戻ったとき待機キューが満杯
 
 ### ラストスタンドメカニクス
 
-シューターテーブルと待機キューの両方が空のとき、現在のシューターは「ラストスタンド」モードを発動し、**2倍のスピードボーナス**を得て、弾薬が尽きるまで自動的にコンベアベルトに再突入します。
+シューターテーブルと待機キューの両方が空のとき、現在のシューターは「ラストスタンド」モードを発動し、**2 倍のスピードボーナス**を得て、弾薬が尽きるまで自動的にコンベアベルトに再突入します。
 
 ### 技術的ハイライト
 
-- **PreCalculatePathアルゴリズム** - ベルト進入前に80ステップのパスをシミュレート、すべてのショットポイントを事前計算
-- **GetTargetCellSmartゾーン検索** - シューター位置に基づいてスキャン方向を決定、コーナーミスを修正
-- **isPendingDeathフラグ** - 複数シューターによる重複ターゲティングを防止
-- **コルーチン駆動イベントフロー** - IEnumerator + yieldで複雑なタイミング制御
+- **PreCalculatePath アルゴリズム** - ベルト進入前に 80 ステップのパスをシミュレート、すべてのショットポイントを事前計算
+- **GetTargetCellSmart ゾーン検索** - **色ブロッキング**（異色セルはショットをブロック）+ **isPendingDeath 穿透**（予約済みセルは透明）
+- **Ground Truth 射撃システム** - 事前計算された理論位置から発射、フレームレート変動に依存しない精度
+- **sqrMagnitude 高性能衝突** - 弾丸衝突検出に平方距離を使用（sqrt 回避）
+- **コルーチン駆動イベントフロー** - IEnumerator + yield で複雑なタイミング制御
 
 ## プロジェクト構造
 
@@ -218,7 +224,7 @@ Assets/
 ## はじめに
 
 1. リポジトリをクローン
-2. Unityでプロジェクトを開く
+2. Unity でプロジェクトを開く
 3. `Assets/Scenes/SplashScene.unity`を開く
 4. プレイを押す
 

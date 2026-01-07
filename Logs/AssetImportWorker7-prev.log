@@ -1,0 +1,470 @@
+Unity Editor version:    2021.3.45f1 (0da89fac8e79)
+Branch:                  2021.3/staging
+Build type:              Release
+Batch mode:              YES
+macOS version:           Version 14.4.1 (Build 23E224)
+Darwin version:          23.4.0
+Architecture:            x86_64
+Running under Rosetta:   NO
+Available memory:        32768 MB
+Using pre-set license
+Pro License: YES
+2025-12-31 13:16:35.255 Unity[85130:129765656] WARNING: Secure coding is not enabled for restorable state! Enable secure coding by implementing NSApplicationDelegate.applicationSupportsSecureRestorableState: and returning YES.
+
+COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker7
+-projectPath
+/Users/benz/Desktop/Stanford/FA25/Guru/PixelFlow_prototype2/My project (2)
+-logFile
+Logs/AssetImportWorker7.log
+-srvPort
+64983
+Successfully changed project path to: /Users/benz/Desktop/Stanford/FA25/Guru/PixelFlow_prototype2/My project (2)
+/Users/benz/Desktop/Stanford/FA25/Guru/PixelFlow_prototype2/My project (2)
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [140704594186496] Host "[IP] 10.60.244.25 [Port] 0 [Flags] 2 [Guid] 2088604190 [EditorId] 2088604190 [Version] 1048832 [Id] OSXEditor(0,Bens-MacBook-Pro-5.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [140704594186496] Host "[IP] 10.60.244.25 [Port] 0 [Flags] 2 [Guid] 2088604190 [EditorId] 2088604190 [Version] 1048832 [Id] OSXEditor(0,Bens-MacBook-Pro-5.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with {0} workers.
+Refreshing native plugins compatible for Editor in 149.84 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.3.45f1 (0da89fac8e79)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/benz/Desktop/Stanford/FA25/Guru/PixelFlow_prototype2/My project (2)/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Mi Monitor preferred device: AMD Radeon Pro 555X (high power)
+Metal devices available: 2
+0: AMD Radeon Pro 555X (high power)
+1: Intel(R) UHD Graphics 630 (low power)
+Using device AMD Radeon Pro 555X (high power)
+Initializing Metal device caps: AMD Radeon Pro 555X
+Initialize mono
+Mono path[0] = '/Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
+Mono config path = '/Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56130
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: /Applications/Unity/Hub/Editor/2021.3.45f1/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: /Applications/Unity/Hub/Editor/2021.3.45f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
+Registered in 0.001836 seconds.
+[usbmuxd] Start listen thread
+[usbmuxd] Listen thread started
+[usbmuxd] Send listen message
+[usbmuxd] Attached: 123 00008110-000E15A60261801E
+Native extension for iOS target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 213 ms
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 148.59 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.675 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1676ms)
+		BeginReloadAssembly (131ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (1361ms)
+			LoadAssemblies (130ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (246ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (54ms)
+			SetupLoadedEditorAssemblies (978ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (544ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (149ms)
+				BeforeProcessingInitializeOnLoad (3ms)
+				ProcessInitializeOnLoadAttributes (197ms)
+				ProcessInitializeOnLoadMethodAttributes (84ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.004448 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for iOS target not found
+Native extension for Android target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 1.24 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Completed reload, in  2.287 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2289ms)
+		BeginReloadAssembly (254ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (14ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (65ms)
+		EndReloadAssembly (1833ms)
+			LoadAssemblies (152ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (592ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (97ms)
+			SetupLoadedEditorAssemblies (906ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (57ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (91ms)
+				ProcessInitializeOnLoadAttributes (713ms)
+				ProcessInitializeOnLoadMethodAttributes (40ms)
+				AfterProcessingInitializeOnLoad (3ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (8ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launching external process: /Applications/Unity/Hub/Editor/2021.3.45f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.11 seconds
+Refreshing native plugins compatible for Editor in 1.21 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3149 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 24 unused Assets / (40.2 KB). Loaded Objects now: 3614.
+Memory consumption went from 128.5 MB to 128.5 MB.
+Total: 4.515936 ms (FindLiveObjects: 0.268993 ms CreateObjectMapping: 0.238664 ms MarkObjects: 3.871271 ms  DeleteObjects: 0.135547 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:CustomObjectIndexerAttribute: bc11b3a6c3213fcdd17b65e7da85e133 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 5122997.425763 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Frames/Frame_Circle_78_White.prefab
+  artifactKey: Guid(22fdefd8f221b4538ba9d27101cf8ae8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Frames/Frame_Circle_78_White.prefab using Guid(22fdefd8f221b4538ba9d27101cf8ae8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44be48b7e269810cdcfb5ba3af26ead2') in 0.375097 seconds 
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time since last request: 3.262216 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Popups/Popup01.prefab
+  artifactKey: Guid(73738b4a889b04b8cb3a9cf864bcb11b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Popups/Popup01.prefab using Guid(73738b4a889b04b8cb3a9cf864bcb11b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9db017d474aba261090230ac3c817d58') in 0.027331 seconds 
+Number of asset objects unloaded after import = 34
+========================================================================
+Received Import Request.
+  Time since last request: 2.578887 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/Slider00_Blue.prefab
+  artifactKey: Guid(420f3af43c7fb42409db1dd0cb2dc737) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/Slider00_Blue.prefab using Guid(420f3af43c7fb42409db1dd0cb2dc737) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd816e333cf365f70f2bdab516f13c71') in 0.025432 seconds 
+Number of asset objects unloaded after import = 25
+========================================================================
+Received Import Request.
+  Time since last request: 0.000088 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/Slider01_Yellow.prefab
+  artifactKey: Guid(11e5d65cf2fd2468bbd98dbf3f0618df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/Slider01_Yellow.prefab using Guid(11e5d65cf2fd2468bbd98dbf3f0618df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca9ff4c57cc854a16cb92ab0d7a4adce') in 0.023500 seconds 
+Number of asset objects unloaded after import = 27
+========================================================================
+Received Import Request.
+  Time since last request: 0.000087 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/SliderGroup_UserInfoSlider01_Demo.prefab
+  artifactKey: Guid(3f6cf0c948bee460ba1cd652668e6635) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/SliderGroup_UserInfoSlider01_Demo.prefab using Guid(3f6cf0c948bee460ba1cd652668e6635) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23b6268596104321a94dd2fa766d7db0') in 0.006237 seconds 
+Number of asset objects unloaded after import = 18
+========================================================================
+Received Import Request.
+  Time since last request: 0.000105 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/Slider_HandleType_White.prefab
+  artifactKey: Guid(c03c0c91288a44a4ca818c0009774e04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/Slider_HandleType_White.prefab using Guid(c03c0c91288a44a4ca818c0009774e04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85b63068097e8f3e0e1dc56142d216ec') in 0.028265 seconds 
+Number of asset objects unloaded after import = 36
+========================================================================
+Received Import Request.
+  Time since last request: 0.000080 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/Slider01_White.prefab
+  artifactKey: Guid(db910f44d23b04606a9845f2fc55b8a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/Slider01_White.prefab using Guid(db910f44d23b04606a9845f2fc55b8a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3ca4311e7078e7917048b9854429df9') in 0.087905 seconds 
+Number of asset objects unloaded after import = 27
+========================================================================
+Received Import Request.
+  Time since last request: 0.000152 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/SliderGroup_UserInfo_White.prefab
+  artifactKey: Guid(27a73fa0436804d9aaec8694fb4283dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/SliderGroup_UserInfo_White.prefab using Guid(27a73fa0436804d9aaec8694fb4283dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb4b1f955c220846d210e5ba9a9b8701') in 0.035022 seconds 
+Number of asset objects unloaded after import = 67
+========================================================================
+Received Import Request.
+  Time since last request: 0.000119 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/Slider00_Green.prefab
+  artifactKey: Guid(e800c55db6f5a4e9d9eebd161c4766f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/Slider00_Green.prefab using Guid(e800c55db6f5a4e9d9eebd161c4766f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '250c64dbe890f8f3f253b65ac134d88b') in 0.027645 seconds 
+Number of asset objects unloaded after import = 25
+========================================================================
+Received Import Request.
+  Time since last request: 0.000079 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/Slider_HandleType_On.prefab
+  artifactKey: Guid(b4af3b54cfda34fa7b276acbddfcc581) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_Sliders/Slider_HandleType_On.prefab using Guid(b4af3b54cfda34fa7b276acbddfcc581) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89dc45713ecd10aca3ea150ecadd83c9') in 0.030533 seconds 
+Number of asset objects unloaded after import = 36
+========================================================================
+Received Import Request.
+  Time since last request: 2.455594 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/InputField-Group.prefab
+  artifactKey: Guid(ac5e8870fc9494856a5eccd851c1c56f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/InputField-Group.prefab using Guid(ac5e8870fc9494856a5eccd851c1c56f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9366589ddbf0c496a34b3131a705e8b') in 0.059502 seconds 
+Number of asset objects unloaded after import = 113
+========================================================================
+Received Import Request.
+  Time since last request: 0.000108 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Label01_Demo.prefab
+  artifactKey: Guid(5926d3d4ec0624071be54979453d5e11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Label01_Demo.prefab using Guid(5926d3d4ec0624071be54979453d5e11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f24c9cd03cf334ce3fda4ab6d0d21f6') in 0.026767 seconds 
+Number of asset objects unloaded after import = 17
+========================================================================
+Received Import Request.
+  Time since last request: 0.000091 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify_Icon_Green.prefab
+  artifactKey: Guid(0017c50d05ef243db96a7bf6f8ce0b27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify_Icon_Green.prefab using Guid(0017c50d05ef243db96a7bf6f8ce0b27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'acec53fca882e78ca2b1fbf55e2b2e75') in 0.006653 seconds 
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000116 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Label02.prefab
+  artifactKey: Guid(f2d2083f87d294e2fad5b01d7d6be54c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Label02.prefab using Guid(f2d2083f87d294e2fad5b01d7d6be54c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd29023171334e9af8c285e6bc866ea47') in 0.025649 seconds 
+Number of asset objects unloaded after import = 17
+========================================================================
+Received Import Request.
+  Time since last request: 0.000107 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Label00_Red.prefab
+  artifactKey: Guid(c362870f1710e476fb7e9451cb819502) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Label00_Red.prefab using Guid(c362870f1710e476fb7e9451cb819502) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66884ce691688abf96d001159a79fdab') in 0.028812 seconds 
+Number of asset objects unloaded after import = 17
+========================================================================
+Received Import Request.
+  Time since last request: 0.000082 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Label00_Green.prefab
+  artifactKey: Guid(887563de4a2e14bb9be11d165038e8d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Label00_Green.prefab using Guid(887563de4a2e14bb9be11d165038e8d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '94bc4c032a5d38d547057075c05a2780') in 0.029341 seconds 
+Number of asset objects unloaded after import = 17
+========================================================================
+Received Import Request.
+  Time since last request: 0.000105 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify00_Text-Group.prefab
+  artifactKey: Guid(cc65c19eb05c8496f9de66fcb2943e4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify00_Text-Group.prefab using Guid(cc65c19eb05c8496f9de66fcb2943e4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '546d681d7245a57e7c6a7ab97aa0ff12') in 0.029512 seconds 
+Number of asset objects unloaded after import = 67
+========================================================================
+Received Import Request.
+  Time since last request: 0.000095 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify01_Text_Green.prefab
+  artifactKey: Guid(5d2a25a5ea05b4e01bc17de0ab773ab4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify01_Text_Green.prefab using Guid(5d2a25a5ea05b4e01bc17de0ab773ab4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '70e6ebf2357c3922bc2b2749e5002193') in 0.028208 seconds 
+Number of asset objects unloaded after import = 20
+========================================================================
+Received Import Request.
+  Time since last request: 0.000133 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify01_Text_White.prefab
+  artifactKey: Guid(3004a4ef87a344120a1d995a854a1014) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify01_Text_White.prefab using Guid(3004a4ef87a344120a1d995a854a1014) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60f985d89048664d950ad54daeeab278') in 0.026638 seconds 
+Number of asset objects unloaded after import = 20
+========================================================================
+Received Import Request.
+  Time since last request: 0.000099 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify_Icon_Blue.prefab
+  artifactKey: Guid(42b607ca25ccd4e29a5fb868564fcd96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify_Icon_Blue.prefab using Guid(42b607ca25ccd4e29a5fb868564fcd96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7717f1e6e3b4cbb2a02ef3aa5e2498d9') in 0.006639 seconds 
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000095 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify00_Text_Red.prefab
+  artifactKey: Guid(20340a7d316e844cbb0a8d73b1061f18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify00_Text_Red.prefab using Guid(20340a7d316e844cbb0a8d73b1061f18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a76c8b049f1b137ffffb823df05310dc') in 0.023471 seconds 
+Number of asset objects unloaded after import = 20
+========================================================================
+Received Import Request.
+  Time since last request: 0.000081 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify00_Icon-Group.prefab
+  artifactKey: Guid(5e59314fe140647e5bce35865ec844d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify00_Icon-Group.prefab using Guid(5e59314fe140647e5bce35865ec844d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd6b27dc1a564ee68e570d3e2f80fc93') in 0.007237 seconds 
+Number of asset objects unloaded after import = 41
+========================================================================
+Received Import Request.
+  Time since last request: 0.000118 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Label01_White.prefab
+  artifactKey: Guid(5767d6684bea343ecba08b1143b5541d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Label01_White.prefab using Guid(5767d6684bea343ecba08b1143b5541d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75a18494ea2b4ad37b8dbdf015884fa5') in 0.028644 seconds 
+Number of asset objects unloaded after import = 17
+========================================================================
+Received Import Request.
+  Time since last request: 0.000072 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Toggle_Check_Circle_02.prefab
+  artifactKey: Guid(86c9dda3ac5934922a66237e46a47439) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Toggle_Check_Circle_02.prefab using Guid(86c9dda3ac5934922a66237e46a47439) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58238d6c489b0237a2b23fd2bcdb3b89') in 0.006167 seconds 
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000141 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Label_Ribbon.prefab
+  artifactKey: Guid(f140f58120bcd4e50bff7370e1c5cf1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Label_Ribbon.prefab using Guid(f140f58120bcd4e50bff7370e1c5cf1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d0bf16106973f98f0f62eb91c9d18f4') in 0.028218 seconds 
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time since last request: 0.000097 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify00_Text_Blue.prefab
+  artifactKey: Guid(8c8364b8ae27943468a21745bd5df612) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_Component_UI_Etc/Notify00_Text_Blue.prefab using Guid(8c8364b8ae27943468a21745bd5df612) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34034e877ee3c99334ccfd1304ec3a32') in 0.026181 seconds 
+Number of asset objects unloaded after import = 20
+========================================================================
+Received Import Request.
+  Time since last request: 3.569907 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Function_Button_Color1.prefab
+  artifactKey: Guid(c000483f7af41429a97d6a498c1d3903) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Function_Button_Color1.prefab using Guid(c000483f7af41429a97d6a498c1d3903) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f41ea361f5386c4148b1b7d879baa72') in 0.118944 seconds 
+Number of asset objects unloaded after import = 895
+========================================================================
+Received Import Request.
+  Time since last request: 0.000158 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Popup_Settings_Language.prefab
+  artifactKey: Guid(0a6b1f7991db2479b86cf4dc67b031ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Popup_Settings_Language.prefab using Guid(0a6b1f7991db2479b86cf4dc67b031ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6bcdf31be67fecc0f78570b33de89c4f') in 0.031058 seconds 
+Number of asset objects unloaded after import = 98
+========================================================================
+Received Import Request.
+  Time since last request: 0.000106 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Popup_Fail.prefab
+  artifactKey: Guid(52e17b344ced44a6ab387e6db81c10d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Popup_Fail.prefab using Guid(52e17b344ced44a6ab387e6db81c10d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0adf92c991354d744fb89f57436b9a10') in 0.033639 seconds 
+Number of asset objects unloaded after import = 86
+========================================================================
+Received Import Request.
+  Time since last request: 0.000099 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Popup_StageLock.prefab
+  artifactKey: Guid(22706b7c380b842c7bc5668ffaa7f548) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Popup_StageLock.prefab using Guid(22706b7c380b842c7bc5668ffaa7f548) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66aa6d61fdd80cf091800e711841724f') in 0.026395 seconds 
+Number of asset objects unloaded after import = 56
+========================================================================
+Received Import Request.
+  Time since last request: 0.000137 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Pause.prefab
+  artifactKey: Guid(48300b3100534413c9d0edb3e1a6c1c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Pause.prefab using Guid(48300b3100534413c9d0edb3e1a6c1c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb128fdbbe59536a5e0c6ae490321cba') in 0.035569 seconds 
+Number of asset objects unloaded after import = 94
+========================================================================
+Received Import Request.
+  Time since last request: 0.000119 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Popup_Settings.prefab
+  artifactKey: Guid(863cfd70e93a241d9a8b2b40beb4a893) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Popup_Settings.prefab using Guid(863cfd70e93a241d9a8b2b40beb4a893) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a096c206436f9f6371dd6feb8cbc3731') in 0.045511 seconds 
+Number of asset objects unloaded after import = 245
+========================================================================
+Received Import Request.
+  Time since last request: 0.000108 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Title.prefab
+  artifactKey: Guid(9f52f2c9fe7004d0ca310b0c69720d1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Title.prefab using Guid(9f52f2c9fe7004d0ca310b0c69720d1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d2bf59b7e24c5e0f6fa70086062655f') in 0.232281 seconds 
+Number of asset objects unloaded after import = 393
+========================================================================
+Received Import Request.
+  Time since last request: 0.000084 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/LevelUp.prefab
+  artifactKey: Guid(4229af884d7454e29851bcb2ef8b1b2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/LevelUp.prefab using Guid(4229af884d7454e29851bcb2ef8b1b2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9085001a2dbff2a9836c576eadb97141') in 0.070114 seconds 
+Number of asset objects unloaded after import = 132
+========================================================================
+Received Import Request.
+  Time since last request: 0.000078 seconds.
+  path: Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Stage.prefab
+  artifactKey: Guid(6f52c8e07f05e48878851d3d63767b11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Layer Lab/GUI-BlueSky/Prefabs/Prefabs_DemoScene/Stage.prefab using Guid(6f52c8e07f05e48878851d3d63767b11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b08f890695d868617234d0754f8f7d0') in 0.118227 seconds 
+Number of asset objects unloaded after import = 523
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
